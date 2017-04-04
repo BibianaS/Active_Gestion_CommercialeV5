@@ -14,10 +14,11 @@ namespace Active_Gestion_Commerciale
     {
         
         
+        
         public frmAffichage()
         { 
             InitializeComponent();
-            afficheListeClients();
+           afficheListeClients();
 
         }
 
@@ -36,16 +37,15 @@ namespace Active_Gestion_Commerciale
                 dr = dt.NewRow();
                 dr[0] = Donnees.ListeClients[i].IdClient;
                 dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                dr[2] = Donnees.ListeClients[i].Telephone;
+                //dr[2] = Donnees.ListeClients[i].Telephone;
                 //dr[3] = Donnees.ListeClients[i].ListeContacts;
                 //Rows Add
                 dt.Rows.Add(dr);
             }
-            this.dgvListeClients.DataSource = dt;
+            this.dgvListeClients.DataSource = dt.DefaultView;
             this.dgvListeClients.Refresh();
             dt = null;
             dr = null;
-            
         }
 
         private void btnRevenir_Click(object sender, EventArgs e)
@@ -67,15 +67,60 @@ namespace Active_Gestion_Commerciale
 
         private void btnRechercher_Click(object sender, EventArgs e)
         {
-            
+            if (this.txtRecherche != null)
+            {
+                ((DataView)(this.dgvListeClients.DataSource)).RowFilter = "iD 'i"+ this.txtRecherche.Text +"'%";
+            }
             
         }
 
         private void dgvListeClients_DoubleClick(object sender, EventArgs e)
         {
             int iClient;
-
+            //Index de la ligne 
             iClient = this.dgvListeClients.CurrentRow.Index;
+
+            //instancie un objet client pointant vers le client d'origine
+            MClient leClient = Donnees.ListeClients[iClient];
+
+            //instancie un form detaille pour ce client
+            frmModifClient frmModif = new frmModifClient(leClient);
+
+            frmModif.ShowDialog();
+
+            afficheListeClients();
+        }
+
+        private void btnAjouterClient_Click(object sender, EventArgs e)
+        {
+            frmNewClient frmClient;
+            frmClient = new frmNewClient();
+            if (frmClient.ShowDialog() == DialogResult.OK)
+            {
+                afficheListeClients();
+            }
+        }
+
+        private void btnTous_Click(object sender, EventArgs e)
+        {
+            ((DataView)(this.dgvListeClients.DataSource)).RowFilter = null;
+        }
+
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            int iClient;
+            //Index de la ligne 
+            iClient = this.dgvListeClients.CurrentRow.Index;
+
+            //instancie un objet client pointant vers le client d'origine
+            MClient leClient = Donnees.ListeClients[iClient];
+
+            //instancie un form detaille pour ce client
+            frmModifClient frmModif = new frmModifClient(leClient);
+
+            frmModif.ShowDialog();
+
+            afficheListeClients();
         }
     }
 }

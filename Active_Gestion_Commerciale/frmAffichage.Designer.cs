@@ -34,8 +34,9 @@
             this.btnTous = new System.Windows.Forms.Button();
             this.dgvListeClients = new System.Windows.Forms.DataGridView();
             this.btnSupprimer = new System.Windows.Forms.Button();
-            this.btnAjouter = new System.Windows.Forms.Button();
+            this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnRevenir = new System.Windows.Forms.Button();
+            this.btnModifier = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeClients)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,9 +74,14 @@
             this.btnTous.TabIndex = 3;
             this.btnTous.Text = "Tous";
             this.btnTous.UseVisualStyleBackColor = true;
+            this.btnTous.Click += new System.EventHandler(this.btnTous_Click);
             // 
             // dgvListeClients
             // 
+            this.dgvListeClients.AllowUserToAddRows = false;
+            this.dgvListeClients.AllowUserToDeleteRows = false;
+            this.dgvListeClients.AllowUserToOrderColumns = true;
+            this.dgvListeClients.AllowUserToResizeRows = false;
             this.dgvListeClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListeClients.Location = new System.Drawing.Point(26, 113);
             this.dgvListeClients.Name = "dgvListeClients";
@@ -85,7 +91,7 @@
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(206, 364);
+            this.btnSupprimer.Location = new System.Drawing.Point(88, 364);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(75, 23);
             this.btnSupprimer.TabIndex = 5;
@@ -93,14 +99,15 @@
             this.btnSupprimer.UseVisualStyleBackColor = true;
             this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
-            // btnAjouter
+            // btnAjouterClient
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(331, 364);
-            this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(75, 23);
-            this.btnAjouter.TabIndex = 6;
-            this.btnAjouter.Text = "Ajouter";
-            this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouterClient.Location = new System.Drawing.Point(197, 364);
+            this.btnAjouterClient.Name = "btnAjouterClient";
+            this.btnAjouterClient.Size = new System.Drawing.Size(120, 23);
+            this.btnAjouterClient.TabIndex = 6;
+            this.btnAjouterClient.Text = "Ajouter un client";
+            this.btnAjouterClient.UseVisualStyleBackColor = true;
+            this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
             // 
             // btnRevenir
             // 
@@ -112,13 +119,24 @@
             this.btnRevenir.UseVisualStyleBackColor = true;
             this.btnRevenir.Click += new System.EventHandler(this.btnRevenir_Click);
             // 
+            // btnModifier
+            // 
+            this.btnModifier.Location = new System.Drawing.Point(332, 364);
+            this.btnModifier.Name = "btnModifier";
+            this.btnModifier.Size = new System.Drawing.Size(109, 23);
+            this.btnModifier.TabIndex = 8;
+            this.btnModifier.Text = "Modifier un client";
+            this.btnModifier.UseVisualStyleBackColor = true;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
+            // 
             // frmAffichage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 446);
+            this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnRevenir);
-            this.Controls.Add(this.btnAjouter);
+            this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.dgvListeClients);
             this.Controls.Add(this.btnTous);
@@ -141,7 +159,8 @@
         private System.Windows.Forms.Button btnTous;
         private System.Windows.Forms.DataGridView dgvListeClients;
         private System.Windows.Forms.Button btnSupprimer;
-        private System.Windows.Forms.Button btnAjouter;
+        private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnRevenir;
+        private System.Windows.Forms.Button btnModifier;
     }
 }

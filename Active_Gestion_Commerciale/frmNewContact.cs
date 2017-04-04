@@ -12,7 +12,7 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmNewContact : Form
     {
-        private MClient fClient;
+        //private MClient fClient;
         private int iContact=0;
 
         /// <summary>
@@ -20,9 +20,9 @@ namespace Active_Gestion_Commerciale
         /// passage ref en paramètre
         /// </summary>
         /// <param name="client"></param>
-        public frmNewContact(MClient client)
+        public frmNewContact()
         {
-            this.fClient = client;
+            
             InitializeComponent();
             initListeContacts();
         }
@@ -55,8 +55,9 @@ namespace Active_Gestion_Commerciale
             nouveauContact.TelContact   = txtTelContact.Text;
 
             //Ajoute un contact a la liste de contacts declare dns la classe contact
-            fClient.ListeContacts.Add(nouveauContact);
-            
+
+            Donnees.ListeContacts.Add(nouveauContact);
+
 
             Contact.NombreContacts      += 1;
             this.iContact = Contact.NombreContacts-1;
@@ -83,6 +84,7 @@ namespace Active_Gestion_Commerciale
         private void btnAccepterContact_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            
         }
 
 
@@ -98,12 +100,12 @@ namespace Active_Gestion_Commerciale
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
 
-            for (i = 0; i < fClient.ListeContacts.Count; i++)
+            for (i = 0; i <Donnees.ListeContacts.Count; i++)
             {
                 dr = dt.NewRow();
-                dr[0] = fClient.ListeContacts[i].IdContact;
-                dr[1] = fClient.ListeContacts[i].NomContact;
-                dr[2] = fClient.ListeContacts[i].PrenomContact;
+                dr[0] = Donnees.ListeContacts[i].IdContact;
+                dr[1] = Donnees.ListeContacts[i].NomContact;
+                dr[2] = Donnees.ListeContacts[i].PrenomContact;
                 //Rows Add
                 dt.Rows.Add(dr);
             }
@@ -121,7 +123,7 @@ namespace Active_Gestion_Commerciale
         {
             int a;
             a = this.grdContacts.CurrentRow.Index;
-            fClient.ListeContacts.RemoveAt(a);
+            Donnees.ListeContacts.RemoveAt(a);
             afficheListContact();
         }
     }  

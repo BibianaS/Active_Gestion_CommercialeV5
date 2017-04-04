@@ -12,93 +12,27 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmMDI : Form
     {
-        
-        private frmNewClient frmClient;
-        private frmAffichage frmAfficheClients;
-
+        frmNewContact frmContact;
+        frmNewClient frmClient;
+        frmAffichage frmPrinc;
+       
         public frmMDI()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Création de la fenetre NewClient par le bouton creer de la page principale
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnCreerClient_Click(object sender, EventArgs e)
+        private void GestionCommerciale_Click(object sender, EventArgs e)
         {
-            btnCreerClient.Visible = false;
-            btnAfficherClient.Visible = false;
+            if (this.frmPrinc == null)
+            {
+                this.frmPrinc = new frmAffichage();
+            }
 
-            //Verification si la fenetre client est deja ouverte
-            if (this.frmClient == null)
-            {
-                frmClient = new frmNewClient();
-                frmClient.MdiParent = this;
-                frmClient.Show();
-            }
-            else
-            {
-                this.frmClient.Activate();
-            }
+            frmPrinc.MdiParent = this;
+            frmPrinc.Show();
+
         }
 
-        /// <summary>
-        /// Création de la fenetre NewClient depuis le ToolStrip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void créerUnClientToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (this.frmClient == null)
-            {
-                frmClient = new frmNewClient();
-                frmClient.MdiParent = this;
-                frmClient.Show();
-            }
-            else
-            {
-                this.frmClient.Activate();
-            }
-        }
 
-        /// <summary>
-        /// Fenetre Afficher depuis Afficher client
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAfficherClient_Click(object sender, EventArgs e)
-        {
-            if (this.frmAfficheClients == null)
-            {
-                frmAfficheClients = new frmAffichage();
-                frmAfficheClients.MdiParent = this;
-                frmAfficheClients.Show();
-            }
-            else
-            {
-                this.frmClient.Activate();
-            }
-        }
-
-        /// <summary>
-        /// Fenetre afficher depuis Tool strip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void afficherUnClientToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (this.frmAfficheClients == null)
-            {
-                frmAfficheClients = new frmAffichage();
-                frmAfficheClients.MdiParent = this;
-                frmAfficheClients.Show();
-            }
-            else
-            {
-                this.frmClient.Activate();
-            }
-        }
     }
 }

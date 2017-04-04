@@ -20,6 +20,7 @@ namespace Active_Gestion_Commerciale
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMDI());
             
+
         }
     }
 }

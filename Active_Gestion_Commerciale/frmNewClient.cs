@@ -13,9 +13,12 @@ namespace Active_Gestion_Commerciale
     public partial class frmNewClient : Form
     {
         frmNewContact frmContact;
-        private MClient unClient = new MClient();
+        MClient unClient;
+
+
         private int iContact;
-        
+        public static int iClient;
+
         /// <summary>
         /// Initialisation formulaire
         /// </summary>
@@ -23,7 +26,6 @@ namespace Active_Gestion_Commerciale
         {
             InitializeComponent();
             this.initFicheClient();
-            btnAjouterContact.Enabled = true;
             btnAjouterDocumments.Enabled = false;
         }
         
@@ -50,8 +52,6 @@ namespace Active_Gestion_Commerciale
             txtCommentaires.Text = "";
             rbtPublic.Checked = true;
             rbtPrincipale.Checked = true;
-            //init data gird view clients
-            //afficheListeClients();
         }
 
 
@@ -62,15 +62,14 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
-             
-                frmContact = new frmNewContact(unClient);
+            frmContact = new frmNewContact();
 
                 if (frmContact.ShowDialog() == DialogResult.OK)
                 {
                     //recherche le rang du contact saisie
                     this.iContact = Contact.NombreContacts - 1;
                 }
-                   }
+         }
 
 
         /// <summary>
@@ -80,34 +79,47 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnCreerClient_Click(object sender, EventArgs e)
         {
-            //New client
-            //unClient = new MClient();
-            DataTable tableContacts = new DataTable();
-            List<MClient> ListeClients = new List<MClient>();
-
-            unClient.IdClient = int.Parse(txtIdClient.Text);
-            unClient.RaisonSociale = txtRaisonSociale.Text;
-            unClient.Activite = cbxDomaineActivite.SelectedItem.ToString();
-            unClient.Adresse = txtAdresse.Text + txtComplemetAdresse.Text;
-            unClient.VilleClient = txtVille.Text;
-            unClient.CodePostale = int.Parse(txtCodePostale.Text);
-            unClient.Telephone = txtTelephone.Text;
-            unClient.CA1 = int.Parse(txtChiffreAffaires.Text);
-            unClient.Commentaires = txtCommentaires.Text;
+            int idClient = int.Parse(txtIdClient.Text);
+            string raisonSociale = txtRaisonSociale.Text;
+            //string typeSociete = "";
+            //string domaineAct = cbxDomaineActivite.SelectedItem.ToString();
+            //string adresse = txtAdresse.Text + txtComplemetAdresse.Text;
+            //string ville = txtVille.Text;
+            //int codePostale = int.Parse(txtCodePostale.Text);
+            //string telephone = txtTelephone.Text;
+            //string nature = "";
+            //decimal chiffreA = decimal.Parse(txtChiffreAffaires.Text);
+            //int effectifs = 0;
+            //string commentaires = txtCommentaires.Text;
             
-            //"type de societe" selection / prive or public
-            unClient.TypeSociete = rbtPrive.Checked ? "prive" : "public";
+            //typeSociete = rbtPrive.Checked ? "prive" : "public";
 
-            //"Nature" selection /Principale, secondaire or Ancienne
-            if (rbtPrincipale.Checked) { unClient.Nature = "Principale"; }
-            if (rbtSecondaire.Checked) { unClient.Nature = "Secondaire"; }
-            if (rbtAncienne.Checked) { unClient.Nature = "Ancienne"; }
+            ////"Nature" selection /Principale, secondaire or Ancienne
+            //if (rbtPrincipale.Checked) { nature = "Principale"; }
+            //if (rbtSecondaire.Checked) { nature = "Secondaire"; }
+            //if (rbtAncienne.Checked) { nature = "Ancienne"; }
 
+
+            //New client par le constructeur
+            unClient = new MClient(idClient, raisonSociale/*, typeSociete, domaineAct, adresse, ville, codePostale, telephone, nature, chiffreA, effectifs, commentaires*/);
+            iClient++;
+            
+            //Ajout un client a la liste de clients dans donnees
             Donnees.ListeClients.Add(unClient);
+            
+            //Nombre de clients existants
             MClient.NombreClients += 1;
+            
+            //Masquage des text Box
+            txtIdClient.Enabled = txtRaisonSociale.Enabled = txtAdresse.Enabled = txtComplemetAdresse.Enabled = txtVille.Enabled = txtCodePostale.Enabled = txtTelephone.Enabled = txtChiffreAffaires.Enabled = txtCommentaires.Enabled = txtEffectifs.Enabled = false;
+
+            //Affichage du bouton creer un contact
+            //btnAjouterContact.Visible = true;
+            //lblCreerContact.Visible = true;
+
+            //affiche la liste de clients
             afficheListeClients();
-            //afficheListContact();
-            initFicheClient();
+            //btnCreerClient.Visible = false;
         }
 
 
@@ -129,13 +141,13 @@ namespace Active_Gestion_Commerciale
                 dr = dt.NewRow();
                 dr[0] = Donnees.ListeClients[i].IdClient;
                 dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                dr[2] = Donnees.ListeClients[i].Telephone;
-                //dr[3] = Donnees.ListeClients[i].ListeContacts;
-                //Rows Add
+                //dr[2] = Donnees.ListeClients[i].Telephone;
+              
                 dt.Rows.Add(dr);
             }
             this.dgvListeClients.DataSource = dt;
             this.dgvListeClients.Refresh();
+
             dt = null;
             dr = null;
         }
@@ -145,31 +157,33 @@ namespace Active_Gestion_Commerciale
         ///// Affichage de la liste de contacts par client
         ///// </summary>
         ///// <returns></returns>
-        //private DataTable afficheListContact()
-        //{
-        //    DataTable dt = new DataTable();
+        private void afficheListContact(List<Contact> list)
+        {
+            DataTable dt = new DataTable();
 
-        //    DataRow dr;
-        //    int i;
-        //    dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
-        //    dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
-        //    dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
+            DataRow dr;
+            int i;
+            dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
 
-        //    for (i = 0; i < unClient.ListeContacts.Count; i++)
-        //    {
-        //        dr = dt.NewRow();
-        //        dr[0] = unClient.ListeContacts[i].IdContact;
-        //        dr[1] = unClient.ListeContacts[i].NomContact;
-        //        dr[2] = unClient.ListeContacts[i].PrenomContact;
-        //        //Rows Add
-        //        dt.Rows.Add(dr);
-        //    }
-        //    this.dgvContacts.DataSource = dt;
-        //    this.dgvContacts.Refresh();
-        //    dt = null;
-        //    dr = null;
-        //    return dt;
-        //}
+            for (i = 0; i < list.Count; i++)
+            {
+                dr = dt.NewRow();
+                dr[0] = list[i].IdContact;
+                dr[1] = list[i].NomContact;
+                dr[2] = list[i].PrenomContact;
+                //Rows Add
+                dt.Rows.Add(dr);
+            }
+            this.dgvContacts.DataSource = dt;
+            this.dgvContacts.Refresh();
+            dt = null;
+            dr = null;
+            
+        }
+
+
         /// <summary>
         /// Quitter la creation client
         /// </summary>
@@ -177,8 +191,14 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnQuitterCreationClient_Click(object sender, EventArgs e)
         {
+
             this.Close();
             
+        }
+
+        private void btnContinuer_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

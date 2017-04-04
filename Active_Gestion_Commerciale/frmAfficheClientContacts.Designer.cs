@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.gbxFicheClient = new System.Windows.Forms.GroupBox();
+            this.txtNature = new System.Windows.Forms.MaskedTextBox();
+            this.txtTypeActivite = new System.Windows.Forms.TextBox();
+            this.lblTypeClient = new System.Windows.Forms.Label();
+            this.txtDomaineActivite = new System.Windows.Forms.TextBox();
+            this.lblNature = new System.Windows.Forms.Label();
             this.txtCommentaires = new System.Windows.Forms.RichTextBox();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.lblCommentaires = new System.Windows.Forms.Label();
@@ -36,8 +41,6 @@
             this.lblVille = new System.Windows.Forms.Label();
             this.txtRaisonSociale = new System.Windows.Forms.MaskedTextBox();
             this.txtChiffreAffaires = new System.Windows.Forms.MaskedTextBox();
-            this.lblNature = new System.Windows.Forms.Label();
-            this.lblTypeClient = new System.Windows.Forms.Label();
             this.txtCodePostale = new System.Windows.Forms.MaskedTextBox();
             this.txtComplemetAdresse = new System.Windows.Forms.MaskedTextBox();
             this.lblCodePostale = new System.Windows.Forms.Label();
@@ -51,9 +54,6 @@
             this.lblDomaineDactivite = new System.Windows.Forms.Label();
             this.lblRaisonSociale = new System.Windows.Forms.Label();
             this.lblIdClient = new System.Windows.Forms.Label();
-            this.txtDomaineActivite = new System.Windows.Forms.TextBox();
-            this.txtTypeActivite = new System.Windows.Forms.TextBox();
-            this.txtNature = new System.Windows.Forms.MaskedTextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblListeContacts = new System.Windows.Forms.Label();
             this.btnRetourner = new System.Windows.Forms.Button();
@@ -94,6 +94,45 @@
             this.gbxFicheClient.TabIndex = 4;
             this.gbxFicheClient.TabStop = false;
             this.gbxFicheClient.Text = "Fiche client";
+            // 
+            // txtNature
+            // 
+            this.txtNature.Location = new System.Drawing.Point(145, 263);
+            this.txtNature.Name = "txtNature";
+            this.txtNature.Size = new System.Drawing.Size(178, 20);
+            this.txtNature.TabIndex = 21;
+            // 
+            // txtTypeActivite
+            // 
+            this.txtTypeActivite.Location = new System.Drawing.Point(145, 79);
+            this.txtTypeActivite.Name = "txtTypeActivite";
+            this.txtTypeActivite.Size = new System.Drawing.Size(178, 20);
+            this.txtTypeActivite.TabIndex = 14;
+            // 
+            // lblTypeClient
+            // 
+            this.lblTypeClient.AutoSize = true;
+            this.lblTypeClient.Location = new System.Drawing.Point(24, 79);
+            this.lblTypeClient.Name = "lblTypeClient";
+            this.lblTypeClient.Size = new System.Drawing.Size(80, 13);
+            this.lblTypeClient.TabIndex = 2;
+            this.lblTypeClient.Text = "Type de client :";
+            // 
+            // txtDomaineActivite
+            // 
+            this.txtDomaineActivite.Location = new System.Drawing.Point(145, 106);
+            this.txtDomaineActivite.Name = "txtDomaineActivite";
+            this.txtDomaineActivite.Size = new System.Drawing.Size(178, 20);
+            this.txtDomaineActivite.TabIndex = 15;
+            // 
+            // lblNature
+            // 
+            this.lblNature.AutoSize = true;
+            this.lblNature.Location = new System.Drawing.Point(24, 270);
+            this.lblNature.Name = "lblNature";
+            this.lblNature.Size = new System.Drawing.Size(45, 13);
+            this.lblNature.TabIndex = 8;
+            this.lblNature.Text = "Nature :";
             // 
             // txtCommentaires
             // 
@@ -148,24 +187,6 @@
             this.txtChiffreAffaires.Name = "txtChiffreAffaires";
             this.txtChiffreAffaires.Size = new System.Drawing.Size(178, 20);
             this.txtChiffreAffaires.TabIndex = 22;
-            // 
-            // lblNature
-            // 
-            this.lblNature.AutoSize = true;
-            this.lblNature.Location = new System.Drawing.Point(24, 270);
-            this.lblNature.Name = "lblNature";
-            this.lblNature.Size = new System.Drawing.Size(45, 13);
-            this.lblNature.TabIndex = 8;
-            this.lblNature.Text = "Nature :";
-            // 
-            // lblTypeClient
-            // 
-            this.lblTypeClient.AutoSize = true;
-            this.lblTypeClient.Location = new System.Drawing.Point(24, 79);
-            this.lblTypeClient.Name = "lblTypeClient";
-            this.lblTypeClient.Size = new System.Drawing.Size(80, 13);
-            this.lblTypeClient.TabIndex = 2;
-            this.lblTypeClient.Text = "Type de client :";
             // 
             // txtCodePostale
             // 
@@ -279,27 +300,6 @@
             this.lblIdClient.Size = new System.Drawing.Size(93, 13);
             this.lblIdClient.TabIndex = 0;
             this.lblIdClient.Text = "Numéro de client :";
-            // 
-            // txtDomaineActivite
-            // 
-            this.txtDomaineActivite.Location = new System.Drawing.Point(145, 106);
-            this.txtDomaineActivite.Name = "txtDomaineActivite";
-            this.txtDomaineActivite.Size = new System.Drawing.Size(178, 20);
-            this.txtDomaineActivite.TabIndex = 15;
-            // 
-            // txtTypeActivite
-            // 
-            this.txtTypeActivite.Location = new System.Drawing.Point(145, 79);
-            this.txtTypeActivite.Name = "txtTypeActivite";
-            this.txtTypeActivite.Size = new System.Drawing.Size(178, 20);
-            this.txtTypeActivite.TabIndex = 14;
-            // 
-            // txtNature
-            // 
-            this.txtNature.Location = new System.Drawing.Point(145, 263);
-            this.txtNature.Name = "txtNature";
-            this.txtNature.Size = new System.Drawing.Size(178, 20);
-            this.txtNature.TabIndex = 21;
             // 
             // dataGridView1
             // 

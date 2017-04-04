@@ -59,6 +59,12 @@
     <Compile Include="frmAfficheClientContacts.Designer.cs">
       <DependentUpon>frmAfficheClientContacts.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmModifClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModifClient.Designer.cs">
+      <DependentUpon>frmModifClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="MClient.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Donnees.cs" />
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAfficheClientContacts.resx">
       <DependentUpon>frmAfficheClientContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmModifClient.resx">
+      <DependentUpon>frmModifClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewClient.resx">
       <DependentUpon>frmNewClient.cs</DependentUpon>
