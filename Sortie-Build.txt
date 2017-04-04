@@ -1,0 +1,5 @@
+﻿1>------ Début de la génération : Projet : Active_Gestion_Commerciale, Configuration : Debug Any CPU ------
+1>C:\Users\DL-CDI\Desktop\Projet Active\Active_Gestion_CommercialeV4\Active_Gestion_CommercialeV2\Active_Gestion_Commerciale\frmMDI.cs(16,22,16,31): warning CS0169: Le champ 'frmMDI.frmClient' n'est jamais utilisé
+1>C:\Users\DL-CDI\Desktop\Projet Active\Active_Gestion_CommercialeV4\Active_Gestion_CommercialeV2\Active_Gestion_Commerciale\frmMDI.cs(15,23,15,33): warning CS0169: Le champ 'frmMDI.frmContact' n'est jamais utilisé
+1>  Active_Gestion_Commerciale -> C:\Users\DL-CDI\Desktop\Projet Active\Active_Gestion_CommercialeV4\Active_Gestion_CommercialeV2\Active_Gestion_Commerciale\bin\Debug\Active_Gestion_Commerciale.exe
+========== Génération : 1 a réussi, 0 a échoué, 0 mis à jour, 0 a été ignoré ==========
