@@ -12,16 +12,15 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmAffichage : Form
     {
-        
-        
-        
         public frmAffichage()
-        { 
+        {
             InitializeComponent();
-           afficheListeClients();
-
+            afficheListeClients();
         }
 
+        /// <summary>
+        /// Methiode affichage de la lise de clients
+        /// </summary>
         private void afficheListeClients()
         {
             DataTable dt = new DataTable();
@@ -47,15 +46,12 @@ namespace Active_Gestion_Commerciale
             dt = null;
             dr = null;
         }
-
-        private void btnRevenir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        //TODO GERER LE SUPPRESSION DEPUIS AFFICHER
-
-
+        
+        /// <summary>
+        /// Bouton supprimer un client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             int a;
@@ -63,17 +59,28 @@ namespace Active_Gestion_Commerciale
             MessageBox.Show(a.ToString());
             Donnees.ListeClients.RemoveAt(a);
             afficheListeClients();
-         }
+        }
 
+        //TODO Gerer la recherche de clients
+        /// <summary>
+        /// Recherche de clients
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRechercher_Click(object sender, EventArgs e)
         {
             if (this.txtRecherche != null)
             {
-                ((DataView)(this.dgvListeClients.DataSource)).RowFilter = "iD 'i"+ this.txtRecherche.Text +"'%";
+                ((DataView)(this.dgvListeClients.DataSource)).RowFilter = "iD 'i" + this.txtRecherche.Text + "'%";
             }
-            
+
         }
 
+        /// <summary>
+        /// Double click sur la liste client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvListeClients_DoubleClick(object sender, EventArgs e)
         {
             int iClient;
@@ -91,6 +98,11 @@ namespace Active_Gestion_Commerciale
             afficheListeClients();
         }
 
+        /// <summary>
+        /// Boton ajouter un client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouterClient_Click(object sender, EventArgs e)
         {
             frmNewClient frmClient;
@@ -101,11 +113,21 @@ namespace Active_Gestion_Commerciale
             }
         }
 
+        /// <summary>
+        /// Affiche tous les clients
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTous_Click(object sender, EventArgs e)
         {
             ((DataView)(this.dgvListeClients.DataSource)).RowFilter = null;
         }
 
+        /// <summary>
+        /// Bouton modifier le client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifier_Click(object sender, EventArgs e)
         {
             int iClient;
@@ -117,10 +139,12 @@ namespace Active_Gestion_Commerciale
 
             //instancie un form detaille pour ce client
             frmModifClient frmModif = new frmModifClient(leClient);
-
-            frmModif.ShowDialog();
-
-            afficheListeClients();
+            if (frmModif.ShowDialog() == DialogResult.OK)
+            {
+                afficheListeClients();
+            }
         }
+
+      
     }
 }

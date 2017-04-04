@@ -19,7 +19,6 @@ namespace Active_Gestion_Commerciale
         {
             this.leClient = unClient;
             InitializeComponent();
-            
         }
 
         /// <summary>
@@ -30,8 +29,6 @@ namespace Active_Gestion_Commerciale
         private void frmModifClient_Load(object sender, EventArgs e)
         {
             this.afficheClient(this.leClient);
-            leClient.IdClient = int.Parse(txtIdModif.Text);
-            leClient.RaisonSociale = txtRaisonSModif.Text;
         }
 
         /// <summary>
@@ -46,7 +43,16 @@ namespace Active_Gestion_Commerciale
 
         private void btnEnregistrerModif_Click(object sender, EventArgs e)
         {
+            //TODO verification de client et id existant
+            leClient.IdClient = int.Parse(txtIdModif.Text);
+            leClient.RaisonSociale = txtRaisonSModif.Text;
             this.DialogResult = DialogResult.OK;
+        }
+
+
+        private void btnAnnulerModif_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

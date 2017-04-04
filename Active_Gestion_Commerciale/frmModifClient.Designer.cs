@@ -90,6 +90,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnAnnulerModif = new System.Windows.Forms.Button();
             this.gbxFicheClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -360,7 +361,7 @@
             // 
             // btnEnregistrerModif
             // 
-            this.btnEnregistrerModif.Location = new System.Drawing.Point(162, 587);
+            this.btnEnregistrerModif.Location = new System.Drawing.Point(86, 588);
             this.btnEnregistrerModif.Name = "btnEnregistrerModif";
             this.btnEnregistrerModif.Size = new System.Drawing.Size(75, 23);
             this.btnEnregistrerModif.TabIndex = 5;
@@ -670,11 +671,22 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "Numéro de client :";
             // 
+            // btnAnnulerModif
+            // 
+            this.btnAnnulerModif.Location = new System.Drawing.Point(234, 588);
+            this.btnAnnulerModif.Name = "btnAnnulerModif";
+            this.btnAnnulerModif.Size = new System.Drawing.Size(75, 23);
+            this.btnAnnulerModif.TabIndex = 8;
+            this.btnAnnulerModif.Text = "Annuler";
+            this.btnAnnulerModif.UseVisualStyleBackColor = true;
+            this.btnAnnulerModif.Click += new System.EventHandler(this.btnAnnulerModif_Click);
+            // 
             // frmModifClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 633);
+            this.Controls.Add(this.btnAnnulerModif);
             this.Controls.Add(this.gbxFicheClient);
             this.Controls.Add(this.btnEnregistrerModif);
             this.Name = "frmModifClient";
@@ -753,5 +765,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnAnnulerModif;
     }
 }

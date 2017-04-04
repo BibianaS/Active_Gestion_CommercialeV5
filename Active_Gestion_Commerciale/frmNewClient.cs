@@ -14,8 +14,6 @@ namespace Active_Gestion_Commerciale
     {
         frmNewContact frmContact;
         MClient unClient;
-
-
         private int iContact;
         public static int iClient;
 
@@ -191,10 +189,10 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnQuitterCreationClient_Click(object sender, EventArgs e)
         {
-
             this.Close();
             
         }
+
 
         private void btnContinuer_Click(object sender, EventArgs e)
         {

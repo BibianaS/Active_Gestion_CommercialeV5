@@ -35,7 +35,6 @@
             this.dgvListeClients = new System.Windows.Forms.DataGridView();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
-            this.btnRevenir = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeClients)).BeginInit();
             this.SuspendLayout();
@@ -109,16 +108,6 @@
             this.btnAjouterClient.UseVisualStyleBackColor = true;
             this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
             // 
-            // btnRevenir
-            // 
-            this.btnRevenir.Location = new System.Drawing.Point(457, 364);
-            this.btnRevenir.Name = "btnRevenir";
-            this.btnRevenir.Size = new System.Drawing.Size(75, 23);
-            this.btnRevenir.TabIndex = 7;
-            this.btnRevenir.Text = "Revenir";
-            this.btnRevenir.UseVisualStyleBackColor = true;
-            this.btnRevenir.Click += new System.EventHandler(this.btnRevenir_Click);
-            // 
             // btnModifier
             // 
             this.btnModifier.Location = new System.Drawing.Point(332, 364);
@@ -135,7 +124,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 446);
             this.Controls.Add(this.btnModifier);
-            this.Controls.Add(this.btnRevenir);
             this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.dgvListeClients);
@@ -160,7 +148,6 @@
         private System.Windows.Forms.DataGridView dgvListeClients;
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnAjouterClient;
-        private System.Windows.Forms.Button btnRevenir;
         private System.Windows.Forms.Button btnModifier;
     }
 }
