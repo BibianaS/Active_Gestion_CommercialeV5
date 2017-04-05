@@ -42,7 +42,7 @@ namespace Active_Gestion_Commerciale
         /// <param name="effectif"></param>
         /// <param name="commentaires"></param>
         /// <param name="contact"></param>
-        public MClient(int idClient, string rS/*, string typeSociete, string activite, string adresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires*/)
+        public MClient(int idClient, string rS/*, string typeSociete, string activite, string adresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires*/, List<Contact> listeContact)
         {
             this.idClient = idClient;
             this.raisonSociale = rS;
@@ -56,6 +56,7 @@ namespace Active_Gestion_Commerciale
             //this.CA = CA;
             //this.effectif = effectif;
             //this.commentaires = commentaires;
+            this.listeContacts = listeContact;
         }
 
 

@@ -91,9 +91,30 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnAnnulerModif = new System.Windows.Forms.Button();
+            this.gpbContact = new System.Windows.Forms.GroupBox();
+            this.btnAnnulerAjoutCont = new System.Windows.Forms.Button();
+            this.btnEnregistretContact = new System.Windows.Forms.Button();
+            this.txtTelContact = new System.Windows.Forms.MaskedTextBox();
+            this.lblTelContact = new System.Windows.Forms.Label();
+            this.txtPrenomContact = new System.Windows.Forms.MaskedTextBox();
+            this.txtNomContact = new System.Windows.Forms.MaskedTextBox();
+            this.lblPrenomContact = new System.Windows.Forms.Label();
+            this.lblNomContact = new System.Windows.Forms.Label();
+            this.txtIdContact = new System.Windows.Forms.MaskedTextBox();
+            this.lblIdContact = new System.Windows.Forms.Label();
+            this.dgvListeContacts = new System.Windows.Forms.DataGridView();
+            this.lblListeContacts = new System.Windows.Forms.Label();
+            this.lblDoubleClick = new System.Windows.Forms.Label();
+            this.lblPasDeContacts = new System.Windows.Forms.Label();
+            this.btnAjouterContact = new System.Windows.Forms.Button();
+            this.btnModifierContact = new System.Windows.Forms.Button();
+            this.btnSupprimerContact = new System.Windows.Forms.Button();
+            this.btnEnregistrerModificationContact = new System.Windows.Forms.Button();
             this.gbxFicheClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gpbContact.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListeContacts)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCommentaires
@@ -361,7 +382,7 @@
             // 
             // btnEnregistrerModif
             // 
-            this.btnEnregistrerModif.Location = new System.Drawing.Point(86, 588);
+            this.btnEnregistrerModif.Location = new System.Drawing.Point(527, 588);
             this.btnEnregistrerModif.Name = "btnEnregistrerModif";
             this.btnEnregistrerModif.Size = new System.Drawing.Size(75, 23);
             this.btnEnregistrerModif.TabIndex = 5;
@@ -673,7 +694,7 @@
             // 
             // btnAnnulerModif
             // 
-            this.btnAnnulerModif.Location = new System.Drawing.Point(234, 588);
+            this.btnAnnulerModif.Location = new System.Drawing.Point(714, 588);
             this.btnAnnulerModif.Name = "btnAnnulerModif";
             this.btnAnnulerModif.Size = new System.Drawing.Size(75, 23);
             this.btnAnnulerModif.TabIndex = 8;
@@ -681,11 +702,207 @@
             this.btnAnnulerModif.UseVisualStyleBackColor = true;
             this.btnAnnulerModif.Click += new System.EventHandler(this.btnAnnulerModif_Click);
             // 
+            // gpbContact
+            // 
+            this.gpbContact.Controls.Add(this.btnEnregistrerModificationContact);
+            this.gpbContact.Controls.Add(this.btnAnnulerAjoutCont);
+            this.gpbContact.Controls.Add(this.btnEnregistretContact);
+            this.gpbContact.Controls.Add(this.txtTelContact);
+            this.gpbContact.Controls.Add(this.lblTelContact);
+            this.gpbContact.Controls.Add(this.txtPrenomContact);
+            this.gpbContact.Controls.Add(this.txtNomContact);
+            this.gpbContact.Controls.Add(this.lblPrenomContact);
+            this.gpbContact.Controls.Add(this.lblNomContact);
+            this.gpbContact.Controls.Add(this.txtIdContact);
+            this.gpbContact.Controls.Add(this.lblIdContact);
+            this.gpbContact.Location = new System.Drawing.Point(434, 361);
+            this.gpbContact.Name = "gpbContact";
+            this.gpbContact.Size = new System.Drawing.Size(464, 210);
+            this.gpbContact.TabIndex = 9;
+            this.gpbContact.TabStop = false;
+            this.gpbContact.Text = "Contact";
+            this.gpbContact.Visible = false;
+            // 
+            // btnAnnulerAjoutCont
+            // 
+            this.btnAnnulerAjoutCont.Location = new System.Drawing.Point(240, 181);
+            this.btnAnnulerAjoutCont.Name = "btnAnnulerAjoutCont";
+            this.btnAnnulerAjoutCont.Size = new System.Drawing.Size(133, 23);
+            this.btnAnnulerAjoutCont.TabIndex = 13;
+            this.btnAnnulerAjoutCont.Text = "Annuler";
+            this.btnAnnulerAjoutCont.UseVisualStyleBackColor = true;
+            this.btnAnnulerAjoutCont.Click += new System.EventHandler(this.btnAnnulerAjoutCont_Click);
+            // 
+            // btnEnregistretContact
+            // 
+            this.btnEnregistretContact.Location = new System.Drawing.Point(83, 181);
+            this.btnEnregistretContact.Name = "btnEnregistretContact";
+            this.btnEnregistretContact.Size = new System.Drawing.Size(143, 23);
+            this.btnEnregistretContact.TabIndex = 13;
+            this.btnEnregistretContact.Text = "Enregistrer le contact";
+            this.btnEnregistretContact.UseVisualStyleBackColor = true;
+            this.btnEnregistretContact.Click += new System.EventHandler(this.btnEnregistretContact_Click);
+            // 
+            // txtTelContact
+            // 
+            this.txtTelContact.Location = new System.Drawing.Point(153, 133);
+            this.txtTelContact.Mask = "0000000000";
+            this.txtTelContact.Name = "txtTelContact";
+            this.txtTelContact.Size = new System.Drawing.Size(73, 20);
+            this.txtTelContact.TabIndex = 7;
+            // 
+            // lblTelContact
+            // 
+            this.lblTelContact.AutoSize = true;
+            this.lblTelContact.Location = new System.Drawing.Point(29, 136);
+            this.lblTelContact.Name = "lblTelContact";
+            this.lblTelContact.Size = new System.Drawing.Size(118, 13);
+            this.lblTelContact.TabIndex = 6;
+            this.lblTelContact.Text = "Téléphone du contact :";
+            // 
+            // txtPrenomContact
+            // 
+            this.txtPrenomContact.Location = new System.Drawing.Point(153, 97);
+            this.txtPrenomContact.Name = "txtPrenomContact";
+            this.txtPrenomContact.Size = new System.Drawing.Size(162, 20);
+            this.txtPrenomContact.TabIndex = 5;
+            // 
+            // txtNomContact
+            // 
+            this.txtNomContact.Location = new System.Drawing.Point(153, 62);
+            this.txtNomContact.Name = "txtNomContact";
+            this.txtNomContact.Size = new System.Drawing.Size(162, 20);
+            this.txtNomContact.TabIndex = 4;
+            // 
+            // lblPrenomContact
+            // 
+            this.lblPrenomContact.AutoSize = true;
+            this.lblPrenomContact.Location = new System.Drawing.Point(29, 97);
+            this.lblPrenomContact.Name = "lblPrenomContact";
+            this.lblPrenomContact.Size = new System.Drawing.Size(103, 13);
+            this.lblPrenomContact.TabIndex = 3;
+            this.lblPrenomContact.Text = "Prenom du contact :";
+            // 
+            // lblNomContact
+            // 
+            this.lblNomContact.AutoSize = true;
+            this.lblNomContact.Location = new System.Drawing.Point(29, 65);
+            this.lblNomContact.Name = "lblNomContact";
+            this.lblNomContact.Size = new System.Drawing.Size(89, 13);
+            this.lblNomContact.TabIndex = 2;
+            this.lblNomContact.Text = "Nom du contact :";
+            // 
+            // txtIdContact
+            // 
+            this.txtIdContact.Location = new System.Drawing.Point(153, 29);
+            this.txtIdContact.Mask = "99999";
+            this.txtIdContact.Name = "txtIdContact";
+            this.txtIdContact.Size = new System.Drawing.Size(52, 20);
+            this.txtIdContact.TabIndex = 1;
+            // 
+            // lblIdContact
+            // 
+            this.lblIdContact.AutoSize = true;
+            this.lblIdContact.Location = new System.Drawing.Point(29, 32);
+            this.lblIdContact.Name = "lblIdContact";
+            this.lblIdContact.Size = new System.Drawing.Size(64, 13);
+            this.lblIdContact.TabIndex = 0;
+            this.lblIdContact.Text = "ID Contact :";
+            // 
+            // dgvListeContacts
+            // 
+            this.dgvListeContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListeContacts.Location = new System.Drawing.Point(431, 41);
+            this.dgvListeContacts.Name = "dgvListeContacts";
+            this.dgvListeContacts.Size = new System.Drawing.Size(467, 246);
+            this.dgvListeContacts.TabIndex = 8;
+            this.dgvListeContacts.Click += new System.EventHandler(this.dgvListeContacts_Click);
+            // 
+            // lblListeContacts
+            // 
+            this.lblListeContacts.AutoSize = true;
+            this.lblListeContacts.Location = new System.Drawing.Point(428, 24);
+            this.lblListeContacts.Name = "lblListeContacts";
+            this.lblListeContacts.Size = new System.Drawing.Size(94, 13);
+            this.lblListeContacts.TabIndex = 10;
+            this.lblListeContacts.Text = "Liste de contacts :";
+            // 
+            // lblDoubleClick
+            // 
+            this.lblDoubleClick.AutoSize = true;
+            this.lblDoubleClick.ForeColor = System.Drawing.Color.Blue;
+            this.lblDoubleClick.Location = new System.Drawing.Point(431, 333);
+            this.lblDoubleClick.Name = "lblDoubleClick";
+            this.lblDoubleClick.Size = new System.Drawing.Size(220, 13);
+            this.lblDoubleClick.TabIndex = 11;
+            this.lblDoubleClick.Text = "Double cliquer sur un contact pour le modifier";
+            // 
+            // lblPasDeContacts
+            // 
+            this.lblPasDeContacts.AutoEllipsis = true;
+            this.lblPasDeContacts.AutoSize = true;
+            this.lblPasDeContacts.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPasDeContacts.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblPasDeContacts.Location = new System.Drawing.Point(477, 146);
+            this.lblPasDeContacts.Name = "lblPasDeContacts";
+            this.lblPasDeContacts.Size = new System.Drawing.Size(391, 22);
+            this.lblPasDeContacts.TabIndex = 12;
+            this.lblPasDeContacts.Text = "Il n\'y a pas de contacts liées a ce client";
+            this.lblPasDeContacts.Visible = false;
+            // 
+            // btnAjouterContact
+            // 
+            this.btnAjouterContact.Location = new System.Drawing.Point(431, 293);
+            this.btnAjouterContact.Name = "btnAjouterContact";
+            this.btnAjouterContact.Size = new System.Drawing.Size(135, 23);
+            this.btnAjouterContact.TabIndex = 8;
+            this.btnAjouterContact.Text = "Ajouter un contact";
+            this.btnAjouterContact.UseVisualStyleBackColor = true;
+            this.btnAjouterContact.Click += new System.EventHandler(this.btnAjouterContact_Click);
+            // 
+            // btnModifierContact
+            // 
+            this.btnModifierContact.Location = new System.Drawing.Point(601, 293);
+            this.btnModifierContact.Name = "btnModifierContact";
+            this.btnModifierContact.Size = new System.Drawing.Size(135, 23);
+            this.btnModifierContact.TabIndex = 13;
+            this.btnModifierContact.Text = "Modifier un contact";
+            this.btnModifierContact.UseVisualStyleBackColor = true;
+            this.btnModifierContact.Click += new System.EventHandler(this.btnModifierContact_Click);
+            // 
+            // btnSupprimerContact
+            // 
+            this.btnSupprimerContact.Location = new System.Drawing.Point(763, 293);
+            this.btnSupprimerContact.Name = "btnSupprimerContact";
+            this.btnSupprimerContact.Size = new System.Drawing.Size(135, 23);
+            this.btnSupprimerContact.TabIndex = 14;
+            this.btnSupprimerContact.Text = "Supprimer un contact";
+            this.btnSupprimerContact.UseVisualStyleBackColor = true;
+            this.btnSupprimerContact.Click += new System.EventHandler(this.btnSupprimerContact_Click);
+            // 
+            // btnEnregistrerModificationContact
+            // 
+            this.btnEnregistrerModificationContact.Location = new System.Drawing.Point(83, 181);
+            this.btnEnregistrerModificationContact.Name = "btnEnregistrerModificationContact";
+            this.btnEnregistrerModificationContact.Size = new System.Drawing.Size(143, 23);
+            this.btnEnregistrerModificationContact.TabIndex = 14;
+            this.btnEnregistrerModificationContact.Text = "Modifier le contact";
+            this.btnEnregistrerModificationContact.UseVisualStyleBackColor = true;
+            this.btnEnregistrerModificationContact.Click += new System.EventHandler(this.btnEnregistrerModificationContact_Click);
+            // 
             // frmModifClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 633);
+            this.ClientSize = new System.Drawing.Size(921, 633);
+            this.Controls.Add(this.btnSupprimerContact);
+            this.Controls.Add(this.btnModifierContact);
+            this.Controls.Add(this.btnAjouterContact);
+            this.Controls.Add(this.lblPasDeContacts);
+            this.Controls.Add(this.lblDoubleClick);
+            this.Controls.Add(this.lblListeContacts);
+            this.Controls.Add(this.dgvListeContacts);
+            this.Controls.Add(this.gpbContact);
             this.Controls.Add(this.btnAnnulerModif);
             this.Controls.Add(this.gbxFicheClient);
             this.Controls.Add(this.btnEnregistrerModif);
@@ -698,7 +915,11 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.gpbContact.ResumeLayout(false);
+            this.gpbContact.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListeContacts)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -766,5 +987,24 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnAnnulerModif;
+        private System.Windows.Forms.GroupBox gpbContact;
+        private System.Windows.Forms.MaskedTextBox txtTelContact;
+        private System.Windows.Forms.Label lblTelContact;
+        private System.Windows.Forms.MaskedTextBox txtPrenomContact;
+        private System.Windows.Forms.MaskedTextBox txtNomContact;
+        private System.Windows.Forms.Label lblPrenomContact;
+        private System.Windows.Forms.Label lblNomContact;
+        private System.Windows.Forms.MaskedTextBox txtIdContact;
+        private System.Windows.Forms.Label lblIdContact;
+        private System.Windows.Forms.DataGridView dgvListeContacts;
+        private System.Windows.Forms.Label lblListeContacts;
+        private System.Windows.Forms.Label lblDoubleClick;
+        private System.Windows.Forms.Label lblPasDeContacts;
+        private System.Windows.Forms.Button btnAjouterContact;
+        private System.Windows.Forms.Button btnAnnulerAjoutCont;
+        private System.Windows.Forms.Button btnEnregistretContact;
+        private System.Windows.Forms.Button btnModifierContact;
+        private System.Windows.Forms.Button btnSupprimerContact;
+        private System.Windows.Forms.Button btnEnregistrerModificationContact;
     }
 }

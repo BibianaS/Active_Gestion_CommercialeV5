@@ -15,6 +15,8 @@ namespace Active_Gestion_Commerciale
         public frmAffichage()
         {
             InitializeComponent();
+
+            //Affichage des boutons première fenêtre
             afficheListeClients();
         }
 
@@ -23,29 +25,40 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void afficheListeClients()
         {
-            DataTable dt = new DataTable();
-            DataRow dr;
-            int i;
-            dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Contacts", typeof(System.String)));
-
-            for (i = 0; i < Donnees.ListeClients.Count; i++)
+            if (Donnees.ListeClients.Count == 0)
             {
-                dr = dt.NewRow();
-                dr[0] = Donnees.ListeClients[i].IdClient;
-                dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                //dr[2] = Donnees.ListeClients[i].Telephone;
-                //dr[3] = Donnees.ListeClients[i].ListeContacts;
-                //Rows Add
-                dt.Rows.Add(dr);
+                btnRechercher.Enabled = false;
+                btnTous.Enabled = false;
+                btnSupprimer.Enabled = false;
+                btnModifier.Enabled = false;
+                lblAffichage.Text = "Il n'y a pas de clients";
             }
-            this.dgvListeClients.DataSource = dt.DefaultView;
-            this.dgvListeClients.Refresh();
-            dt = null;
-            dr = null;
-        }
+            else
+            {
+                DataTable dt = new DataTable();
+                DataRow dr;
+                int i;
+                dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
+                dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
+                dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
+                dt.Columns.Add(new DataColumn("Contacts", typeof(System.String)));
+
+                for (i = 0; i < Donnees.ListeClients.Count; i++)
+                {
+                    dr = dt.NewRow();
+                    dr[0] = Donnees.ListeClients[i].IdClient;
+                    dr[1] = Donnees.ListeClients[i].RaisonSociale;
+                    //dr[2] = Donnees.ListeClients[i].Telephone;
+                    //dr[3] = Donnees.ListeClients[i].ListeContacts;
+                    //Rows Add
+                    dt.Rows.Add(dr);
+                }
+                this.dgvListeClients.DataSource = dt.DefaultView;
+                this.dgvListeClients.Refresh();
+                dt = null;
+                dr = null;
+            }
+          }
         
         /// <summary>
         /// Bouton supprimer un client
@@ -54,6 +67,7 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
+          
             int a;
             a = this.dgvListeClients.CurrentRow.Index;
             MessageBox.Show(a.ToString());
@@ -91,9 +105,9 @@ namespace Active_Gestion_Commerciale
             MClient leClient = Donnees.ListeClients[iClient];
 
             //instancie un form detaille pour ce client
-            frmModifClient frmModif = new frmModifClient(leClient);
+            frmAfficheClientContacts frmAfficheCltsCont = new frmAfficheClientContacts(leClient);
 
-            frmModif.ShowDialog();
+            frmAfficheCltsCont.ShowDialog();
 
             afficheListeClients();
         }
@@ -111,6 +125,7 @@ namespace Active_Gestion_Commerciale
             {
                 afficheListeClients();
             }
+            visibiliteBoutons();
         }
 
         /// <summary>
@@ -130,21 +145,32 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            int iClient;
-            //Index de la ligne 
-            iClient = this.dgvListeClients.CurrentRow.Index;
+                int iClient;
+                //Index de la ligne 
+                iClient = this.dgvListeClients.CurrentRow.Index;
 
-            //instancie un objet client pointant vers le client d'origine
-            MClient leClient = Donnees.ListeClients[iClient];
+                //instancie un objet client pointant vers le client d'origine
+                MClient leClient = Donnees.ListeClients[iClient];
 
-            //instancie un form detaille pour ce client
-            frmModifClient frmModif = new frmModifClient(leClient);
-            if (frmModif.ShowDialog() == DialogResult.OK)
-            {
-                afficheListeClients();
-            }
+                //instancie un form detaille pour ce client
+                frmModifClient frmModif = new frmModifClient(leClient);
+                if (frmModif.ShowDialog() == DialogResult.OK)
+                {
+                    afficheListeClients();
+                }
         }
 
+        /// <summary>
+        /// Methode qui affiche les boutons rechercher, supprimer et modifier si il y a des clients dnas la BD
+        /// </summary>
+        private void visibiliteBoutons()
+        {
+            btnRechercher.Enabled = true;
+            btnTous.Enabled = true;
+            btnSupprimer.Enabled = true;
+            btnModifier.Enabled = true;
+            lblAffichage.Text = "";
+        }
       
     }
 }

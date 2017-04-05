@@ -69,6 +69,8 @@
             this.dgvContacts = new System.Windows.Forms.DataGridView();
             this.lblCreerContact = new System.Windows.Forms.Label();
             this.btnContinuer = new System.Windows.Forms.Button();
+            this.lblListeClients = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpTypeClient.SuspendLayout();
             this.grpNature.SuspendLayout();
             this.gbxFicheClient.SuspendLayout();
@@ -83,13 +85,13 @@
             this.btnCreerClient.Name = "btnCreerClient";
             this.btnCreerClient.Size = new System.Drawing.Size(107, 23);
             this.btnCreerClient.TabIndex = 26;
-            this.btnCreerClient.Text = "Créer le client";
+            this.btnCreerClient.Text = "Enregistrer le client";
             this.btnCreerClient.UseVisualStyleBackColor = true;
             this.btnCreerClient.Click += new System.EventHandler(this.btnCreerClient_Click);
             // 
             // btnQuitterCreationClient
             // 
-            this.btnQuitterCreationClient.Location = new System.Drawing.Point(235, 631);
+            this.btnQuitterCreationClient.Location = new System.Drawing.Point(235, 633);
             this.btnQuitterCreationClient.Name = "btnQuitterCreationClient";
             this.btnQuitterCreationClient.Size = new System.Drawing.Size(107, 23);
             this.btnQuitterCreationClient.TabIndex = 27;
@@ -412,7 +414,7 @@
             // 
             // btnAjouterContact
             // 
-            this.btnAjouterContact.Location = new System.Drawing.Point(612, 377);
+            this.btnAjouterContact.Location = new System.Drawing.Point(582, 391);
             this.btnAjouterContact.Name = "btnAjouterContact";
             this.btnAjouterContact.Size = new System.Drawing.Size(107, 23);
             this.btnAjouterContact.TabIndex = 25;
@@ -428,7 +430,7 @@
             // dgvListeClients
             // 
             this.dgvListeClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListeClients.Location = new System.Drawing.Point(413, 12);
+            this.dgvListeClients.Location = new System.Drawing.Point(413, 28);
             this.dgvListeClients.Name = "dgvListeClients";
             this.dgvListeClients.Size = new System.Drawing.Size(359, 344);
             this.dgvListeClients.TabIndex = 28;
@@ -438,13 +440,13 @@
             this.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvContacts.Location = new System.Drawing.Point(413, 448);
             this.dgvContacts.Name = "dgvContacts";
-            this.dgvContacts.Size = new System.Drawing.Size(359, 178);
+            this.dgvContacts.Size = new System.Drawing.Size(359, 157);
             this.dgvContacts.TabIndex = 29;
             // 
             // lblCreerContact
             // 
             this.lblCreerContact.AutoSize = true;
-            this.lblCreerContact.Location = new System.Drawing.Point(443, 382);
+            this.lblCreerContact.Location = new System.Drawing.Point(413, 396);
             this.lblCreerContact.Name = "lblCreerContact";
             this.lblCreerContact.Size = new System.Drawing.Size(163, 13);
             this.lblCreerContact.TabIndex = 30;
@@ -453,7 +455,7 @@
             // 
             // btnContinuer
             // 
-            this.btnContinuer.Location = new System.Drawing.Point(537, 415);
+            this.btnContinuer.Location = new System.Drawing.Point(62, 641);
             this.btnContinuer.Name = "btnContinuer";
             this.btnContinuer.Size = new System.Drawing.Size(107, 23);
             this.btnContinuer.TabIndex = 31;
@@ -461,11 +463,31 @@
             this.btnContinuer.UseVisualStyleBackColor = true;
             this.btnContinuer.Click += new System.EventHandler(this.btnContinuer_Click);
             // 
+            // lblListeClients
+            // 
+            this.lblListeClients.AutoSize = true;
+            this.lblListeClients.Location = new System.Drawing.Point(413, 12);
+            this.lblListeClients.Name = "lblListeClients";
+            this.lblListeClients.Size = new System.Drawing.Size(77, 13);
+            this.lblListeClients.TabIndex = 32;
+            this.lblListeClients.Text = "Liste de clients";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(410, 429);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 13);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Liste de contacts liée au client";
+            // 
             // frmNewClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 676);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblListeClients);
             this.Controls.Add(this.btnContinuer);
             this.Controls.Add(this.lblCreerContact);
             this.Controls.Add(this.dgvContacts);
@@ -531,5 +553,7 @@
         private System.Windows.Forms.Button btnAjouterDocumments;
         private System.Windows.Forms.Label lblCreerContact;
         private System.Windows.Forms.Button btnContinuer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblListeClients;
     }
 }

@@ -36,6 +36,7 @@
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
+            this.lblAffichage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeClients)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,11 +119,22 @@
             this.btnModifier.UseVisualStyleBackColor = true;
             this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
+            // lblAffichage
+            // 
+            this.lblAffichage.AutoSize = true;
+            this.lblAffichage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAffichage.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.lblAffichage.Location = new System.Drawing.Point(127, 194);
+            this.lblAffichage.Name = "lblAffichage";
+            this.lblAffichage.Size = new System.Drawing.Size(0, 24);
+            this.lblAffichage.TabIndex = 9;
+            // 
             // frmAffichage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 446);
+            this.Controls.Add(this.lblAffichage);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.btnSupprimer);
@@ -149,5 +161,6 @@
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnModifier;
+        private System.Windows.Forms.Label lblAffichage;
     }
 }

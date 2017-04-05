@@ -63,8 +63,8 @@
             // gestionDesCollaborateursToolStripMenuItem
             // 
             this.gestionDesCollaborateursToolStripMenuItem.Name = "gestionDesCollaborateursToolStripMenuItem";
-            this.gestionDesCollaborateursToolStripMenuItem.Size = new System.Drawing.Size(158, 20);
-            this.gestionDesCollaborateursToolStripMenuItem.Text = "Gestion des collaborateurs";
+            this.gestionDesCollaborateursToolStripMenuItem.Size = new System.Drawing.Size(153, 20);
+            this.gestionDesCollaborateursToolStripMenuItem.Text = "Gestion de collaborateurs";
             // 
             // frmMDI
             // 
