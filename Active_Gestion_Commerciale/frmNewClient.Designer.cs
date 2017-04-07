@@ -71,6 +71,7 @@
             this.btnContinuer = new System.Windows.Forms.Button();
             this.lblListeClients = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblPasDeContacts = new System.Windows.Forms.Label();
             this.grpTypeClient.SuspendLayout();
             this.grpNature.SuspendLayout();
             this.gbxFicheClient.SuspendLayout();
@@ -91,7 +92,7 @@
             // 
             // btnQuitterCreationClient
             // 
-            this.btnQuitterCreationClient.Location = new System.Drawing.Point(235, 633);
+            this.btnQuitterCreationClient.Location = new System.Drawing.Point(247, 631);
             this.btnQuitterCreationClient.Name = "btnQuitterCreationClient";
             this.btnQuitterCreationClient.Size = new System.Drawing.Size(107, 23);
             this.btnQuitterCreationClient.TabIndex = 27;
@@ -446,7 +447,7 @@
             // lblCreerContact
             // 
             this.lblCreerContact.AutoSize = true;
-            this.lblCreerContact.Location = new System.Drawing.Point(413, 396);
+            this.lblCreerContact.Location = new System.Drawing.Point(411, 395);
             this.lblCreerContact.Name = "lblCreerContact";
             this.lblCreerContact.Size = new System.Drawing.Size(163, 13);
             this.lblCreerContact.TabIndex = 30;
@@ -455,7 +456,7 @@
             // 
             // btnContinuer
             // 
-            this.btnContinuer.Location = new System.Drawing.Point(62, 641);
+            this.btnContinuer.Location = new System.Drawing.Point(340, 631);
             this.btnContinuer.Name = "btnContinuer";
             this.btnContinuer.Size = new System.Drawing.Size(107, 23);
             this.btnContinuer.TabIndex = 31;
@@ -481,11 +482,24 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "Liste de contacts liée au client";
             // 
+            // lblPasDeContacts
+            // 
+            this.lblPasDeContacts.AutoEllipsis = true;
+            this.lblPasDeContacts.AutoSize = true;
+            this.lblPasDeContacts.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPasDeContacts.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblPasDeContacts.Location = new System.Drawing.Point(429, 505);
+            this.lblPasDeContacts.Name = "lblPasDeContacts";
+            this.lblPasDeContacts.Size = new System.Drawing.Size(326, 19);
+            this.lblPasDeContacts.TabIndex = 34;
+            this.lblPasDeContacts.Text = "Il n\'y a pas de contacts liées a ce client";
+            // 
             // frmNewClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 676);
+            this.Controls.Add(this.lblPasDeContacts);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblListeClients);
             this.Controls.Add(this.btnContinuer);
@@ -555,5 +569,6 @@
         private System.Windows.Forms.Button btnContinuer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblListeClients;
+        private System.Windows.Forms.Label lblPasDeContacts;
     }
 }

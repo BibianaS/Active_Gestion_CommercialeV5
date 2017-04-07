@@ -37,13 +37,16 @@
             this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.lblAffichage = new System.Windows.Forms.Label();
+            this.lblAffichageClients = new System.Windows.Forms.Label();
+            this.lblDoubleClick = new System.Windows.Forms.Label();
+            this.btnQuitter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeClients)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRaisonSociale
             // 
             this.lblRaisonSociale.AutoSize = true;
-            this.lblRaisonSociale.Location = new System.Drawing.Point(23, 44);
+            this.lblRaisonSociale.Location = new System.Drawing.Point(26, 47);
             this.lblRaisonSociale.Name = "lblRaisonSociale";
             this.lblRaisonSociale.Size = new System.Drawing.Size(82, 13);
             this.lblRaisonSociale.TabIndex = 0;
@@ -51,14 +54,14 @@
             // 
             // txtRecherche
             // 
-            this.txtRecherche.Location = new System.Drawing.Point(134, 44);
+            this.txtRecherche.Location = new System.Drawing.Point(131, 44);
             this.txtRecherche.Name = "txtRecherche";
             this.txtRecherche.Size = new System.Drawing.Size(258, 20);
             this.txtRecherche.TabIndex = 1;
             // 
             // btnRechercher
             // 
-            this.btnRechercher.Location = new System.Drawing.Point(409, 42);
+            this.btnRechercher.Location = new System.Drawing.Point(408, 44);
             this.btnRechercher.Name = "btnRechercher";
             this.btnRechercher.Size = new System.Drawing.Size(75, 23);
             this.btnRechercher.TabIndex = 2;
@@ -68,7 +71,7 @@
             // 
             // btnTous
             // 
-            this.btnTous.Location = new System.Drawing.Point(490, 42);
+            this.btnTous.Location = new System.Drawing.Point(526, 44);
             this.btnTous.Name = "btnTous";
             this.btnTous.Size = new System.Drawing.Size(75, 23);
             this.btnTous.TabIndex = 3;
@@ -91,7 +94,7 @@
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(88, 364);
+            this.btnSupprimer.Location = new System.Drawing.Point(26, 364);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(75, 23);
             this.btnSupprimer.TabIndex = 5;
@@ -101,7 +104,7 @@
             // 
             // btnAjouterClient
             // 
-            this.btnAjouterClient.Location = new System.Drawing.Point(197, 364);
+            this.btnAjouterClient.Location = new System.Drawing.Point(152, 364);
             this.btnAjouterClient.Name = "btnAjouterClient";
             this.btnAjouterClient.Size = new System.Drawing.Size(120, 23);
             this.btnAjouterClient.TabIndex = 6;
@@ -111,7 +114,7 @@
             // 
             // btnModifier
             // 
-            this.btnModifier.Location = new System.Drawing.Point(332, 364);
+            this.btnModifier.Location = new System.Drawing.Point(328, 364);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(109, 23);
             this.btnModifier.TabIndex = 8;
@@ -129,11 +132,42 @@
             this.lblAffichage.Size = new System.Drawing.Size(0, 24);
             this.lblAffichage.TabIndex = 9;
             // 
+            // lblAffichageClients
+            // 
+            this.lblAffichageClients.AutoSize = true;
+            this.lblAffichageClients.Location = new System.Drawing.Point(26, 94);
+            this.lblAffichageClients.Name = "lblAffichageClients";
+            this.lblAffichageClients.Size = new System.Drawing.Size(83, 13);
+            this.lblAffichageClients.TabIndex = 10;
+            this.lblAffichageClients.Text = "Liste de clietns :";
+            // 
+            // lblDoubleClick
+            // 
+            this.lblDoubleClick.AutoSize = true;
+            this.lblDoubleClick.ForeColor = System.Drawing.Color.Blue;
+            this.lblDoubleClick.Location = new System.Drawing.Point(389, 97);
+            this.lblDoubleClick.Name = "lblDoubleClick";
+            this.lblDoubleClick.Size = new System.Drawing.Size(212, 13);
+            this.lblDoubleClick.TabIndex = 11;
+            this.lblDoubleClick.Text = "Double cliquer sur un contact pour l\'afficher";
+            // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Location = new System.Drawing.Point(492, 364);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(109, 23);
+            this.btnQuitter.TabIndex = 12;
+            this.btnQuitter.Text = "Quitter";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            // 
             // frmAffichage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 446);
+            this.ClientSize = new System.Drawing.Size(629, 418);
+            this.Controls.Add(this.btnQuitter);
+            this.Controls.Add(this.lblDoubleClick);
+            this.Controls.Add(this.lblAffichageClients);
             this.Controls.Add(this.lblAffichage);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouterClient);
@@ -144,7 +178,7 @@
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.lblRaisonSociale);
             this.Name = "frmAffichage";
-            this.Text = "frmAffichage";
+            this.Text = "ACTIVE - Liste de clients";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeClients)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -162,5 +196,8 @@
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnModifier;
         private System.Windows.Forms.Label lblAffichage;
+        private System.Windows.Forms.Label lblAffichageClients;
+        private System.Windows.Forms.Label lblDoubleClick;
+        private System.Windows.Forms.Button btnQuitter;
     }
 }

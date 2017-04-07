@@ -117,7 +117,7 @@ namespace Active_Gestion_Commerciale
         {
             lblDoubleClick.Visible = false;
             gpbContact.Visible = true;
-            btnEnregistretContact.Text = "Modifier un contact";
+            //btnEnregistretContact.Text = "Modifier un contact";
 
             if (leClient.ListeContacts.Count != 0 )
             {
@@ -137,6 +137,7 @@ namespace Active_Gestion_Commerciale
             btnEnregistrerModificationContact.Visible = false;
             btnEnregistrerModif.Visible = false;
             btnAnnulerModif.Visible = false;
+            btnEnregistretContact.Visible = true;
             if (leClient.ListeContacts.Count != 0)
             {
                 lblPasDeContacts.Visible = false;
@@ -181,11 +182,13 @@ namespace Active_Gestion_Commerciale
 
         private void btnAnnulerAjoutCont_Click(object sender, EventArgs e)
         {
+            viderLesTxtBox();
             gpbContact.Visible = false;
         }
 
         private void btnModifierContact_Click(object sender, EventArgs e)
         {
+            viderLesTxtBox();
             lblDoubleClick.Visible = false;
             gpbContact.Visible = true;
             btnEnregistretContact.Visible = false;
@@ -213,6 +216,9 @@ namespace Active_Gestion_Commerciale
             leClient.ListeContacts[iContact].NomContact = txtNomContact.Text;
             leClient.ListeContacts[iContact].PrenomContact = txtPrenomContact.Text;
             leClient.ListeContacts[iContact].TelContact = txtTelContact.Text;
+            afficheListContact();
+            gpbContact.Visible = false;
+
         }
 
         /// <summary>
@@ -222,10 +228,19 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnSupprimerContact_Click(object sender, EventArgs e)
         {
-            int a;
-            a = this.dgvListeContacts.CurrentRow.Index;
-            leClient.ListeContacts.RemoveAt(a);
-            afficheListContact();
+            gpbContact.Visible = false;
+            if(leClient.ListeContacts.Count == 0)
+            {
+                lblPasDeContacts.Visible = true;
+            }
+            else
+            {
+                int a;
+                a = this.dgvListeContacts.CurrentRow.Index;
+                leClient.ListeContacts.RemoveAt(a);
+                afficheListContact();
+            }
+            
         }
     }
 }

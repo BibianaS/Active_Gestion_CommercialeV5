@@ -193,6 +193,7 @@
             this.btnAnnulerContact.TabIndex = 13;
             this.btnAnnulerContact.Text = "Annuler";
             this.btnAnnulerContact.UseVisualStyleBackColor = true;
+            this.btnAnnulerContact.Click += new System.EventHandler(this.btnAnnulerContact_Click);
             // 
             // errorProvider1
             // 

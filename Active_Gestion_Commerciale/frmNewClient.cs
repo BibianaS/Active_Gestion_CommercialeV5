@@ -68,6 +68,7 @@ namespace Active_Gestion_Commerciale
                 {
                     //recherche le rang du contact saisie
                     this.iContact = Contact.NombreContacts - 1;
+                    afficheListContact();
                 }
          }
 
@@ -87,28 +88,28 @@ namespace Active_Gestion_Commerciale
                 string raisonSociale = txtRaisonSociale.Text;
                 listeContacts = new List<Contact>();
 
-                //string typeSociete = "";
-                //string domaineAct = cbxDomaineActivite.SelectedItem.ToString();
-                //string adresse = txtAdresse.Text + txtComplemetAdresse.Text;
-                //string ville = txtVille.Text;
-                //int codePostale = int.Parse(txtCodePostale.Text);
-                //string telephone = txtTelephone.Text;
-                //string nature = "";
-                //decimal chiffreA = decimal.Parse(txtChiffreAffaires.Text);
-                //int effectifs = 0;
-                //string commentaires = txtCommentaires.Text;
+                string typeSociete = "";
+                string domaineAct = cbxDomaineActivite.SelectedItem.ToString();
+                string adresse = txtAdresse.Text + txtComplemetAdresse.Text;
+                string ville = txtVille.Text;
+                int codePostale = int.Parse(txtCodePostale.Text);
+                string telephone = txtTelephone.Text;
+                string nature = "";
+                decimal chiffreA = decimal.Parse(txtChiffreAffaires.Text);
+                int effectifs = 0;
+                string commentaires = txtCommentaires.Text;
 
 
-                //typeSociete = rbtPrive.Checked ? "prive" : "public";
+                typeSociete = rbtPrive.Checked ? "prive" : "public";
 
-                ////"Nature" selection /Principale, secondaire or Ancienne
-                //if (rbtPrincipale.Checked) { nature = "Principale"; }
-                //if (rbtSecondaire.Checked) { nature = "Secondaire"; }
-                //if (rbtAncienne.Checked) { nature = "Ancienne"; }
+                //"Nature" selection /Principale, secondaire or Ancienne
+                if (rbtPrincipale.Checked) { nature = "Principale"; }
+                if (rbtSecondaire.Checked) { nature = "Secondaire"; }
+                if (rbtAncienne.Checked) { nature = "Ancienne"; }
 
 
                 //New client par le constructeur
-                unClient = new MClient(idClient, raisonSociale/*, typeSociete, domaineAct, adresse, ville, codePostale, telephone, nature, chiffreA, effectifs, commentaires*/, listeContacts);
+                unClient = new MClient(idClient, raisonSociale, typeSociete, domaineAct, adresse, ville, codePostale, telephone, nature, chiffreA, effectifs, commentaires, listeContacts);
                 iClient++;
 
                 //Ajout un client a la liste de clients dans donnees
@@ -126,8 +127,9 @@ namespace Active_Gestion_Commerciale
 
                 //affiche la liste de clients
                 afficheListeClients();
-                afficheListContact();
                 btnCreerClient.Visible = false;
+                btnContinuer.Visible = true;
+                btnQuitterCreationClient.Visible = false;
             }
         }
 
@@ -143,14 +145,13 @@ namespace Active_Gestion_Commerciale
             dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Contacts", typeof(System.String)));
-
+        
             for (i = 0; i < Donnees.ListeClients.Count; i++)
             {
                 dr = dt.NewRow();
                 dr[0] = Donnees.ListeClients[i].IdClient;
                 dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                //dr[2] = Donnees.ListeClients[i].Telephone;
+                dr[2] = Donnees.ListeClients[i].Telephone;
               
                 dt.Rows.Add(dr);
             }
@@ -175,13 +176,14 @@ namespace Active_Gestion_Commerciale
             dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
-
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             for (i = 0; i < listeContacts.Count; i++)
             {
                 dr = dt.NewRow();
                 dr[0] = listeContacts[i].IdContact;
                 dr[1] = listeContacts[i].NomContact;
                 dr[2] = listeContacts[i].PrenomContact;
+                dr[2] = listeContacts[i].TelContact;
                 //Rows Add
                 dt.Rows.Add(dr);
             }
@@ -189,7 +191,7 @@ namespace Active_Gestion_Commerciale
             this.dgvContacts.Refresh();
             dt = null;
             dr = null;
-            
+            lblPasDeContacts.Visible = false;
         }
 
 
@@ -204,7 +206,11 @@ namespace Active_Gestion_Commerciale
             
         }
 
-
+        /// <summary>
+        /// Sortir de la fenêtre apres la création du client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnContinuer_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

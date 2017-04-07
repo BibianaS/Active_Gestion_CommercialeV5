@@ -28,7 +28,9 @@ namespace Active_Gestion_Commerciale
         }
        
 
-
+        /// <summary>
+        /// Affiche la liste de contacts à l'ouverture de la fenêtre
+        /// </summary>
         public void initListeContacts()
         {
            afficheListContact();
@@ -98,6 +100,7 @@ namespace Active_Gestion_Commerciale
             dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
 
             for (i = 0; i <unClient.ListeContacts.Count; i++)
             {
@@ -105,6 +108,8 @@ namespace Active_Gestion_Commerciale
                 dr[0] = unClient.ListeContacts[i].IdContact;
                 dr[1] = unClient.ListeContacts[i].NomContact;
                 dr[2] = unClient.ListeContacts[i].PrenomContact;
+                dr[3] = unClient.ListeContacts[i].TelContact;
+
                 //Rows Add
                 dt.Rows.Add(dr);
             }
@@ -124,6 +129,16 @@ namespace Active_Gestion_Commerciale
             a = this.grdContacts.CurrentRow.Index;
             unClient.ListeContacts.RemoveAt(a);
             afficheListContact();
+        }
+
+        /// <summary>
+        /// Annuler l'ajout du contact atuel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAnnulerContact_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }  
 }

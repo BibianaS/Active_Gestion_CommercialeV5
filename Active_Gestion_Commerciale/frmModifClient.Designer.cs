@@ -92,6 +92,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.btnAnnulerModif = new System.Windows.Forms.Button();
             this.gpbContact = new System.Windows.Forms.GroupBox();
+            this.btnEnregistrerModificationContact = new System.Windows.Forms.Button();
             this.btnAnnulerAjoutCont = new System.Windows.Forms.Button();
             this.btnEnregistretContact = new System.Windows.Forms.Button();
             this.txtTelContact = new System.Windows.Forms.MaskedTextBox();
@@ -109,7 +110,6 @@
             this.btnAjouterContact = new System.Windows.Forms.Button();
             this.btnModifierContact = new System.Windows.Forms.Button();
             this.btnSupprimerContact = new System.Windows.Forms.Button();
-            this.btnEnregistrerModificationContact = new System.Windows.Forms.Button();
             this.gbxFicheClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -723,6 +723,16 @@
             this.gpbContact.Text = "Contact";
             this.gpbContact.Visible = false;
             // 
+            // btnEnregistrerModificationContact
+            // 
+            this.btnEnregistrerModificationContact.Location = new System.Drawing.Point(83, 181);
+            this.btnEnregistrerModificationContact.Name = "btnEnregistrerModificationContact";
+            this.btnEnregistrerModificationContact.Size = new System.Drawing.Size(143, 23);
+            this.btnEnregistrerModificationContact.TabIndex = 14;
+            this.btnEnregistrerModificationContact.Text = "Modifier le contact";
+            this.btnEnregistrerModificationContact.UseVisualStyleBackColor = true;
+            this.btnEnregistrerModificationContact.Click += new System.EventHandler(this.btnEnregistrerModificationContact_Click);
+            // 
             // btnAnnulerAjoutCont
             // 
             this.btnAnnulerAjoutCont.Location = new System.Drawing.Point(240, 181);
@@ -880,16 +890,6 @@
             this.btnSupprimerContact.UseVisualStyleBackColor = true;
             this.btnSupprimerContact.Click += new System.EventHandler(this.btnSupprimerContact_Click);
             // 
-            // btnEnregistrerModificationContact
-            // 
-            this.btnEnregistrerModificationContact.Location = new System.Drawing.Point(83, 181);
-            this.btnEnregistrerModificationContact.Name = "btnEnregistrerModificationContact";
-            this.btnEnregistrerModificationContact.Size = new System.Drawing.Size(143, 23);
-            this.btnEnregistrerModificationContact.TabIndex = 14;
-            this.btnEnregistrerModificationContact.Text = "Modifier le contact";
-            this.btnEnregistrerModificationContact.UseVisualStyleBackColor = true;
-            this.btnEnregistrerModificationContact.Click += new System.EventHandler(this.btnEnregistrerModificationContact_Click);
-            // 
             // frmModifClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -907,7 +907,7 @@
             this.Controls.Add(this.gbxFicheClient);
             this.Controls.Add(this.btnEnregistrerModif);
             this.Name = "frmModifClient";
-            this.Text = "frmModifClient";
+            this.Text = "ACTIVE - Modification d\'une fiche client";
             this.Load += new System.EventHandler(this.frmModifClient_Load);
             this.gbxFicheClient.ResumeLayout(false);
             this.gbxFicheClient.PerformLayout();

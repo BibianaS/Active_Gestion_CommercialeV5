@@ -463,7 +463,7 @@
             this.Controls.Add(this.dgvListeContacts);
             this.Controls.Add(this.gbxFicheClient);
             this.Name = "frmAfficheClientContacts";
-            this.Text = "frmAfficheClientContacts";
+            this.Text = "ACTIVE - Affichage de la fiche client et ses contacts";
             this.gbxFicheClient.ResumeLayout(false);
             this.gbxFicheClient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeContacts)).EndInit();
