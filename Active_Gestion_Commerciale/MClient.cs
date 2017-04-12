@@ -46,14 +46,14 @@ namespace Active_Gestion_Commerciale
         {
             this.idClient = idClient;
             this.raisonSociale = rS;
-            this.typesociete = typesociete;
+            this.typeSociete = typeSociete;
             this.activite = activite;
             this.adresse = adresse;
-            this.villeclient = villeclient;
-            this.codepostale = codepostale;
+            this.villeClient = villeClient;
+            this.codePostale = codePostale;
             this.telephone = telephone;
             this.nature = nature;
-            this.ca = ca;
+            this.CA = CA;
             this.effectif = effectif;
             this.commentaires = commentaires;
             this.listeContacts = listeContact;
