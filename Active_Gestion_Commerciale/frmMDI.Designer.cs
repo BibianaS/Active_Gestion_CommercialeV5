@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.GestionCommerciale = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.gestionDeProjetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesCollaborateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeProjetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GestionCommerciale = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // GestionCommerciale
-            // 
-            this.GestionCommerciale.Name = "GestionCommerciale";
-            this.GestionCommerciale.Size = new System.Drawing.Size(133, 20);
-            this.GestionCommerciale.Text = "Gestion Commerciale";
-            this.GestionCommerciale.Click += new System.EventHandler(this.GestionCommerciale_Click);
             // 
             // menuStrip1
             // 
@@ -54,17 +47,24 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // gestionDesCollaborateursToolStripMenuItem
+            // 
+            this.gestionDesCollaborateursToolStripMenuItem.Name = "gestionDesCollaborateursToolStripMenuItem";
+            this.gestionDesCollaborateursToolStripMenuItem.Size = new System.Drawing.Size(153, 20);
+            this.gestionDesCollaborateursToolStripMenuItem.Text = "Gestion de collaborateurs";
+            // 
             // gestionDeProjetToolStripMenuItem
             // 
             this.gestionDeProjetToolStripMenuItem.Name = "gestionDeProjetToolStripMenuItem";
             this.gestionDeProjetToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
             this.gestionDeProjetToolStripMenuItem.Text = "Gestion de projet";
             // 
-            // gestionDesCollaborateursToolStripMenuItem
+            // GestionCommerciale
             // 
-            this.gestionDesCollaborateursToolStripMenuItem.Name = "gestionDesCollaborateursToolStripMenuItem";
-            this.gestionDesCollaborateursToolStripMenuItem.Size = new System.Drawing.Size(153, 20);
-            this.gestionDesCollaborateursToolStripMenuItem.Text = "Gestion de collaborateurs";
+            this.GestionCommerciale.Name = "GestionCommerciale";
+            this.GestionCommerciale.Size = new System.Drawing.Size(133, 20);
+            this.GestionCommerciale.Text = "Gestion Commerciale";
+            this.GestionCommerciale.Click += new System.EventHandler(this.GestionCommerciale_Click);
             // 
             // frmMDI
             // 
@@ -76,7 +76,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMDI";
-            this.Text = "ACTIVE - Gestion Commerciale";
+            this.Text = "ACTIVE";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -85,10 +85,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.ToolStripMenuItem GestionCommerciale;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem gestionDeProjetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionDesCollaborateursToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GestionCommerciale;
+        private System.Windows.Forms.ToolStripMenuItem gestionDeProjetToolStripMenuItem;
     }
 }
 

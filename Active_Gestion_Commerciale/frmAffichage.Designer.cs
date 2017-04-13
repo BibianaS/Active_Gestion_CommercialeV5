@@ -94,7 +94,7 @@
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(26, 364);
+            this.btnSupprimer.Location = new System.Drawing.Point(526, 339);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(75, 23);
             this.btnSupprimer.TabIndex = 5;
@@ -104,7 +104,7 @@
             // 
             // btnAjouterClient
             // 
-            this.btnAjouterClient.Location = new System.Drawing.Point(152, 364);
+            this.btnAjouterClient.Location = new System.Drawing.Point(170, 339);
             this.btnAjouterClient.Name = "btnAjouterClient";
             this.btnAjouterClient.Size = new System.Drawing.Size(120, 23);
             this.btnAjouterClient.TabIndex = 6;
@@ -114,7 +114,7 @@
             // 
             // btnModifier
             // 
-            this.btnModifier.Location = new System.Drawing.Point(328, 364);
+            this.btnModifier.Location = new System.Drawing.Point(296, 339);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(109, 23);
             this.btnModifier.TabIndex = 8;
@@ -127,7 +127,7 @@
             this.lblAffichage.AutoSize = true;
             this.lblAffichage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAffichage.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblAffichage.Location = new System.Drawing.Point(127, 194);
+            this.lblAffichage.Location = new System.Drawing.Point(95, 194);
             this.lblAffichage.Name = "lblAffichage";
             this.lblAffichage.Size = new System.Drawing.Size(0, 24);
             this.lblAffichage.TabIndex = 9;
@@ -153,7 +153,7 @@
             // 
             // btnQuitter
             // 
-            this.btnQuitter.Location = new System.Drawing.Point(492, 364);
+            this.btnQuitter.Location = new System.Drawing.Point(411, 339);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(109, 23);
             this.btnQuitter.TabIndex = 12;
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 418);
+            this.ClientSize = new System.Drawing.Size(617, 373);
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.lblDoubleClick);
             this.Controls.Add(this.lblAffichageClients);
@@ -178,7 +178,7 @@
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.lblRaisonSociale);
             this.Name = "frmAffichage";
-            this.Text = "ACTIVE - Liste de clients";
+            this.Text = "ACTIVE - Gestion commerciale";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeClients)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

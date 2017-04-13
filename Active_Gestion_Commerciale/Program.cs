@@ -19,8 +19,6 @@ namespace Active_Gestion_Commerciale
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMDI());
-            
-
         }
     }
 }
