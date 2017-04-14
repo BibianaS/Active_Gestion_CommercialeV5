@@ -9,6 +9,7 @@ namespace Active_Gestion_Commerciale
     public class Donnees
     {
         public static List<MClient> ListeClients = new List<MClient>();
-        //public static List<Contact> ListeContacts = new List<Contact>();
+
+        public static ABIEntities Db = new ABIEntities();
     }
 }

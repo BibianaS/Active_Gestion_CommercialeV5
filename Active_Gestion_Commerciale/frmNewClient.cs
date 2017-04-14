@@ -90,7 +90,8 @@ namespace Active_Gestion_Commerciale
 
                 string typeSociete = "";
                 string domaineAct = cbxDomaineActivite.SelectedItem.ToString();
-                string adresse = txtAdresse.Text + txtComplemetAdresse.Text;
+                string adresse = txtAdresse.Text;
+                string complementAdresse = txtComplemetAdresse.Text;
                 string ville = txtVille.Text;
                 int codePostale = int.Parse(txtCodePostale.Text);
                 string telephone = txtTelephone.Text;
@@ -109,7 +110,7 @@ namespace Active_Gestion_Commerciale
 
 
                 //New client par le constructeur
-                unClient = new MClient(idClient, raisonSociale, typeSociete, domaineAct, adresse, ville, codePostale, telephone, nature, chiffreA, effectifs, commentaires, listeContacts);
+                unClient = new MClient(idClient, raisonSociale, typeSociete, domaineAct, adresse, complementAdresse, ville, codePostale, telephone, nature, chiffreA, effectifs, commentaires, listeContacts);
                 iClient++;
 
                 //Ajout un client a la liste de clients dans donnees
@@ -215,5 +216,7 @@ namespace Active_Gestion_Commerciale
         {
             this.DialogResult = DialogResult.OK;
         }
+
+        
     }
 }

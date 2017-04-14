@@ -24,31 +24,31 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void afficheListeClients()
         {
+            DataTable dt = new DataTable(); 
             visibiliteBoutons();
             if (Donnees.ListeClients.Count != 0)
             {
-                DataTable dt = new DataTable();
                 DataRow dr;
                 int i;
                 dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
                 dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
                 dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-                dt.Columns.Add(new DataColumn("Contacts", typeof(System.String)));
 
                 for (i = 0; i < Donnees.ListeClients.Count; i++)
                 {
                     dr = dt.NewRow();
                     dr[0] = Donnees.ListeClients[i].IdClient;
                     dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                    //dr[2] = Donnees.ListeClients[i].Telephone;
-                    //dr[3] = Donnees.ListeClients[i].ListeContacts;
-                    //Rows Add
+                    dr[2] = Donnees.ListeClients[i].Telephone;
                     dt.Rows.Add(dr);
                 }
                 this.dgvListeClients.DataSource = dt.DefaultView;
                 this.dgvListeClients.Refresh();
                 dt = null;
                 dr = null;
+            }else
+            {   
+                lblAffichage.Text = "Il n'y a pas de clients";
             }
         }
 
@@ -63,6 +63,7 @@ namespace Active_Gestion_Commerciale
             a = this.dgvListeClients.CurrentRow.Index;
             MessageBox.Show(a.ToString());
             Donnees.ListeClients.RemoveAt(a);
+            
             afficheListeClients();
         }
 
@@ -124,6 +125,10 @@ namespace Active_Gestion_Commerciale
                 afficheListeClients();
                 visibiliteBoutons();
             }
+            if (Donnees.ListeClients.Count == 0)
+            {
+                lblAffichage.Text = "Il n'y a pas de clients";
+            }
         }
 
         /// <summary>
@@ -180,8 +185,14 @@ namespace Active_Gestion_Commerciale
                 lblAffichage.Text = "";
             }
         }
-        
-
-        
+        /// <summary>
+        /// Quitter la fenêtre d'affichage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnQuitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

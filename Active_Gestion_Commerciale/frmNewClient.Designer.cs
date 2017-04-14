@@ -177,9 +177,9 @@
             // txtTelephone
             // 
             this.txtTelephone.Location = new System.Drawing.Point(146, 274);
-            this.txtTelephone.Mask = "00 00 00 00 00 00";
+            this.txtTelephone.Mask = "00 00 00 00 00";
             this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.Size = new System.Drawing.Size(100, 20);
+            this.txtTelephone.Size = new System.Drawing.Size(84, 20);
             this.txtTelephone.TabIndex = 20;
             // 
             // txtAdresse
@@ -210,7 +210,7 @@
             this.txtCodePostale.Location = new System.Drawing.Point(146, 248);
             this.txtCodePostale.Mask = "00000";
             this.txtCodePostale.Name = "txtCodePostale";
-            this.txtCodePostale.Size = new System.Drawing.Size(58, 20);
+            this.txtCodePostale.Size = new System.Drawing.Size(48, 20);
             this.txtCodePostale.TabIndex = 19;
             // 
             // grpTypeClient

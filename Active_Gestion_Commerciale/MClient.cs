@@ -16,11 +16,12 @@ namespace Active_Gestion_Commerciale
         private string typeSociete;
         private string activite;
         private string adresse;
+        private string complementAdresse;
         private string villeClient;
         private int codePostale;
         private string telephone;
         private string nature;
-        private decimal chiffreAffaires;
+        private decimal CA;
         private int effectif;
         private string commentaires;
         private List<MContact> listeContacts = new List<MContact>();
@@ -42,18 +43,19 @@ namespace Active_Gestion_Commerciale
         /// <param name="effectif"></param>
         /// <param name="commentaires"></param>
         /// <param name="contact"></param>
-        public MClient(int idClient, string rS, string typeSociete, string activite, string adresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires, List<MContact> listeContact)
+        public MClient(int idClient, string rS, string typeSociete, string activite, string adresse, string complementAdresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires, List<MContact> listeContact)
         {
             this.idClient = idClient;
             this.raisonSociale = rS;
             this.typeSociete = typeSociete;
             this.activite = activite;
             this.adresse = adresse;
+            this.ComplementAdresse = complementAdresse;
             this.villeClient = villeClient;
             this.codePostale = codePostale;
             this.telephone = telephone;
             this.nature = nature;
-            this.chiffreAffaires = CA;
+            this.CA = CA;
             this.effectif = effectif;
             this.commentaires = commentaires;
             this.listeContacts = listeContact;
@@ -169,7 +171,7 @@ namespace Active_Gestion_Commerciale
         {
             get
             {
-                return this.chiffreAffaires;
+                return this.CA;
             }
 
             set
@@ -180,7 +182,7 @@ namespace Active_Gestion_Commerciale
                 //}
                 //else
                 //{
-                this.chiffreAffaires = value;
+                this.CA = value;
                 //}
 
             }
@@ -283,5 +285,24 @@ namespace Active_Gestion_Commerciale
                 listeContacts = value;
             }
         }
-  }
+
+        public string ComplementAdresse
+        {
+            get
+            {
+                return complementAdresse;
+            }
+
+            set
+            {
+                if(complementAdresse == "")
+                {
+                    complementAdresse = "";
+                }else
+                {
+                    complementAdresse = value;
+                }
+            }
+        }
+    }
 }

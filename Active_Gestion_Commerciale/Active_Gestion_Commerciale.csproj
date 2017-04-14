@@ -33,9 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +58,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABI.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABI.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ABI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ABI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABI.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>ABI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>ABI.tt</DependentUpon>
+    </Compile>
     <Compile Include="frmDsp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +144,14 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="ABI.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ABI.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ABI.edmx.diagram">
+      <DependentUpon>ABI.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -147,6 +187,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\people.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ABI.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ABI.Context.cs</LastGenOutput>
+      <DependentUpon>ABI.edmx</DependentUpon>
+    </Content>
+    <Content Include="ABI.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ABI.edmx</DependentUpon>
+      <LastGenOutput>ABI.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

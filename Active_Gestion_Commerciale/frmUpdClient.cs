@@ -15,7 +15,10 @@ namespace Active_Gestion_Commerciale
 
         private MClient leClient;
         int iContact;
-
+        /// <summary>
+        /// Constructeur du form avec un client passage en paramettre d'un client
+        /// </summary>
+        /// <param name="unClient"></param>
         public frmUpdClient(MClient unClient)
         {
             this.leClient = unClient;
@@ -51,6 +54,34 @@ namespace Active_Gestion_Commerciale
         {
             this.txtIdModif.Text = unClient.IdClient.ToString();
             this.txtRaisonSModif.Text = unClient.RaisonSociale;
+            this.txtAdresseModif.Text = unClient.Adresse;
+            this.txtComplementAdresseModif.Text = unClient.ComplementAdresse;
+            this.txtVilleModif.Text = unClient.VilleClient;
+            this.txtCpModif.Text = unClient.CodePostale.ToString();
+            this.txtTelModif.Text = unClient.Telephone.ToString();
+            this.txtCAModif.Text = unClient.ChiffreAffaires.ToString();
+            this.txtEffectifModif.Text = unClient.Effectif.ToString();
+            this.txtCommentairesModif.Text = unClient.Commentaires;
+            
+            ///Boutons Typre de societe
+            if(unClient.TypeSociete == "Prive")
+            {
+                this.rbtTypeClientPrive.Checked = true;
+            }else
+            {
+                this.rbtTypeClientPublic.Checked = true;
+            }
+
+            ///Boutons Nature client
+            if(unClient.Nature == "Principale")
+            {
+                this.rbtNaturePrincipale.Checked = true;
+            }
+            else if(unClient.Nature == "Secondaire")
+            {
+                this.rbtNatureSecondaire.Checked = true;
+            }
+            else { this.rbtNatureAncienne.Checked = true;}
         }
 
         /// <summary>
@@ -91,11 +122,33 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnEnregistrerModif_Click(object sender, EventArgs e)
         {
-            //TODO verification de client et id existant
             leClient.IdClient = int.Parse(txtIdModif.Text);
             leClient.RaisonSociale = txtRaisonSModif.Text;
+            leClient.Adresse = txtAdresseModif.Text;
+            leClient.ComplementAdresse = txtComplementAdresseModif.Text;
+            leClient.VilleClient = txtVilleModif.Text;
+            leClient.Telephone = txtTelModif.Text;
+            leClient.ChiffreAffaires = int.Parse(txtCAModif.Text);
+            leClient.Effectif = int.Parse(txtEffectifModif.Text);
+            
+            //Type de societe
+            if (rbtTypeClientPrive.Checked)
+            {
+                leClient.TypeSociete = "Prive";
+            }
+            else leClient.TypeSociete = "Public";
+            
+            //Type de nature de l'entreprise
+            if (rbtNaturePrincipale.Checked)
+            {
+                leClient.Nature = "Principale";
+            } else if (rbtNatureSecondaire.Checked)
+            {
+                leClient.Nature = "Secondaire";
+            }
+            else leClient.Nature = "Ancienne";
 
-            if(leClient.ListeContacts.Count !=0)
+            if (leClient.ListeContacts.Count !=0)
             {
                 leClient.ListeContacts[iContact].IdContact = int.Parse(txtIdContact.Text);
                 leClient.ListeContacts[iContact].NomContact = txtNomContact.Text;
@@ -105,12 +158,20 @@ namespace Active_Gestion_Commerciale
             this.DialogResult = DialogResult.OK;
         }
 
-
+        /// <summary>
+        /// Annulation d'une modification
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnnulerModif_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// gestion du click pour afficher un contact
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvListeContacts_Click(object sender, EventArgs e)
         {
             lblDoubleClick.Visible = false;
@@ -126,7 +187,11 @@ namespace Active_Gestion_Commerciale
                 txtTelContact.Text = leClient.ListeContacts[iContact].TelContact;
             }
         }
-
+        /// <summary>
+        /// Ajout d'un contact avec le bouton ajouter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
             gpbContact.Visible = true;
@@ -164,7 +229,9 @@ namespace Active_Gestion_Commerciale
                 afficheListContact();
                 gpbContact.Visible = false;
         }
-
+        /// <summary>
+        /// Methode pour vider les text box apres l'ajout ou modification d'un contact
+        /// </summary>
         private void viderLesTxtBox()
         {
             foreach (Control c in gpbContact.Controls)
@@ -175,13 +242,21 @@ namespace Active_Gestion_Commerciale
                 }
             }
         }
-
+        /// <summary>
+        /// Gestion du bouton annuler un ajout de contact
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnnulerAjoutCont_Click(object sender, EventArgs e)
         {
             viderLesTxtBox();
             gpbContact.Visible = false;
         }
-
+        /// <summary>
+        /// Modification d'un contact
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifierContact_Click(object sender, EventArgs e)
         {
             viderLesTxtBox();

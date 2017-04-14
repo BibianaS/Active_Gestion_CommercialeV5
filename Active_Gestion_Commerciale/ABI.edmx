@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ABIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="smallint" Nullable="false" />
+          <Property Name="raisonSociale" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="typeSociete" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="activite" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="adresse" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="complementAdresse" Type="varchar" MaxLength="15" />
+          <Property Name="villeClient" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="codePostale" Type="int" Nullable="false" />
+          <Property Name="telephone" Type="int" Nullable="false" />
+          <Property Name="commentaires" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="idContact" />
+          </Key>
+          <Property Name="idContact" Type="smallint" Nullable="false" />
+          <Property Name="idClient" Type="smallint" Nullable="false" />
+          <Property Name="nomContact" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="prenomContact" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="telContact" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Contact_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ABIModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ABIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="Int16" Nullable="false" />
+          <Property Name="raisonSociale" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="typeSociete" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activite" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresse" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="complementAdresse" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="villeClient" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codePostale" Type="Int32" Nullable="false" />
+          <Property Name="telephone" Type="Int32" Nullable="false" />
+          <Property Name="commentaires" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_Contact_Client" FromRole="Client" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="idContact" />
+          </Key>
+          <Property Name="idContact" Type="Int16" Nullable="false" />
+          <Property Name="idClient" Type="Int16" Nullable="false" />
+          <Property Name="nomContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenomContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Contact_Client" FromRole="Contact" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Contact_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ABIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ABIModelStoreContainer" CdmEntityContainer="ABIEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ABIModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="raisonSociale" ColumnName="raisonSociale" />
+                <ScalarProperty Name="typeSociete" ColumnName="typeSociete" />
+                <ScalarProperty Name="activite" ColumnName="activite" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="complementAdresse" ColumnName="complementAdresse" />
+                <ScalarProperty Name="villeClient" ColumnName="villeClient" />
+                <ScalarProperty Name="codePostale" ColumnName="codePostale" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="commentaires" ColumnName="commentaires" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="ABIModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="idContact" ColumnName="idContact" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="nomContact" ColumnName="nomContact" />
+                <ScalarProperty Name="prenomContact" ColumnName="prenomContact" />
+                <ScalarProperty Name="telContact" ColumnName="telContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

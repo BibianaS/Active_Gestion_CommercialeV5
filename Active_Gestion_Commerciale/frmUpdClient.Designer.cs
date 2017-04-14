@@ -69,13 +69,13 @@
             this.txtRaisonSModif = new System.Windows.Forms.MaskedTextBox();
             this.txtCAModif = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rbtNatureSecondaire = new System.Windows.Forms.RadioButton();
+            this.rbtNaturePrincipale = new System.Windows.Forms.RadioButton();
+            this.rbtNatureAncienne = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.rbtTypeClientPrive = new System.Windows.Forms.RadioButton();
+            this.rbtTypeClientPublic = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCpModif = new System.Windows.Forms.MaskedTextBox();
             this.txtComplementAdresseModif = new System.Windows.Forms.MaskedTextBox();
@@ -486,9 +486,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.rbtNatureSecondaire);
+            this.groupBox1.Controls.Add(this.rbtNaturePrincipale);
+            this.groupBox1.Controls.Add(this.rbtNatureAncienne);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(16, 295);
             this.groupBox1.Name = "groupBox1";
@@ -496,37 +496,37 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
-            // radioButton1
+            // rbtNatureSecondaire
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(135, 39);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(79, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "Secondaire";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbtNatureSecondaire.AutoSize = true;
+            this.rbtNatureSecondaire.Location = new System.Drawing.Point(135, 39);
+            this.rbtNatureSecondaire.Name = "rbtNatureSecondaire";
+            this.rbtNatureSecondaire.Size = new System.Drawing.Size(79, 17);
+            this.rbtNatureSecondaire.TabIndex = 0;
+            this.rbtNatureSecondaire.Text = "Secondaire";
+            this.rbtNatureSecondaire.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbtNaturePrincipale
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(135, 15);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(77, 17);
-            this.radioButton2.TabIndex = 21;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Pricncipale";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbtNaturePrincipale.AutoSize = true;
+            this.rbtNaturePrincipale.Checked = true;
+            this.rbtNaturePrincipale.Location = new System.Drawing.Point(135, 15);
+            this.rbtNaturePrincipale.Name = "rbtNaturePrincipale";
+            this.rbtNaturePrincipale.Size = new System.Drawing.Size(71, 17);
+            this.rbtNaturePrincipale.TabIndex = 21;
+            this.rbtNaturePrincipale.TabStop = true;
+            this.rbtNaturePrincipale.Text = "Principale";
+            this.rbtNaturePrincipale.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbtNatureAncienne
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(135, 62);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(70, 17);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.Text = "Ancienne";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbtNatureAncienne.AutoSize = true;
+            this.rbtNatureAncienne.Location = new System.Drawing.Point(135, 62);
+            this.rbtNatureAncienne.Name = "rbtNatureAncienne";
+            this.rbtNatureAncienne.Size = new System.Drawing.Size(70, 17);
+            this.rbtNatureAncienne.TabIndex = 0;
+            this.rbtNatureAncienne.Text = "Ancienne";
+            this.rbtNatureAncienne.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -539,8 +539,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Controls.Add(this.radioButton5);
+            this.groupBox2.Controls.Add(this.rbtTypeClientPrive);
+            this.groupBox2.Controls.Add(this.rbtTypeClientPublic);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(16, 71);
             this.groupBox2.Name = "groupBox2";
@@ -548,27 +548,27 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
-            // radioButton4
+            // rbtTypeClientPrive
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(135, 39);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(49, 17);
-            this.radioButton4.TabIndex = 0;
-            this.radioButton4.Text = "Privé";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbtTypeClientPrive.AutoSize = true;
+            this.rbtTypeClientPrive.Location = new System.Drawing.Point(135, 39);
+            this.rbtTypeClientPrive.Name = "rbtTypeClientPrive";
+            this.rbtTypeClientPrive.Size = new System.Drawing.Size(49, 17);
+            this.rbtTypeClientPrive.TabIndex = 0;
+            this.rbtTypeClientPrive.Text = "Privé";
+            this.rbtTypeClientPrive.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // rbtTypeClientPublic
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Checked = true;
-            this.radioButton5.Location = new System.Drawing.Point(135, 15);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(54, 17);
-            this.radioButton5.TabIndex = 14;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Public";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.rbtTypeClientPublic.AutoSize = true;
+            this.rbtTypeClientPublic.Checked = true;
+            this.rbtTypeClientPublic.Location = new System.Drawing.Point(135, 15);
+            this.rbtTypeClientPublic.Name = "rbtTypeClientPublic";
+            this.rbtTypeClientPublic.Size = new System.Drawing.Size(54, 17);
+            this.rbtTypeClientPublic.TabIndex = 14;
+            this.rbtTypeClientPublic.TabStop = true;
+            this.rbtTypeClientPublic.Text = "Public";
+            this.rbtTypeClientPublic.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -890,7 +890,7 @@
             this.btnSupprimerContact.UseVisualStyleBackColor = true;
             this.btnSupprimerContact.Click += new System.EventHandler(this.btnSupprimerContact_Click);
             // 
-            // frmModifClient
+            // frmUpdClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -906,7 +906,7 @@
             this.Controls.Add(this.btnAnnulerModif);
             this.Controls.Add(this.gbxFicheClient);
             this.Controls.Add(this.btnEnregistrerModif);
-            this.Name = "frmModifClient";
+            this.Name = "frmUpdClient";
             this.Text = "ACTIVE - Modification d\'une fiche client";
             this.Load += new System.EventHandler(this.frmModifClient_Load);
             this.gbxFicheClient.ResumeLayout(false);
@@ -965,13 +965,13 @@
         private System.Windows.Forms.MaskedTextBox txtRaisonSModif;
         private System.Windows.Forms.MaskedTextBox txtCAModif;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rbtNatureSecondaire;
+        private System.Windows.Forms.RadioButton rbtNaturePrincipale;
+        private System.Windows.Forms.RadioButton rbtNatureAncienne;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton rbtTypeClientPrive;
+        private System.Windows.Forms.RadioButton rbtTypeClientPublic;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MaskedTextBox txtCpModif;
         private System.Windows.Forms.MaskedTextBox txtComplementAdresseModif;
