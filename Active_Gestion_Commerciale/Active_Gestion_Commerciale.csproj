@@ -47,26 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAffichage.cs">
+    <Compile Include="frmDsp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAffichage.Designer.cs">
-      <DependentUpon>frmAffichage.cs</DependentUpon>
+    <Compile Include="frmDsp.Designer.cs">
+      <DependentUpon>frmDsp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAfficheClientContacts.cs">
+    <Compile Include="frmDspClientContacts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAfficheClientContacts.Designer.cs">
-      <DependentUpon>frmAfficheClientContacts.cs</DependentUpon>
+    <Compile Include="frmDspClientContacts.Designer.cs">
+      <DependentUpon>frmDspClientContacts.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmModifClient.cs">
+    <Compile Include="frmUpdClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmModifClient.Designer.cs">
-      <DependentUpon>frmModifClient.cs</DependentUpon>
+    <Compile Include="frmUpdClient.Designer.cs">
+      <DependentUpon>frmUpdClient.cs</DependentUpon>
     </Compile>
     <Compile Include="MClient.cs" />
-    <Compile Include="Contact.cs" />
+    <Compile Include="MContact.cs" />
     <Compile Include="Donnees.cs" />
     <Compile Include="frmNewClient.cs">
       <SubType>Form</SubType>
@@ -89,14 +89,14 @@
     <Compile Include="Intervenant.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAffichage.resx">
-      <DependentUpon>frmAffichage.cs</DependentUpon>
+    <EmbeddedResource Include="frmDsp.resx">
+      <DependentUpon>frmDsp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAfficheClientContacts.resx">
-      <DependentUpon>frmAfficheClientContacts.cs</DependentUpon>
+    <EmbeddedResource Include="frmDspClientContacts.resx">
+      <DependentUpon>frmDspClientContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmModifClient.resx">
-      <DependentUpon>frmModifClient.cs</DependentUpon>
+    <EmbeddedResource Include="frmUpdClient.resx">
+      <DependentUpon>frmUpdClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewClient.resx">
       <DependentUpon>frmNewClient.cs</DependentUpon>

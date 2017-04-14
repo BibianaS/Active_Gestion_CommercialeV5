@@ -15,7 +15,7 @@ namespace Active_Gestion_Commerciale
         static void Main()
         {
             MClient.NombreClients = 0;
-            Contact.NombreContacts = 0;
+            MContact.NombreContacts = 0;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMDI());

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Active_Gestion_Commerciale
 {
-    public class Contact
+    public class MContact
     {
         public static int NombreContacts;
         private int idContact;

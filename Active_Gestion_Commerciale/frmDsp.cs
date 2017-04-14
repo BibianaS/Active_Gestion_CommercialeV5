@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Active_Gestion_Commerciale
 {
-    public partial class frmAffichage : Form
+    public partial class frmDsp : Form
     {
-        public frmAffichage()
+        public frmDsp()
         {
             InitializeComponent();
             //Affichage des boutons première fenêtre
@@ -103,7 +103,7 @@ namespace Active_Gestion_Commerciale
                 MClient leClient = Donnees.ListeClients[iClient];
 
                 //instancie un form detaille pour ce client
-                frmAfficheClientContacts frmAfficheCltsCont = new frmAfficheClientContacts(leClient);
+                frmDspClientContacts frmAfficheCltsCont = new frmDspClientContacts(leClient);
 
                 frmAfficheCltsCont.ShowDialog();
                 afficheListeClients();
@@ -151,7 +151,7 @@ namespace Active_Gestion_Commerciale
             MClient leClient = Donnees.ListeClients[iClient];
 
             //instancie un form detaille pour ce client
-            frmModifClient frmModif = new frmModifClient(leClient);
+            frmUpdClient frmModif = new frmUpdClient(leClient);
             if (frmModif.ShowDialog() == DialogResult.OK)
             {
                 afficheListeClients();

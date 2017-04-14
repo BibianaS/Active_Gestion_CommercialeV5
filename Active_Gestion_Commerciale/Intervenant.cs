@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Active_Gestion_Commerciale
 {
-    class Intervenant : Contact
+    class Intervenant : MContact
     {
-
+        /// <summary>
+        /// Class prevu pour les intervenants du projet
+        /// Pour l'instant elle est vide
+        /// </summary>
         private Intervenant()
         {
 

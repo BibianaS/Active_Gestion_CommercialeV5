@@ -12,10 +12,10 @@ using System.Windows.Forms;
 namespace Active_Gestion_Commerciale
 {
     
-    public partial class frmAfficheClientContacts : Form
+    public partial class frmDspClientContacts : Form
     {
         MClient unClient;
-        public frmAfficheClientContacts(MClient unClient)
+        public frmDspClientContacts(MClient unClient)
         {
             this.unClient = unClient;
             InitializeComponent();

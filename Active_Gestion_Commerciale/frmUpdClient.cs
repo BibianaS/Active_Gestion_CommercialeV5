@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace Active_Gestion_Commerciale
 {
-    public partial class frmModifClient : Form
+    public partial class frmUpdClient : Form
     {
 
         private MClient leClient;
         int iContact;
 
-        public frmModifClient(MClient unClient)
+        public frmUpdClient(MClient unClient)
         {
             this.leClient = unClient;
             InitializeComponent();
@@ -26,12 +26,10 @@ namespace Active_Gestion_Commerciale
                 lblDoubleClick.Visible = false;
                 btnModifierContact.Visible = false;
                 btnSupprimerContact.Visible = false;
-                //btnAjouterContact.Location = new System.Drawing.Point(0, 39);
             }
             else
             {
                 afficheListContact();
-                //btnAjouterContact.Location = new System.Drawing.Point(577, 507);
             }
         }
 
@@ -117,7 +115,6 @@ namespace Active_Gestion_Commerciale
         {
             lblDoubleClick.Visible = false;
             gpbContact.Visible = true;
-            //btnEnregistretContact.Text = "Modifier un contact";
 
             if (leClient.ListeContacts.Count != 0 )
             {
@@ -128,7 +125,6 @@ namespace Active_Gestion_Commerciale
                 txtPrenomContact.Text = leClient.ListeContacts[iContact].PrenomContact;
                 txtTelContact.Text = leClient.ListeContacts[iContact].TelContact;
             }
-
         }
 
         private void btnAjouterContact_Click(object sender, EventArgs e)
@@ -153,7 +149,7 @@ namespace Active_Gestion_Commerciale
         private void btnEnregistretContact_Click(object sender, EventArgs e)
         {
                 //Création reference d'objet Contact
-                Contact nouveauContact = new Contact();
+                MContact nouveauContact = new MContact();
                 nouveauContact.IdContact = int.Parse(txtIdContact.Text);
                 nouveauContact.NomContact = txtNomContact.Text;
                 nouveauContact.PrenomContact = txtPrenomContact.Text;
@@ -162,8 +158,8 @@ namespace Active_Gestion_Commerciale
                 //Ajoute un contact a la liste de contacts declare dns la classe contact
                 leClient.ListeContacts.Add(nouveauContact);
             
-                Contact.NombreContacts += 1;
-                this.iContact = Contact.NombreContacts - 1;
+                MContact.NombreContacts += 1;
+                this.iContact = MContact.NombreContacts - 1;
 
                 afficheListContact();
                 gpbContact.Visible = false;

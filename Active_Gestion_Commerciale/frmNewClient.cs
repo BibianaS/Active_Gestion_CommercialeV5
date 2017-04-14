@@ -16,7 +16,7 @@ namespace Active_Gestion_Commerciale
         MClient unClient;
         private int iContact;
         public static int iClient;
-        List<Contact> listeContacts;
+        List<MContact> listeContacts;
 
         /// <summary>
         /// Initialisation formulaire
@@ -67,7 +67,7 @@ namespace Active_Gestion_Commerciale
                 if (frmContact.ShowDialog() == DialogResult.OK)
                 {
                     //recherche le rang du contact saisie
-                    this.iContact = Contact.NombreContacts - 1;
+                    this.iContact = MContact.NombreContacts - 1;
                     afficheListContact();
                 }
          }
@@ -86,7 +86,7 @@ namespace Active_Gestion_Commerciale
             {
 
                 string raisonSociale = txtRaisonSociale.Text;
-                listeContacts = new List<Contact>();
+                listeContacts = new List<MContact>();
 
                 string typeSociete = "";
                 string domaineAct = cbxDomaineActivite.SelectedItem.ToString();

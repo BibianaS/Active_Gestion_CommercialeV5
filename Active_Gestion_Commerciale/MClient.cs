@@ -20,10 +20,10 @@ namespace Active_Gestion_Commerciale
         private int codePostale;
         private string telephone;
         private string nature;
-        private decimal CA;
+        private decimal chiffreAffaires;
         private int effectif;
         private string commentaires;
-        private List<Contact> listeContacts = new List<Contact>();
+        private List<MContact> listeContacts = new List<MContact>();
 
 
         /// <summary>
@@ -38,11 +38,11 @@ namespace Active_Gestion_Commerciale
         /// <param name="codePostale"></param>
         /// <param name="telephone"></param>
         /// <param name="nature"></param>
-        /// <param name="CA"></param>
+        /// <param name="chiffreAffaires"></param>
         /// <param name="effectif"></param>
         /// <param name="commentaires"></param>
         /// <param name="contact"></param>
-        public MClient(int idClient, string rS, string typeSociete, string activite, string adresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires, List<Contact> listeContact)
+        public MClient(int idClient, string rS, string typeSociete, string activite, string adresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires, List<MContact> listeContact)
         {
             this.idClient = idClient;
             this.raisonSociale = rS;
@@ -53,13 +53,12 @@ namespace Active_Gestion_Commerciale
             this.codePostale = codePostale;
             this.telephone = telephone;
             this.nature = nature;
-            this.CA = CA;
+            this.chiffreAffaires = CA;
             this.effectif = effectif;
             this.commentaires = commentaires;
             this.listeContacts = listeContact;
         }
-
-
+        
 
         /// <summary>
         /// Id client
@@ -166,11 +165,11 @@ namespace Active_Gestion_Commerciale
         /// <summary>
         /// CA Propertie
         /// </summary>
-        public decimal CA1
+        public decimal ChiffreAffaires
         {
             get
             {
-                return this.CA;
+                return this.chiffreAffaires;
             }
 
             set
@@ -181,7 +180,7 @@ namespace Active_Gestion_Commerciale
                 //}
                 //else
                 //{
-                this.CA = value;
+                this.chiffreAffaires = value;
                 //}
 
             }
@@ -272,7 +271,7 @@ namespace Active_Gestion_Commerciale
         /// <summary>
         /// ListeContacts Properties
         /// </summary>
-        public List<Contact> ListeContacts
+        public List<MContact> ListeContacts
         {
             get
             {

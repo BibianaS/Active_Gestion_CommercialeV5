@@ -1,6 +1,6 @@
 ﻿namespace Active_Gestion_Commerciale
 {
-    partial class frmAfficheClientContacts
+    partial class frmDspClientContacts
     {
         /// <summary>
         /// Required designer variable.

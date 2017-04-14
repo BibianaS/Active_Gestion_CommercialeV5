@@ -14,25 +14,29 @@ namespace Active_Gestion_Commerciale
     {
         frmNewContact frmContact;
         frmNewClient frmClient;
-        frmAffichage frmPrinc;
-       
+        frmDsp frmPrinc;
+
+       /// <summary>
+       /// Constructeur MDI
+       /// </summary>
         public frmMDI()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Ouverture de la fenêtre Gestion Commerciale
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GestionCommerciale_Click(object sender, EventArgs e)
         {
             if (this.frmPrinc == null)
             {
-                this.frmPrinc = new frmAffichage();
+                this.frmPrinc = new frmDsp();
             }
-
             frmPrinc.MdiParent = this;
             frmPrinc.Show();
-
         }
-
-
     }
 }

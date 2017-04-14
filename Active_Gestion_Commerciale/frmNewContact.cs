@@ -50,7 +50,7 @@ namespace Active_Gestion_Commerciale
             //}
 
             //Création reference d'objet Contact
-            Contact nouveauContact      = new Contact();
+            MContact nouveauContact      = new MContact();
             nouveauContact.IdContact    = int.Parse(txtIdContact.Text);
             nouveauContact.NomContact   = txtNomContact.Text;
             nouveauContact.PrenomContact = txtPrenomContact.Text;
@@ -60,8 +60,8 @@ namespace Active_Gestion_Commerciale
             unClient.ListeContacts.Add(nouveauContact);
 
 
-            Contact.NombreContacts      += 1;
-            this.iContact = Contact.NombreContacts-1;
+            MContact.NombreContacts      += 1;
+            this.iContact = MContact.NombreContacts-1;
 
             afficheListContact();
 

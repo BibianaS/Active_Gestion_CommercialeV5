@@ -1,6 +1,6 @@
 ﻿namespace Active_Gestion_Commerciale
 {
-    partial class frmModifClient
+    partial class frmUpdClient
     {
         /// <summary>
         /// Required designer variable.

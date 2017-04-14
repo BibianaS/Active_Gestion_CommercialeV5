@@ -1,6 +1,6 @@
 ﻿namespace Active_Gestion_Commerciale
 {
-    partial class frmAffichage
+    partial class frmDsp
     {
         /// <summary>
         /// Required designer variable.
