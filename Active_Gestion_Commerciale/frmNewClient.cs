@@ -36,7 +36,7 @@ namespace Active_Gestion_Commerciale
         private void initFicheClient()
         {
             //Init Combo box
-            this.cbxDomaineActivite.Items.Add("Agro");
+            this.cbxDomaineActivite.Items.Add("Agro") ;
             this.cbxDomaineActivite.Items.Add("Commerciale");
             this.cbxDomaineActivite.Items.Add("Btp");
             this.cbxDomaineActivite.Items.Add("Transport");

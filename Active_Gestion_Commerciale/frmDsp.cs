@@ -12,6 +12,9 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmDsp : Form
     {
+        int noClients = Donnees.Db.Client.Count();
+
+
         public frmDsp()
         {
             InitializeComponent();
@@ -26,20 +29,20 @@ namespace Active_Gestion_Commerciale
         {
             DataTable dt = new DataTable(); 
             visibiliteBoutons();
-            if (Donnees.ListeClients.Count != 0)
+            
+            if (noClients != 0)
             {
                 DataRow dr;
-                int i;
                 dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
                 dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
                 dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
 
-                for (i = 0; i < Donnees.ListeClients.Count; i++)
+                foreach (Client unClientEF in Donnees.Db.Client.ToList())
                 {
                     dr = dt.NewRow();
-                    dr[0] = Donnees.ListeClients[i].IdClient;
-                    dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                    dr[2] = Donnees.ListeClients[i].Telephone;
+                    dr[0] = unClientEF.idClient;
+                    dr[1] = unClientEF.raisonSociale;
+                    dr[2] = unClientEF.telephone;
                     dt.Rows.Add(dr);
                 }
                 this.dgvListeClients.DataSource = dt.DefaultView;
@@ -59,11 +62,19 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            int a;
-            a = this.dgvListeClients.CurrentRow.Index;
-            MessageBox.Show(a.ToString());
-            Donnees.ListeClients.RemoveAt(a);
-            
+            int idClient; //id du client dans la collection
+            idClient = (int)this.dgvListeClients.CurrentRow.Cells[0].Value;
+
+            Client leClientEF = Donnees.Db.Client.Find(idClient);
+
+            //Confirmer la suppression
+            if (MessageBox.Show("Voulez-vous supprimer définitivement le client "+leClientEF.raisonSociale.Trim()+" ?", "confirmer") == DialogResult.OK);
+            {
+                // supprimer de la collection EF
+                Donnees.Db.Client.Remove(leClientEF);
+                //impacter en BdD
+                Donnees.Db.SaveChanges();
+            }
             afficheListeClients();
         }
 
@@ -88,7 +99,7 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void dgvListeClients_DoubleClick(object sender, EventArgs e)
         {
-            if (Donnees.ListeClients.Count == 0)
+            if (noClients == 0)
             {
                 //Si la liste est vide on ne peut pas selection un client avant de le modifier
                 lblAffichage.Text = "Vous ne pouvez pas modifier un client car la liste est vide";
@@ -125,7 +136,7 @@ namespace Active_Gestion_Commerciale
                 afficheListeClients();
                 visibiliteBoutons();
             }
-            if (Donnees.ListeClients.Count == 0)
+            if (noClients == 0)
             {
                 lblAffichage.Text = "Il n'y a pas de clients";
             }
