@@ -80,11 +80,9 @@ namespace Active_Gestion_Commerciale
             {
                 Client nouveauClientEF = new Client();
 
-
-                int valMaxIdClient;
                 
-
-                nouveauClientEF.idClient = 10;
+                
+                nouveauClientEF.idClient = int.Parse(txtIdClient.Text);
                 nouveauClientEF.raisonSociale = txtRaisonSociale.Text;
                 nouveauClientEF.typeSociete = rbtPrive.Checked ? "prive" : "public";
 

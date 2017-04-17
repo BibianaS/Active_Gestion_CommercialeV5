@@ -171,7 +171,6 @@
             this.txtIdClient.Location = new System.Drawing.Point(145, 22);
             this.txtIdClient.Mask = "00000";
             this.txtIdClient.Name = "txtIdClient";
-            this.txtIdClient.ReadOnly = true;
             this.txtIdClient.Size = new System.Drawing.Size(49, 20);
             this.txtIdClient.TabIndex = 12;
             // 
