@@ -16,7 +16,6 @@ namespace Active_Gestion_Commerciale
         MClient unClient;
         private int iContact;
         public static int iClient;
-        List<MContact> listeContacts;
 
         /// <summary>
         /// Initialisation formulaire
@@ -26,9 +25,9 @@ namespace Active_Gestion_Commerciale
             InitializeComponent();
             this.initFicheClient();
             btnAjouterDocumments.Enabled = false;
-            btnContinuer.Visible = false;
+            btnQuitterAjoutContact.Visible = false;
         }
-        
+
 
         /// <summary>
         /// Initialisation à chaque nouveau client
@@ -36,10 +35,7 @@ namespace Active_Gestion_Commerciale
         private void initFicheClient()
         {
             //Init Combo box
-            this.cbxDomaineActivite.Items.Add("Agro") ;
-            this.cbxDomaineActivite.Items.Add("Commerciale");
-            this.cbxDomaineActivite.Items.Add("Btp");
-            this.cbxDomaineActivite.Items.Add("Transport");
+            this.cbxDomaineActivite.Items.AddRange(new string[] { "Agro", "Commerciale", "Btp", "Transport" });
 
             //Init text box
             foreach (Control c in gbxFicheClient.Controls)
@@ -63,14 +59,13 @@ namespace Active_Gestion_Commerciale
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
             frmContact = new frmNewContact(unClient);
-
-                if (frmContact.ShowDialog() == DialogResult.OK)
-                {
-                    //recherche le rang du contact saisie
-                    this.iContact = MContact.NombreContacts - 1;
-                    afficheListContact();
-                }
-         }
+            if (frmContact.ShowDialog() == DialogResult.OK)
+            {
+                //recherche le rang du contact saisie
+                this.iContact = MContact.NombreContacts - 1;
+                afficheListContact();
+            }
+        }
 
 
         /// <summary>
@@ -80,58 +75,76 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnCreerClient_Click(object sender, EventArgs e)
         {
-
-            int idClient;
-            if (int.TryParse(txtIdClient.Text, out idClient) && txtRaisonSociale.Text != String.Empty)
+            MClient nouveauClient = new MClient();
+            try
             {
-
-                string raisonSociale = txtRaisonSociale.Text;
-                listeContacts = new List<MContact>();
-
-                string typeSociete = "";
-                string domaineAct = cbxDomaineActivite.SelectedItem.ToString();
-                string adresse = txtAdresse.Text;
-                string complementAdresse = txtComplemetAdresse.Text;
-                string ville = txtVille.Text;
-                int codePostale = int.Parse(txtCodePostale.Text);
-                string telephone = txtTelephone.Text;
-                string nature = "";
-                decimal chiffreA = decimal.Parse(txtChiffreAffaires.Text);
-                int effectifs = 0;
-                string commentaires = txtCommentaires.Text;
+                Client nouveauClientEF = new Client();
 
 
-                typeSociete = rbtPrive.Checked ? "prive" : "public";
+                int valMaxIdClient;
+                
+
+                nouveauClientEF.idClient = 10;
+                nouveauClientEF.raisonSociale = txtRaisonSociale.Text;
+                nouveauClientEF.typeSociete = rbtPrive.Checked ? "prive" : "public";
+
+                if(cbxDomaineActivite.SelectedIndex == 0) { nouveauClientEF.activite = "Agro"; }
+                else if (cbxDomaineActivite.SelectedIndex == 1) { nouveauClientEF.activite = "Commerciale"; }
+                else if (cbxDomaineActivite.SelectedIndex == 2) { nouveauClientEF.activite = "BTP"; } 
+                else { nouveauClientEF.activite = "Transport"; }
+                
+                nouveauClientEF.adresse = txtAdresse.Text;
+                nouveauClientEF.complementAdresse = txtComplemetAdresse.Text;
+                nouveauClientEF.villeClient = txtVille.Text;
+                nouveauClientEF.codePostale = int.Parse(txtCodePostale.Text);
+                nouveauClientEF.telephone = int.Parse(txtTelephone.Text);
 
                 //"Nature" selection /Principale, secondaire or Ancienne
-                if (rbtPrincipale.Checked) { nature = "Principale"; }
-                if (rbtSecondaire.Checked) { nature = "Secondaire"; }
-                if (rbtAncienne.Checked) { nature = "Ancienne"; }
+                if (rbtPrincipale.Checked) { nouveauClientEF.nature = "Principale"; }
+                if (rbtSecondaire.Checked) { nouveauClientEF.nature = "Secondaire"; }
+                if (rbtAncienne.Checked) { nouveauClientEF.nature = "Ancienne"; }
 
+                nouveauClientEF.CA = decimal.Parse(txtChiffreAffaires.Text);
+                nouveauClientEF.effectif = int.Parse(txtEffectifs.Text);
+                nouveauClientEF.commentaires = txtCommentaires.Text;
 
-                //New client par le constructeur
-                unClient = new MClient(idClient, raisonSociale, typeSociete, domaineAct, adresse, complementAdresse, ville, codePostale, telephone, nature, chiffreA, effectifs, commentaires, listeContacts);
-                iClient++;
-
-                //Ajout un client a la liste de clients dans donnees
-                Donnees.ListeClients.Add(unClient);
-
-                //Nombre de clients existants
-                MClient.NombreClients += 1;
-
-                //Masquage des text Box
-                txtIdClient.Enabled = txtRaisonSociale.Enabled = txtAdresse.Enabled = txtComplemetAdresse.Enabled = txtVille.Enabled = txtCodePostale.Enabled = txtTelephone.Enabled = txtChiffreAffaires.Enabled = txtCommentaires.Enabled = txtEffectifs.Enabled = false;
-
-                //Affichage du bouton creer un contact
-                btnAjouterContact.Visible = true;
-                lblCreerContact.Visible = true;
-
-                //affiche la liste de clients
-                afficheListeClients();
-                btnCreerClient.Visible = false;
-                btnContinuer.Visible = true;
-                btnQuitterCreationClient.Visible = false;
+                Donnees.Db.Client.Add(nouveauClientEF);
+                Donnees.Db.SaveChanges();
             }
+            catch (Exception ex)
+            {
+                nouveauClient = null;
+                MessageBox.Show("Erreur : \n" + ex.Message, "Ajout d'un client");
+            }
+
+            //int idClient;
+            //if (int.TryParse(txtIdClient.Text, out idClient) && txtRaisonSociale.Text != String.Empty)
+            //if (txtRaisonSociale.Text != String.Empty)
+            //{
+
+            //    IQueryable<Client> idsClient = from q in Donnees.Db.Client
+            //                                   where q.idClient == nouvIdClient
+            //                                   select q;
+
+
+
+            //Donnees.ListeClients.Add(unClient);
+
+            //Nombre de clients existants
+            MClient.NombreClients += 1;
+
+            //Masquage des text Box
+            txtIdClient.Enabled = txtRaisonSociale.Enabled = txtAdresse.Enabled = txtComplemetAdresse.Enabled = txtVille.Enabled = txtCodePostale.Enabled = txtTelephone.Enabled = txtChiffreAffaires.Enabled = txtCommentaires.Enabled = txtEffectifs.Enabled = false;
+
+            //Affichage du bouton creer un contact
+            btnAjouterContact.Visible = true;
+            lblCreerContact.Visible = true;
+
+            //affiche la liste de clients
+            afficheListeClients();
+            btnCreerClient.Visible = false;
+            btnQuitterAjoutContact.Visible = true;
+            btnQuitterCreationClient.Visible = false;
         }
 
 
@@ -140,27 +153,28 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void afficheListeClients()
         {
+
             DataTable dt = new DataTable();
+
             DataRow dr;
-            int i;
             dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-        
-            for (i = 0; i < Donnees.ListeClients.Count; i++)
+
+            foreach (Client unClientEF in Donnees.Db.Client.ToList())
             {
                 dr = dt.NewRow();
-                dr[0] = Donnees.ListeClients[i].IdClient;
-                dr[1] = Donnees.ListeClients[i].RaisonSociale;
-                dr[2] = Donnees.ListeClients[i].Telephone;
-              
+                dr[0] = unClientEF.idClient;
+                dr[1] = unClientEF.raisonSociale;
+                dr[2] = unClientEF.telephone;
                 dt.Rows.Add(dr);
             }
-            this.dgvListeClients.DataSource = dt;
+            this.dgvListeClients.DataSource = dt.DefaultView;
             this.dgvListeClients.Refresh();
-
             dt = null;
             dr = null;
+
+
         }
 
 
@@ -173,18 +187,18 @@ namespace Active_Gestion_Commerciale
             DataTable dt = new DataTable();
 
             DataRow dr;
-            int i;
+
             dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-            for (i = 0; i < listeContacts.Count; i++)
+            foreach (Contact unContactEF in Donnees.Db.Contact.ToList())
             {
                 dr = dt.NewRow();
-                dr[0] = listeContacts[i].IdContact;
-                dr[1] = listeContacts[i].NomContact;
-                dr[2] = listeContacts[i].PrenomContact;
-                dr[2] = listeContacts[i].TelContact;
+                dr[0] = unContactEF.idContact;
+                dr[1] = unContactEF.nomContact;
+                dr[2] = unContactEF.prenomContact;
+                dr[2] = unContactEF.telContact;
                 //Rows Add
                 dt.Rows.Add(dr);
             }
@@ -204,7 +218,7 @@ namespace Active_Gestion_Commerciale
         private void btnQuitterCreationClient_Click(object sender, EventArgs e)
         {
             this.Close();
-            
+
         }
 
         /// <summary>
@@ -217,6 +231,13 @@ namespace Active_Gestion_Commerciale
             this.DialogResult = DialogResult.OK;
         }
 
-        
+        private void btnQuitterAjoutContact_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
+        }
+
+       
     }
 }

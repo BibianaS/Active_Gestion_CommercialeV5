@@ -68,7 +68,7 @@
             this.dgvListeClients = new System.Windows.Forms.DataGridView();
             this.dgvContacts = new System.Windows.Forms.DataGridView();
             this.lblCreerContact = new System.Windows.Forms.Label();
-            this.btnContinuer = new System.Windows.Forms.Button();
+            this.btnQuitterAjoutContact = new System.Windows.Forms.Button();
             this.lblListeClients = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPasDeContacts = new System.Windows.Forms.Label();
@@ -171,13 +171,13 @@
             this.txtIdClient.Location = new System.Drawing.Point(145, 22);
             this.txtIdClient.Mask = "00000";
             this.txtIdClient.Name = "txtIdClient";
+            this.txtIdClient.ReadOnly = true;
             this.txtIdClient.Size = new System.Drawing.Size(49, 20);
             this.txtIdClient.TabIndex = 12;
             // 
             // txtTelephone
             // 
             this.txtTelephone.Location = new System.Drawing.Point(146, 274);
-            this.txtTelephone.Mask = "00 00 00 00 00";
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(84, 20);
             this.txtTelephone.TabIndex = 20;
@@ -400,6 +400,7 @@
             // 
             // cbxDomaineActivite
             // 
+            this.cbxDomaineActivite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDomaineActivite.FormattingEnabled = true;
             this.cbxDomaineActivite.Location = new System.Drawing.Point(145, 143);
             this.cbxDomaineActivite.Name = "cbxDomaineActivite";
@@ -454,15 +455,15 @@
             this.lblCreerContact.Text = "Créer un contact liée a ce client :";
             this.lblCreerContact.Visible = false;
             // 
-            // btnContinuer
+            // btnQuitterAjoutContact
             // 
-            this.btnContinuer.Location = new System.Drawing.Point(340, 631);
-            this.btnContinuer.Name = "btnContinuer";
-            this.btnContinuer.Size = new System.Drawing.Size(107, 23);
-            this.btnContinuer.TabIndex = 31;
-            this.btnContinuer.Text = "Continuer";
-            this.btnContinuer.UseVisualStyleBackColor = true;
-            this.btnContinuer.Click += new System.EventHandler(this.btnContinuer_Click);
+            this.btnQuitterAjoutContact.Location = new System.Drawing.Point(340, 631);
+            this.btnQuitterAjoutContact.Name = "btnQuitterAjoutContact";
+            this.btnQuitterAjoutContact.Size = new System.Drawing.Size(107, 23);
+            this.btnQuitterAjoutContact.TabIndex = 31;
+            this.btnQuitterAjoutContact.Text = "Quitter";
+            this.btnQuitterAjoutContact.UseVisualStyleBackColor = true;
+            this.btnQuitterAjoutContact.Click += new System.EventHandler(this.btnQuitterAjoutContact_Click);
             // 
             // lblListeClients
             // 
@@ -486,11 +487,11 @@
             // 
             this.lblPasDeContacts.AutoEllipsis = true;
             this.lblPasDeContacts.AutoSize = true;
-            this.lblPasDeContacts.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPasDeContacts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPasDeContacts.ForeColor = System.Drawing.Color.DodgerBlue;
             this.lblPasDeContacts.Location = new System.Drawing.Point(429, 505);
             this.lblPasDeContacts.Name = "lblPasDeContacts";
-            this.lblPasDeContacts.Size = new System.Drawing.Size(326, 19);
+            this.lblPasDeContacts.Size = new System.Drawing.Size(323, 20);
             this.lblPasDeContacts.TabIndex = 34;
             this.lblPasDeContacts.Text = "Il n\'y a pas de contacts liées a ce client";
             // 
@@ -502,7 +503,7 @@
             this.Controls.Add(this.lblPasDeContacts);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblListeClients);
-            this.Controls.Add(this.btnContinuer);
+            this.Controls.Add(this.btnQuitterAjoutContact);
             this.Controls.Add(this.lblCreerContact);
             this.Controls.Add(this.dgvContacts);
             this.Controls.Add(this.dgvListeClients);
@@ -566,7 +567,7 @@
         private System.Windows.Forms.DataGridView dgvContacts;
         private System.Windows.Forms.Button btnAjouterDocumments;
         private System.Windows.Forms.Label lblCreerContact;
-        private System.Windows.Forms.Button btnContinuer;
+        private System.Windows.Forms.Button btnQuitterAjoutContact;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblListeClients;
         private System.Windows.Forms.Label lblPasDeContacts;

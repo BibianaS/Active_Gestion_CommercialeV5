@@ -18,7 +18,10 @@
           <Property Name="villeClient" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="codePostale" Type="int" Nullable="false" />
           <Property Name="telephone" Type="int" Nullable="false" />
-          <Property Name="commentaires" Type="varchar(max)" />
+          <Property Name="nature" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CA" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="effectif" Type="int" Nullable="false" />
+          <Property Name="commentaires" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -68,7 +71,10 @@
           <Property Name="villeClient" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="codePostale" Type="Int32" Nullable="false" />
           <Property Name="telephone" Type="Int32" Nullable="false" />
-          <Property Name="commentaires" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nature" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CA" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="effectif" Type="Int32" Nullable="false" />
+          <Property Name="commentaires" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Contact" Relationship="Self.FK_Contact_Client" FromRole="Client" ToRole="Contact" />
         </EntityType>
         <EntityType Name="Contact">
@@ -94,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ABIEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ABIEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Contact" EntityType="Self.Contact" />
           <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
@@ -107,7 +113,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ABIModelStoreContainer" CdmEntityContainer="ABIEntities">
+        <EntityContainerMapping StorageEntityContainer="ABIModelStoreContainer" CdmEntityContainer="ABIEntities1">
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="ABIModel.Client">
               <MappingFragment StoreEntitySet="Client">
@@ -120,6 +126,9 @@
                 <ScalarProperty Name="villeClient" ColumnName="villeClient" />
                 <ScalarProperty Name="codePostale" ColumnName="codePostale" />
                 <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="nature" ColumnName="nature" />
+                <ScalarProperty Name="CA" ColumnName="CA" />
+                <ScalarProperty Name="effectif" ColumnName="effectif" />
                 <ScalarProperty Name="commentaires" ColumnName="commentaires" />
               </MappingFragment>
             </EntityTypeMapping>

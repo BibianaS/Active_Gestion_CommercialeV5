@@ -13,10 +13,10 @@ namespace Active_Gestion_Commerciale
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ABIEntities : DbContext
+    public partial class ABIEntities1 : DbContext
     {
-        public ABIEntities()
-            : base("name=ABIEntities")
+        public ABIEntities1()
+            : base("name=ABIEntities1")
         {
         }
     

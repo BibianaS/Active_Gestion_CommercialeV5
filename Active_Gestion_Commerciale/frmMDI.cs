@@ -12,9 +12,7 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmMDI : Form
     {
-        frmNewContact frmContact;
-        frmNewClient frmClient;
-        frmDsp frmPrinc;
+        private frmDsp frmPrinc;
 
        /// <summary>
        /// Constructeur MDI
@@ -34,9 +32,23 @@ namespace Active_Gestion_Commerciale
             if (this.frmPrinc == null)
             {
                 this.frmPrinc = new frmDsp();
+                
+                frmPrinc.MdiParent = this;
+                frmPrinc.Show();
             }
-            frmPrinc.MdiParent = this;
-            frmPrinc.Show();
+            else
+            {
+                this.frmPrinc.Activate();
+            }
+        }
+        private void fermeFenetreAffiche(object sender, FormClosingEventArgs e )
+        {
+            this.frmPrinc = null;
+        }
+
+        public void fermeAffichageClient()
+        {
+            this.frmPrinc = null;
         }
     }
 }

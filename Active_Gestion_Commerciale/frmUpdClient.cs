@@ -127,7 +127,7 @@ namespace Active_Gestion_Commerciale
             leClient.Adresse = txtAdresseModif.Text;
             leClient.ComplementAdresse = txtComplementAdresseModif.Text;
             leClient.VilleClient = txtVilleModif.Text;
-            leClient.Telephone = txtTelModif.Text;
+            leClient.Telephone = int.Parse(txtTelModif.Text);
             leClient.ChiffreAffaires = int.Parse(txtCAModif.Text);
             leClient.Effectif = int.Parse(txtEffectifModif.Text);
             

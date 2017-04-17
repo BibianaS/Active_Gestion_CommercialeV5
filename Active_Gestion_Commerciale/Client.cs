@@ -29,6 +29,9 @@ namespace Active_Gestion_Commerciale
         public string villeClient { get; set; }
         public int codePostale { get; set; }
         public int telephone { get; set; }
+        public string nature { get; set; }
+        public decimal CA { get; set; }
+        public int effectif { get; set; }
         public string commentaires { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

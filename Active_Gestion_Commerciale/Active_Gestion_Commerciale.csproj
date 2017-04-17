@@ -73,12 +73,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ABI.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ABIDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABIDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>ABI.tt</DependentUpon>
     </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>ABI.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controles.cs" />
     <Compile Include="frmDsp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,17 @@
     <None Include="ABI.edmx.diagram">
       <DependentUpon>ABI.edmx</DependentUpon>
     </None>
+    <None Include="ABIDataSet.xsc">
+      <DependentUpon>ABIDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ABIDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ABIDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ABIDataSet.xss">
+      <DependentUpon>ABIDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -189,19 +206,19 @@
     <None Include="Resources\people.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ABI.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ABI.Context.cs</LastGenOutput>
       <DependentUpon>ABI.edmx</DependentUpon>
+      <LastGenOutput>ABI.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ABI.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ABI.edmx</DependentUpon>
       <LastGenOutput>ABI.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,12 +13,11 @@ namespace Active_Gestion_Commerciale
     public partial class frmDsp : Form
     {
         int noClients = Donnees.Db.Client.Count();
-
+        frmNewClient frmClient;
 
         public frmDsp()
         {
             InitializeComponent();
-            //Affichage des boutons première fenêtre
             afficheListeClients();
         }
 
@@ -27,11 +26,11 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void afficheListeClients()
         {
-            DataTable dt = new DataTable(); 
-            visibiliteBoutons();
-            
-            if (noClients != 0)
+            if (Donnees.Db.Client.Count() >= 0)
             {
+                MessageBox.Show(noClients.ToString());
+                DataTable dt = new DataTable();
+                
                 DataRow dr;
                 dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
                 dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
@@ -52,6 +51,7 @@ namespace Active_Gestion_Commerciale
             }else
             {   
                 lblAffichage.Text = "Il n'y a pas de clients";
+                visibiliteBoutons();
             }
         }
 
@@ -63,12 +63,12 @@ namespace Active_Gestion_Commerciale
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             int idClient; //id du client dans la collection
+
             idClient = (int)this.dgvListeClients.CurrentRow.Cells[0].Value;
 
             Client leClientEF = Donnees.Db.Client.Find(idClient);
-
             //Confirmer la suppression
-            if (MessageBox.Show("Voulez-vous supprimer définitivement le client "+leClientEF.raisonSociale.Trim()+" ?", "confirmer") == DialogResult.OK);
+            if (MessageBox.Show("Voulez-vous supprimer définitivement le client " + leClientEF.raisonSociale.Trim() + " ?", "confirmer") == DialogResult.OK) ;
             {
                 // supprimer de la collection EF
                 Donnees.Db.Client.Remove(leClientEF);
@@ -77,6 +77,10 @@ namespace Active_Gestion_Commerciale
             }
             afficheListeClients();
         }
+
+
+        
+
 
         //TODO Gerer la recherche de clients
         /// <summary>
@@ -129,7 +133,7 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnAjouterClient_Click(object sender, EventArgs e)
         {
-            frmNewClient frmClient;
+            
             frmClient = new frmNewClient();
             if (frmClient.ShowDialog() == DialogResult.OK)
             {
@@ -175,7 +179,7 @@ namespace Active_Gestion_Commerciale
         }
 
         /// <summary>
-        /// Methode qui affiche les boutons rechercher, supprimer et modifier si il y a des clients dnas la BD
+        /// Methode qui cache les boutons rechercher, supprimer et modifier si il n'y a pas des clients dans la BdD
         /// </summary>
         private void visibiliteBoutons()
         {
@@ -187,7 +191,7 @@ namespace Active_Gestion_Commerciale
                 btnModifier.Enabled = false;
                 lblAffichage.Text = "Il n'y a pas de clients";
             }
-            else
+            if(Donnees.ListeClients.Count >= 0)
             {
                 btnRechercher.Enabled = true;
                 btnTous.Enabled = true;
@@ -196,6 +200,8 @@ namespace Active_Gestion_Commerciale
                 lblAffichage.Text = "";
             }
         }
+
+       
         /// <summary>
         /// Quitter la fenêtre d'affichage
         /// </summary>

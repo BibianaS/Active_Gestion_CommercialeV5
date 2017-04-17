@@ -19,7 +19,7 @@ namespace Active_Gestion_Commerciale
         private string complementAdresse;
         private string villeClient;
         private int codePostale;
-        private string telephone;
+        private int telephone;
         private string nature;
         private decimal CA;
         private int effectif;
@@ -43,23 +43,23 @@ namespace Active_Gestion_Commerciale
         /// <param name="effectif"></param>
         /// <param name="commentaires"></param>
         /// <param name="contact"></param>
-        public MClient(int idClient, string rS, string typeSociete, string activite, string adresse, string complementAdresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires, List<MContact> listeContact)
-        {
-            this.idClient = idClient;
-            this.raisonSociale = rS;
-            this.typeSociete = typeSociete;
-            this.activite = activite;
-            this.adresse = adresse;
-            this.ComplementAdresse = complementAdresse;
-            this.villeClient = villeClient;
-            this.codePostale = codePostale;
-            this.telephone = telephone;
-            this.nature = nature;
-            this.CA = CA;
-            this.effectif = effectif;
-            this.commentaires = commentaires;
-            this.listeContacts = listeContact;
-        }
+        //public MClient(int idClient, string rS, string typeSociete, string activite, string adresse, string complementAdresse, string villeClient, int codePostale, string telephone, string nature, decimal CA, int effectif, string commentaires/*, List<MContact> listeContact*/)
+        //{
+        //    this.idClient = idClient;
+        //    this.raisonSociale = rS;
+        //    this.typeSociete = typeSociete;
+        //    this.activite = activite;
+        //    this.adresse = adresse;
+        //    this.ComplementAdresse = complementAdresse;
+        //    this.villeClient = villeClient;
+        //    this.codePostale = codePostale;
+        //    this.telephone = telephone;
+        //    this.nature = nature;
+        //    this.CA = CA;
+        //    this.effectif = effectif;
+        //    this.commentaires = commentaires;
+        //    //this.listeContacts = listeContact;
+        //}
         
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Active_Gestion_Commerciale
         /// <summary>
         /// Téléphone Properties
         /// </summary>
-        public string Telephone
+        public int Telephone
         {
             get
             {
