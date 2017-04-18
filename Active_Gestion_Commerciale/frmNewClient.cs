@@ -15,7 +15,8 @@ namespace Active_Gestion_Commerciale
         frmNewContact frmContact;
         MClient unClient;
         private int iContact;
-        public static int iClient;
+        private int iClient;
+        private int idClient;
 
         /// <summary>
         /// Initialisation formulaire
@@ -58,7 +59,7 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
-            frmContact = new frmNewContact(unClient);
+            frmContact = new frmNewContact(idClient);
             if (frmContact.ShowDialog() == DialogResult.OK)
             {
                 //recherche le rang du contact saisie
@@ -79,10 +80,9 @@ namespace Active_Gestion_Commerciale
             try
             {
                 Client nouveauClientEF = new Client();
-
-                
-                
                 nouveauClientEF.idClient = int.Parse(txtIdClient.Text);
+                idClient = nouveauClientEF.idClient;
+
                 nouveauClientEF.raisonSociale = txtRaisonSociale.Text;
                 nouveauClientEF.typeSociete = rbtPrive.Checked ? "prive" : "public";
 
@@ -95,7 +95,7 @@ namespace Active_Gestion_Commerciale
                 nouveauClientEF.complementAdresse = txtComplemetAdresse.Text;
                 nouveauClientEF.villeClient = txtVille.Text;
                 nouveauClientEF.codePostale = int.Parse(txtCodePostale.Text);
-                nouveauClientEF.telephone = int.Parse(txtTelephone.Text);
+                nouveauClientEF.telephone = txtTelephone.Text;
 
                 //"Nature" selection /Principale, secondaire or Ancienne
                 if (rbtPrincipale.Checked) { nouveauClientEF.nature = "Principale"; }
@@ -114,19 +114,6 @@ namespace Active_Gestion_Commerciale
                 nouveauClient = null;
                 MessageBox.Show("Erreur : \n" + ex.Message, "Ajout d'un client");
             }
-
-            //int idClient;
-            //if (int.TryParse(txtIdClient.Text, out idClient) && txtRaisonSociale.Text != String.Empty)
-            //if (txtRaisonSociale.Text != String.Empty)
-            //{
-
-            //    IQueryable<Client> idsClient = from q in Donnees.Db.Client
-            //                                   where q.idClient == nouvIdClient
-            //                                   select q;
-
-
-
-            //Donnees.ListeClients.Add(unClient);
 
             //Nombre de clients existants
             MClient.NombreClients += 1;
@@ -171,25 +158,22 @@ namespace Active_Gestion_Commerciale
             this.dgvListeClients.Refresh();
             dt = null;
             dr = null;
-
-
         }
 
+        /// <summary>
+        /// Affichage de la liste de contacts par client
+        /// </summary>
+        /// <returns></returns>
 
-        ///// <summary>
-        ///// Affichage de la liste de contacts par client
-        ///// </summary>
-        ///// <returns></returns>
         private void afficheListContact()
         {
             DataTable dt = new DataTable();
-
             DataRow dr;
 
-            dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("ID", typeof(int)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(int)));
             foreach (Contact unContactEF in Donnees.Db.Contact.ToList())
             {
                 dr = dt.NewRow();
@@ -236,6 +220,5 @@ namespace Active_Gestion_Commerciale
 
         }
 
-       
     }
 }

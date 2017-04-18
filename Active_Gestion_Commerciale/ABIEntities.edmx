@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="idClient" />
           </Key>
-          <Property Name="idClient" Type="smallint" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
           <Property Name="raisonSociale" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="typeSociete" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="activite" Type="varchar" MaxLength="15" Nullable="false" />
@@ -17,21 +17,31 @@
           <Property Name="complementAdresse" Type="varchar" MaxLength="15" />
           <Property Name="villeClient" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="codePostale" Type="int" Nullable="false" />
-          <Property Name="telephone" Type="int" Nullable="false" />
+          <Property Name="telephone" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nature" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="CA" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="effectif" Type="int" Nullable="false" />
-          <Property Name="commentaires" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="commentaires" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="idContact" />
           </Key>
-          <Property Name="idContact" Type="smallint" Nullable="false" />
-          <Property Name="idClient" Type="smallint" Nullable="false" />
+          <Property Name="idContact" Type="int" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
           <Property Name="nomContact" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="prenomContact" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="telContact" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Contact_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -48,6 +58,7 @@
         <EntityContainer Name="ABIModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Contact" EntitySet="Contact" />
@@ -62,7 +73,7 @@
           <Key>
             <PropertyRef Name="idClient" />
           </Key>
-          <Property Name="idClient" Type="Int16" Nullable="false" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
           <Property Name="raisonSociale" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="typeSociete" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activite" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
@@ -70,23 +81,33 @@
           <Property Name="complementAdresse" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="villeClient" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="codePostale" Type="Int32" Nullable="false" />
-          <Property Name="telephone" Type="Int32" Nullable="false" />
+          <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nature" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CA" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="effectif" Type="Int32" Nullable="false" />
-          <Property Name="commentaires" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="commentaires" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contact" Relationship="Self.FK_Contact_Client" FromRole="Client" ToRole="Contact" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="idContact" />
           </Key>
-          <Property Name="idContact" Type="Int16" Nullable="false" />
-          <Property Name="idClient" Type="Int16" Nullable="false" />
+          <Property Name="idContact" Type="Int32" Nullable="false" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
           <Property Name="nomContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prenomContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Contact_Client" FromRole="Contact" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Contact_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -100,9 +121,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ABIEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ABIEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Contact" EntitySet="Contact" />
@@ -113,7 +135,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ABIModelStoreContainer" CdmEntityContainer="ABIEntities1">
+        <EntityContainerMapping StorageEntityContainer="ABIModelStoreContainer" CdmEntityContainer="ABIEntities4">
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="ABIModel.Client">
               <MappingFragment StoreEntitySet="Client">
@@ -141,6 +163,17 @@
                 <ScalarProperty Name="nomContact" ColumnName="nomContact" />
                 <ScalarProperty Name="prenomContact" ColumnName="prenomContact" />
                 <ScalarProperty Name="telContact" ColumnName="telContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ABIModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

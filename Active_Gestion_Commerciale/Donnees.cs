@@ -10,6 +10,6 @@ namespace Active_Gestion_Commerciale
     {
         public static List<MClient> ListeClients = new List<MClient>();
         
-        public static ABIEntities1 Db = new ABIEntities1();
+        public static ABIEntities4 Db = new ABIEntities4();
     }
 }

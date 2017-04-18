@@ -20,7 +20,7 @@ namespace Active_Gestion_Commerciale
             this.Contact = new HashSet<Contact>();
         }
     
-        public short idClient { get; set; }
+        public int idClient { get; set; }
         public string raisonSociale { get; set; }
         public string typeSociete { get; set; }
         public string activite { get; set; }
@@ -28,7 +28,7 @@ namespace Active_Gestion_Commerciale
         public string complementAdresse { get; set; }
         public string villeClient { get; set; }
         public int codePostale { get; set; }
-        public int telephone { get; set; }
+        public string telephone { get; set; }
         public string nature { get; set; }
         public decimal CA { get; set; }
         public int effectif { get; set; }

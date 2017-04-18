@@ -13,10 +13,10 @@ namespace Active_Gestion_Commerciale
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ABIEntities1 : DbContext
+    public partial class ABIEntities4 : DbContext
     {
-        public ABIEntities1()
-            : base("name=ABIEntities1")
+        public ABIEntities4()
+            : base("name=ABIEntities4")
         {
         }
     
@@ -27,5 +27,6 @@ namespace Active_Gestion_Commerciale
     
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

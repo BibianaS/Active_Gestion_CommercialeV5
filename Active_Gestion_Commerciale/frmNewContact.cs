@@ -14,15 +14,15 @@ namespace Active_Gestion_Commerciale
     {
         private MClient unClient;
         private int iContact=0;
-
+        private int idClientExt;
         /// <summary>
         /// Constructeur par defaut, 
         /// passage ref en paramètre
         /// </summary>
         /// <param name="client"></param>
-        public frmNewContact(MClient refCLient)
+        public frmNewContact(int idClient)
         {
-            this.unClient = refCLient;
+            idClientExt = idClient;
             InitializeComponent();
             initListeContacts();
         }
@@ -43,29 +43,31 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
-
-            //if (txtIdContact.TextLength == 0)
-            //{
-            //    errorProvider1.SetError(txtIdContact, "Introduire l'ID du client");
-            //}
-
             //Création reference d'objet Contact
-            MContact nouveauContact      = new MContact();
-            nouveauContact.IdContact    = int.Parse(txtIdContact.Text);
-            nouveauContact.NomContact   = txtNomContact.Text;
-            nouveauContact.PrenomContact = txtPrenomContact.Text;
-            nouveauContact.TelContact   = txtTelContact.Text;
+            MContact nouveauContact = new MContact();
+            try
+            {
+                Contact nouveauContactEF = new Contact();
+                nouveauContactEF.idClient = idClientExt;
+                nouveauContactEF.idContact = int.Parse(txtIdContact.Text);
+                nouveauContactEF.nomContact = txtNomContact.Text;
+                nouveauContactEF.prenomContact = txtPrenomContact.Text;
+                nouveauContactEF.telContact = txtTelContact.Text;
 
-            //Ajoute un contact a la liste de contacts declare dns la classe contact
-            unClient.ListeContacts.Add(nouveauContact);
+                Donnees.Db.Contact.Add(nouveauContactEF);
+                Donnees.Db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                nouveauContact = null;
+                MessageBox.Show("Erreur : \n" + ex.Message, "Ajout d'un contact");
+            }
 
-
-            MContact.NombreContacts      += 1;
-            this.iContact = MContact.NombreContacts-1;
+            MContact.NombreContacts += 1;
+            this.iContact = MContact.NombreContacts - 1;
 
             afficheListContact();
 
-            //Vide les text Box apres ajout contact
             foreach (Control c in gpbContact.Controls)
             {
                 if (c.GetType() == typeof(MaskedTextBox))
@@ -73,7 +75,7 @@ namespace Active_Gestion_Commerciale
                     c.Text = "";
                 }
             }
-
+            
         }
 
 
@@ -96,23 +98,28 @@ namespace Active_Gestion_Commerciale
         {
             DataTable dt = new DataTable();
             DataRow dr;
-            int i;
-            dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
+
+            dt.Columns.Add(new DataColumn("ID Client", typeof(int)));
+            dt.Columns.Add(new DataColumn("ID Contact", typeof(int)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
 
-            for (i = 0; i <unClient.ListeContacts.Count; i++)
+            //Contact leContactEF = Donnees.Db.Contact.Find(idClientExt);
+
+            foreach (Contact unContactEF in Donnees.Db.Contact.ToList())
             {
-                dr = dt.NewRow();
-                dr[0] = unClient.ListeContacts[i].IdContact;
-                dr[1] = unClient.ListeContacts[i].NomContact;
-                dr[2] = unClient.ListeContacts[i].PrenomContact;
-                dr[3] = unClient.ListeContacts[i].TelContact;
-
-                //Rows Add
-                dt.Rows.Add(dr);
+                if (unContactEF.idClient == idClientExt)
+                {
+                    dr = dt.NewRow();
+                    dr[0] = unContactEF.idClient;
+                    dr[1] = unContactEF.idContact;
+                    dr[2] = unContactEF.nomContact;
+                    dr[3] = unContactEF.prenomContact;
+                    //Rows Add
+                    dt.Rows.Add(dr);
+                }
             }
+
             this.grdContacts.DataSource = dt;
             this.grdContacts.Refresh();
             dt = null;
@@ -125,9 +132,16 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void btnSupprimerContact_Click(object sender, EventArgs e)
         {
-            int a;
-            a = this.grdContacts.CurrentRow.Index;
-            unClient.ListeContacts.RemoveAt(a);
+            int idContactSupp = (int)this.grdContacts.CurrentRow.Cells[1].Value;
+
+            Contact leContact = Donnees.Db.Contact.Find(idContactSupp);
+            //Confirmer la suppression
+            if (MessageBox.Show("Voulez-vous supprimer définitivement le contact " + leContact.nomContact.Trim() + " ?", "confirmer") == DialogResult.OK) ;
+            {
+               Donnees.Db.Contact.Remove(leContact);
+               Donnees.Db.SaveChanges();
+            }
+           
             afficheListContact();
         }
 

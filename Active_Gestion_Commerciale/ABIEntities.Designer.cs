@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'C:\Users\SW\Source\Repos\Active_Gestion_CommercialeV5\Active_Gestion_Commerciale\ABI.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'C:\Users\DL-CDI\Source\Repos\Active_Gestion_CommercialeV5\Active_Gestion_Commerciale\ABIEntities.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

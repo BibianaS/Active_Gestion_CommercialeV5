@@ -12,18 +12,17 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmUpdClient : Form
     {
-
-        private MClient leClient;
+        int idClientExt;
         int iContact;
         /// <summary>
         /// Constructeur du form avec un client passage en paramettre d'un client
         /// </summary>
         /// <param name="unClient"></param>
-        public frmUpdClient(MClient unClient)
+        public frmUpdClient(int idClient)
         {
-            this.leClient = unClient;
+            idClientExt = idClient;
             InitializeComponent();
-            if (unClient.ListeContacts.Count == 0)
+            if (Donnees.Db.Client.Count() == 0)
             {
                 lblPasDeContacts.Visible = true;
                 lblDoubleClick.Visible = false;
@@ -43,45 +42,47 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void frmModifClient_Load(object sender, EventArgs e)
         {
-            this.afficheClient(this.leClient);
+            this.afficheClient();
         }
 
         /// <summary>
         /// affichage du client
         /// </summary>
         /// <param name="unClient"></param>
-        private void afficheClient(MClient unClient)
+        private void afficheClient()
         {
-            this.txtIdModif.Text = unClient.IdClient.ToString();
-            this.txtRaisonSModif.Text = unClient.RaisonSociale;
-            this.txtAdresseModif.Text = unClient.Adresse;
-            this.txtComplementAdresseModif.Text = unClient.ComplementAdresse;
-            this.txtVilleModif.Text = unClient.VilleClient;
-            this.txtCpModif.Text = unClient.CodePostale.ToString();
-            this.txtTelModif.Text = unClient.Telephone.ToString();
-            this.txtCAModif.Text = unClient.ChiffreAffaires.ToString();
-            this.txtEffectifModif.Text = unClient.Effectif.ToString();
-            this.txtCommentairesModif.Text = unClient.Commentaires;
-            
+            Client leClient = Donnees.Db.Client.Find(idClientExt);
+            this.txtIdModif.Text = leClient.idClient.ToString();
+            this.txtRaisonSModif.Text = leClient.raisonSociale;
+            this.txtAdresseModif.Text = leClient.adresse;
+            this.txtComplementAdresseModif.Text = leClient.complementAdresse;
+            this.txtVilleModif.Text = leClient.villeClient;
+            this.txtCpModif.Text = leClient.codePostale.ToString();
+            this.txtTelModif.Text = leClient.telephone.ToString();
+            this.txtCAModif.Text = leClient.CA.ToString();
+            this.txtEffectifModif.Text = leClient.effectif.ToString();
+            this.txtCommentairesModif.Text = leClient.commentaires;
+
             ///Boutons Typre de societe
-            if(unClient.TypeSociete == "Prive")
+            if (leClient.typeSociete == "Prive")
             {
                 this.rbtTypeClientPrive.Checked = true;
-            }else
+            }
+            else
             {
                 this.rbtTypeClientPublic.Checked = true;
             }
 
             ///Boutons Nature client
-            if(unClient.Nature == "Principale")
+            if (leClient.nature == "Principale")
             {
                 this.rbtNaturePrincipale.Checked = true;
             }
-            else if(unClient.Nature == "Secondaire")
+            else if (leClient.nature == "Secondaire")
             {
                 this.rbtNatureSecondaire.Checked = true;
             }
-            else { this.rbtNatureAncienne.Checked = true;}
+            else { this.rbtNatureAncienne.Checked = true; }
         }
 
         /// <summary>
@@ -89,30 +90,45 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void afficheListContact()
         {
-            DataTable dt = new DataTable();
-            DataRow dr;
-            int i;
-            dt.Columns.Add(new DataColumn("ID", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
-
-            for (i = 0; i < leClient.ListeContacts.Count; i++)
+            int nbContacts = Donnees.Db.Contact.Count();
+            if (nbContacts >= 1)
             {
-                dr = dt.NewRow();
-                dr[0] = leClient.ListeContacts[i].IdContact;
-                dr[1] = leClient.ListeContacts[i].NomContact;
-                dr[2] = leClient.ListeContacts[i].PrenomContact;
-                //Rows Add
-                dt.Rows.Add(dr);
+                DataTable dt = new DataTable();
+                DataRow dr;
+                
+                dt.Columns.Add(new DataColumn("ID Client", typeof(int)));
+                dt.Columns.Add(new DataColumn("ID Contact", typeof(int)));
+                dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
+                dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
+                
+                foreach (Contact unContactEF in Donnees.Db.Contact.ToList())
+                {
+                    if (unContactEF.idClient == idClientExt)
+                    {
+                        dr = dt.NewRow();
+                        dr[0] = unContactEF.idClient;
+                        dr[1] = unContactEF.idContact;
+                        dr[2] = unContactEF.nomContact;
+                        dr[3] = unContactEF.prenomContact;
+                        //Rows Add
+                        dt.Rows.Add(dr);
+                    }
+                }
+
+                this.dgvListeContacts.DataSource = dt;
+                this.dgvListeContacts.Refresh();
+                dt = null;
+                dr = null;
+                lblDoubleClick.Visible = true;
+                lblPasDeContacts.Visible = false;
+                btnSupprimerContact.Visible = true;
+                btnModifierContact.Visible = true;
             }
-            this.dgvListeContacts.DataSource = dt;
-            this.dgvListeContacts.Refresh();
-            dt = null;
-            dr = null;
-            lblDoubleClick.Visible = true;
-            lblPasDeContacts.Visible = false;
-            btnSupprimerContact.Visible = true;
-            btnModifierContact.Visible = true;
+      
+            if (nbContacts == 0)
+            {
+                lblPasDeContacts.Visible = true;
+            }
         }
 
         /// <summary>
@@ -120,40 +136,44 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEnregistrerModif_Click(object sender, EventArgs e)
+        private void btnEnregistrerModifClient_Click(object sender, EventArgs e)
         {
-            leClient.IdClient = int.Parse(txtIdModif.Text);
-            leClient.RaisonSociale = txtRaisonSModif.Text;
-            leClient.Adresse = txtAdresseModif.Text;
-            leClient.ComplementAdresse = txtComplementAdresseModif.Text;
-            leClient.VilleClient = txtVilleModif.Text;
-            leClient.Telephone = int.Parse(txtTelModif.Text);
-            leClient.ChiffreAffaires = int.Parse(txtCAModif.Text);
-            leClient.Effectif = int.Parse(txtEffectifModif.Text);
-            
+            Client leClient = Donnees.Db.Client.Find(idClientExt);
+
+            leClient.idClient = int.Parse(txtIdModif.Text);
+            leClient.raisonSociale = txtRaisonSModif.Text;
+            leClient.adresse = txtAdresseModif.Text;
+            leClient.complementAdresse = txtComplementAdresseModif.Text;
+            leClient.villeClient = txtVilleModif.Text;
+            leClient.telephone = txtTelModif.Text.ToString();
+            leClient.CA = int.Parse(txtCAModif.Text);
+            leClient.effectif = int.Parse(txtEffectifModif.Text);
+
             //Type de societe
             if (rbtTypeClientPrive.Checked)
             {
-                leClient.TypeSociete = "Prive";
+                leClient.typeSociete = "Prive";
             }
-            else leClient.TypeSociete = "Public";
-            
+            else leClient.typeSociete = "Public";
+
             //Type de nature de l'entreprise
             if (rbtNaturePrincipale.Checked)
             {
-                leClient.Nature = "Principale";
-            } else if (rbtNatureSecondaire.Checked)
-            {
-                leClient.Nature = "Secondaire";
+                leClient.nature = "Principale";
             }
-            else leClient.Nature = "Ancienne";
-
-            if (leClient.ListeContacts.Count !=0)
+            else if (rbtNatureSecondaire.Checked)
             {
-                leClient.ListeContacts[iContact].IdContact = int.Parse(txtIdContact.Text);
-                leClient.ListeContacts[iContact].NomContact = txtNomContact.Text;
-                leClient.ListeContacts[iContact].PrenomContact = txtPrenomContact.Text;
-                leClient.ListeContacts[iContact].TelContact = txtTelContact.Text;
+                leClient.nature = "Secondaire";
+            }
+            else leClient.nature = "Ancienne";
+
+            if (Donnees.Db.Contact.Count() >= 1)
+            {
+
+                //leClient.idContact = int.Parse(txtIdContact.Text);
+                //leClient.ListeContacts[iContact].NomContact = txtNomContact.Text;
+                //leClient.ListeContacts[iContact].PrenomContact = txtPrenomContact.Text;
+                //leClient.ListeContacts[iContact].TelContact = txtTelContact.Text;
             }
             this.DialogResult = DialogResult.OK;
         }
@@ -174,32 +194,41 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void dgvListeContacts_Click(object sender, EventArgs e)
         {
-            lblDoubleClick.Visible = false;
-            gpbContact.Visible = true;
-
-            if (leClient.ListeContacts.Count != 0 )
+            
+            int nbContact = Donnees.Db.Contact.Count();
+            if (nbContact >= 1)
             {
-                iContact = this.dgvListeContacts.CurrentRow.Index;
+                lblDoubleClick.Visible = false;
+                gpbContact.Visible = true;
+                int idContact = (int)this.dgvListeContacts.CurrentRow.Cells[1].Value;
+                Contact leContactEf = Donnees.Db.Contact.Find(idContact);
                 //Affichage du client dans le group box
-                txtIdContact.Text = leClient.ListeContacts[iContact].IdContact.ToString();
-                txtNomContact.Text = leClient.ListeContacts[iContact].NomContact;
-                txtPrenomContact.Text = leClient.ListeContacts[iContact].PrenomContact;
-                txtTelContact.Text = leClient.ListeContacts[iContact].TelContact;
+                txtIdContact.Text = leContactEf.idContact.ToString();
+                txtNomContact.Text = leContactEf.nomContact;
+                txtPrenomContact.Text = leContactEf.prenomContact;
+                txtTelContact.Text = leContactEf.telContact;
+            }
+            if (nbContact == 0)
+            {
+                lblPasDeContacts.Visible = true;
             }
         }
+
         /// <summary>
-        /// Ajout d'un contact avec le bouton ajouter
+        /// Click sur le bouton ajouter un contact
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
+            txtIdContact.ReadOnly = false;
             gpbContact.Visible = true;
             btnEnregistrerModificationContact.Visible = false;
-            btnEnregistrerModif.Visible = false;
+            btnEnregistrerModifClient.Visible = false;
             btnAnnulerModif.Visible = false;
             btnEnregistretContact.Visible = true;
-            if (leClient.ListeContacts.Count != 0)
+            btnContinuer.Visible = false;
+            if (Donnees.Db.Contact.Count() >= 1)
             {
                 lblPasDeContacts.Visible = false;
                 viderLesTxtBox();
@@ -213,21 +242,34 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnEnregistretContact_Click(object sender, EventArgs e)
         {
-                //Création reference d'objet Contact
-                MContact nouveauContact = new MContact();
-                nouveauContact.IdContact = int.Parse(txtIdContact.Text);
-                nouveauContact.NomContact = txtNomContact.Text;
-                nouveauContact.PrenomContact = txtPrenomContact.Text;
-                nouveauContact.TelContact = txtTelContact.Text;
+            //Création reference d'objet Contact
+            MContact nouveauContact = new MContact();
+            try
+            {
+                Contact nouveauContactEF = new Contact();
+                nouveauContactEF.idClient = idClientExt;
+                nouveauContactEF.idContact = int.Parse(txtIdContact.Text);
+                nouveauContactEF.nomContact = txtNomContact.Text; 
+                nouveauContactEF.prenomContact = txtPrenomContact.Text;
+                nouveauContactEF.telContact = txtTelContact.Text;
 
-                //Ajoute un contact a la liste de contacts declare dns la classe contact
-                leClient.ListeContacts.Add(nouveauContact);
-            
-                MContact.NombreContacts += 1;
-                this.iContact = MContact.NombreContacts - 1;
+                Donnees.Db.Contact.Add(nouveauContactEF);
+                Donnees.Db.SaveChanges();
+                btnContinuer.Visible = true;
 
-                afficheListContact();
-                gpbContact.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                nouveauContact = null;
+                MessageBox.Show("Erreur : \n" + ex.Message, "Ajout d'un contact");
+            }
+
+            MContact.NombreContacts += 1;
+            this.iContact = MContact.NombreContacts - 1;
+
+            afficheListContact();
+            gpbContact.Visible = false;
+            boutonsContAnnulerVisible();
         }
         /// <summary>
         /// Methode pour vider les text box apres l'ajout ou modification d'un contact
@@ -251,6 +293,7 @@ namespace Active_Gestion_Commerciale
         {
             viderLesTxtBox();
             gpbContact.Visible = false;
+            boutonsContAnnulerVisible();
         }
         /// <summary>
         /// Modification d'un contact
@@ -259,20 +302,31 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnModifierContact_Click(object sender, EventArgs e)
         {
-            viderLesTxtBox();
-            lblDoubleClick.Visible = false;
-            gpbContact.Visible = true;
-            btnEnregistretContact.Visible = false;
-            btnEnregistrerModificationContact.Visible = true;
 
-            if (leClient.ListeContacts.Count != 0)
+                viderLesTxtBox();
+                lblDoubleClick.Visible = false;
+                btnEnregistretContact.Visible = false;
+                btnEnregistrerModificationContact.Visible = true;
+
+            int nbCOntacts = Donnees.Db.Contact.Count();
+            if (nbCOntacts == 0)
             {
-                iContact = this.dgvListeContacts.CurrentRow.Index;
+                lblPasDeContacts.Visible = true;
+                gpbContact.Visible = false;
+            }
+            if (nbCOntacts >=1)
+            {
+                gpbContact.Visible = true;
+                int idContact = (int)this.dgvListeContacts.CurrentRow.Cells[1].Value;
+                Contact leContactEf = Donnees.Db.Contact.Find(idContact);
                 //Affichage du client dans le group box
-                txtIdContact.Text = leClient.ListeContacts[iContact].IdContact.ToString();
-                txtNomContact.Text = leClient.ListeContacts[iContact].NomContact;
-                txtPrenomContact.Text = leClient.ListeContacts[iContact].PrenomContact;
-                txtTelContact.Text = leClient.ListeContacts[iContact].TelContact;
+                txtIdContact.ReadOnly = true;
+                txtIdContact.Text = leContactEf.idContact.ToString();
+                txtNomContact.Text = leContactEf.nomContact;
+                txtPrenomContact.Text = leContactEf.prenomContact;
+                txtTelContact.Text = leContactEf.telContact;
+                boutonsContAnnulerCache();
+               
             }
         }
 
@@ -283,13 +337,16 @@ namespace Active_Gestion_Commerciale
         /// <param name="e"></param>
         private void btnEnregistrerModificationContact_Click(object sender, EventArgs e)
         {
-            leClient.ListeContacts[iContact].IdContact = int.Parse(txtIdContact.Text);
-            leClient.ListeContacts[iContact].NomContact = txtNomContact.Text;
-            leClient.ListeContacts[iContact].PrenomContact = txtPrenomContact.Text;
-            leClient.ListeContacts[iContact].TelContact = txtTelContact.Text;
+            int idContact = (int)this.dgvListeContacts.CurrentRow.Cells[1].Value;
+            Contact leContactEf = Donnees.Db.Contact.Find(idContact);
+            leContactEf.idContact = int.Parse(txtIdContact.Text);
+            leContactEf.nomContact = txtNomContact.Text;
+            leContactEf.prenomContact = txtPrenomContact.Text;
+            leContactEf.telContact = txtTelContact.Text;
             afficheListContact();
             gpbContact.Visible = false;
-
+            Donnees.Db.SaveChanges();
+            boutonsContAnnulerVisible();
         }
 
         /// <summary>
@@ -300,18 +357,44 @@ namespace Active_Gestion_Commerciale
         private void btnSupprimerContact_Click(object sender, EventArgs e)
         {
             gpbContact.Visible = false;
-            if(leClient.ListeContacts.Count == 0)
+
+            if(Donnees.Db.Contact.Count() == 0)
             {
                 lblPasDeContacts.Visible = true;
             }
             else
             {
-                int a;
-                a = this.dgvListeContacts.CurrentRow.Index;
-                leClient.ListeContacts.RemoveAt(a);
+                int idContact = (int)this.dgvListeContacts.CurrentRow.Cells[1].Value;
+
+                Contact leContact = Donnees.Db.Contact.Find(idContact);
+                //Confirmer la suppression
+                if (MessageBox.Show("Voulez-vous supprimer définitivement le client " + leContact.nomContact.Trim() + " ?", "confirmer") == DialogResult.OK) ;
+                {
+                    // supprimer de la collection EF
+                    Donnees.Db.Contact.Remove(leContact);
+                    //impacter en BdD
+                    Donnees.Db.SaveChanges();
+                }
                 afficheListContact();
             }
+            boutonsContAnnulerVisible();
             
+        }
+        /// <summary>
+        /// Affichage des boutons coninuer et annuler
+        /// apres selection ajout, modificatio ou suppression d'un client
+        /// </summary>
+        private void boutonsContAnnulerVisible()
+        {
+            btnContinuer.Visible = true;
+            btnAnnulerModif.Visible = true;
+        }
+
+        private void boutonsContAnnulerCache()
+        {
+            btnContinuer.Visible = false;
+            btnAnnulerModif.Visible = false;
         }
     }
 }
+

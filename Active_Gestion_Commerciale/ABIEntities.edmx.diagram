@@ -4,9 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f405fbf6e1ca4b3295810c668187be2a" Name="Diagram1">
+      <Diagram DiagramId="5424d9ee34e743fdad8902f5cd6cd534" Name="Diagram1">
         <EntityTypeShape EntityType="ABIModel.Client" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ABIModel.Contact" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABIModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="ABIModel.FK_Contact_Client" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

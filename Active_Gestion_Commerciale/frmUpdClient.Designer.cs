@@ -58,7 +58,7 @@
             this.lblDomaineDactivite = new System.Windows.Forms.Label();
             this.lblRaisonSociale = new System.Windows.Forms.Label();
             this.lblIdClient = new System.Windows.Forms.Label();
-            this.btnEnregistrerModif = new System.Windows.Forms.Button();
+            this.btnEnregistrerModifClient = new System.Windows.Forms.Button();
             this.gbxFicheClient = new System.Windows.Forms.GroupBox();
             this.txtCommentairesModif = new System.Windows.Forms.RichTextBox();
             this.txtEffectifModif = new System.Windows.Forms.MaskedTextBox();
@@ -110,6 +110,7 @@
             this.btnAjouterContact = new System.Windows.Forms.Button();
             this.btnModifierContact = new System.Windows.Forms.Button();
             this.btnSupprimerContact = new System.Windows.Forms.Button();
+            this.btnContinuer = new System.Windows.Forms.Button();
             this.gbxFicheClient.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -380,15 +381,15 @@
             this.lblIdClient.TabIndex = 0;
             this.lblIdClient.Text = "Numéro de client :";
             // 
-            // btnEnregistrerModif
+            // btnEnregistrerModifClient
             // 
-            this.btnEnregistrerModif.Location = new System.Drawing.Point(527, 588);
-            this.btnEnregistrerModif.Name = "btnEnregistrerModif";
-            this.btnEnregistrerModif.Size = new System.Drawing.Size(75, 23);
-            this.btnEnregistrerModif.TabIndex = 5;
-            this.btnEnregistrerModif.Text = "Enregistrer";
-            this.btnEnregistrerModif.UseVisualStyleBackColor = true;
-            this.btnEnregistrerModif.Click += new System.EventHandler(this.btnEnregistrerModif_Click);
+            this.btnEnregistrerModifClient.Location = new System.Drawing.Point(517, 588);
+            this.btnEnregistrerModifClient.Name = "btnEnregistrerModifClient";
+            this.btnEnregistrerModifClient.Size = new System.Drawing.Size(75, 23);
+            this.btnEnregistrerModifClient.TabIndex = 5;
+            this.btnEnregistrerModifClient.Text = "Enregistrer";
+            this.btnEnregistrerModifClient.UseVisualStyleBackColor = true;
+            this.btnEnregistrerModifClient.Click += new System.EventHandler(this.btnEnregistrerModifClient_Click);
             // 
             // gbxFicheClient
             // 
@@ -890,11 +891,22 @@
             this.btnSupprimerContact.UseVisualStyleBackColor = true;
             this.btnSupprimerContact.Click += new System.EventHandler(this.btnSupprimerContact_Click);
             // 
+            // btnContinuer
+            // 
+            this.btnContinuer.Location = new System.Drawing.Point(517, 588);
+            this.btnContinuer.Name = "btnContinuer";
+            this.btnContinuer.Size = new System.Drawing.Size(75, 23);
+            this.btnContinuer.TabIndex = 15;
+            this.btnContinuer.Text = "Continuer";
+            this.btnContinuer.UseVisualStyleBackColor = true;
+            this.btnContinuer.Visible = false;
+            // 
             // frmUpdClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 633);
+            this.Controls.Add(this.btnContinuer);
             this.Controls.Add(this.btnSupprimerContact);
             this.Controls.Add(this.btnModifierContact);
             this.Controls.Add(this.btnAjouterContact);
@@ -905,7 +917,7 @@
             this.Controls.Add(this.gpbContact);
             this.Controls.Add(this.btnAnnulerModif);
             this.Controls.Add(this.gbxFicheClient);
-            this.Controls.Add(this.btnEnregistrerModif);
+            this.Controls.Add(this.btnEnregistrerModifClient);
             this.Name = "frmUpdClient";
             this.Text = "ACTIVE - Modification d\'une fiche client";
             this.Load += new System.EventHandler(this.frmModifClient_Load);
@@ -954,7 +966,7 @@
         private System.Windows.Forms.Label lblDomaineDactivite;
         private System.Windows.Forms.Label lblRaisonSociale;
         private System.Windows.Forms.Label lblIdClient;
-        private System.Windows.Forms.Button btnEnregistrerModif;
+        private System.Windows.Forms.Button btnEnregistrerModifClient;
         private System.Windows.Forms.GroupBox gbxFicheClient;
         private System.Windows.Forms.RichTextBox txtCommentairesModif;
         private System.Windows.Forms.MaskedTextBox txtEffectifModif;
@@ -1006,5 +1018,6 @@
         private System.Windows.Forms.Button btnModifierContact;
         private System.Windows.Forms.Button btnSupprimerContact;
         private System.Windows.Forms.Button btnEnregistrerModificationContact;
+        private System.Windows.Forms.Button btnContinuer;
     }
 }

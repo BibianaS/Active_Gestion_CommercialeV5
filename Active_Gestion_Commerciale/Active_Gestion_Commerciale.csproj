@@ -58,31 +58,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABI.Context.cs">
+    <Compile Include="ABIEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ABI.Context.tt</DependentUpon>
+      <DependentUpon>ABIEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ABI.cs">
+    <Compile Include="ABIEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ABI.tt</DependentUpon>
+      <DependentUpon>ABIEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ABI.Designer.cs">
+    <Compile Include="ABIEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ABI.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ABIDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ABIDataSet.xsd</DependentUpon>
+      <DependentUpon>ABIEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Client.cs">
-      <DependentUpon>ABI.tt</DependentUpon>
+      <DependentUpon>ABIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Contact.cs">
-      <DependentUpon>ABI.tt</DependentUpon>
+      <DependentUpon>ABIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Controles.cs" />
     <Compile Include="frmDsp.cs">
@@ -127,6 +122,9 @@
     <Compile Include="Intervenant.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ABIEntities.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmDsp.resx">
       <DependentUpon>frmDsp.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,23 +148,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="ABI.edmx">
+    <EntityDeploy Include="ABIEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ABI.Designer.cs</LastGenOutput>
+      <LastGenOutput>ABIEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ABI.edmx.diagram">
-      <DependentUpon>ABI.edmx</DependentUpon>
-    </None>
-    <None Include="ABIDataSet.xsc">
-      <DependentUpon>ABIDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ABIDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ABIDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ABIDataSet.xss">
-      <DependentUpon>ABIDataSet.xsd</DependentUpon>
+    <None Include="ABIEntities.edmx.diagram">
+      <DependentUpon>ABIEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -209,15 +196,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ABI.Context.tt">
+    <Content Include="ABIEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ABI.edmx</DependentUpon>
-      <LastGenOutput>ABI.Context.cs</LastGenOutput>
+      <DependentUpon>ABIEntities.edmx</DependentUpon>
+      <LastGenOutput>ABIEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ABI.tt">
+    <Content Include="ABIEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ABI.edmx</DependentUpon>
-      <LastGenOutput>ABI.cs</LastGenOutput>
+      <DependentUpon>ABIEntities.edmx</DependentUpon>
+      <LastGenOutput>ABIEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

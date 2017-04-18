@@ -12,14 +12,12 @@ namespace Active_Gestion_Commerciale
     using System;
     using System.Collections.Generic;
     
-    public partial class Contact
+    public partial class sysdiagrams
     {
-        public int idContact { get; set; }
-        public int idClient { get; set; }
-        public string nomContact { get; set; }
-        public string prenomContact { get; set; }
-        public string telContact { get; set; }
-    
-        public virtual Client Client { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
