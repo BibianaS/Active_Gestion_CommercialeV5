@@ -13,9 +13,7 @@ namespace Active_Gestion_Commerciale
     public partial class frmNewClient : Form
     {
         frmNewContact frmContact;
-        MClient unClient;
         private int iContact;
-        private int iClient;
         private int idClient;
 
         /// <summary>
@@ -86,11 +84,11 @@ namespace Active_Gestion_Commerciale
                 nouveauClientEF.raisonSociale = txtRaisonSociale.Text;
                 nouveauClientEF.typeSociete = rbtPrive.Checked ? "prive" : "public";
 
-                if(cbxDomaineActivite.SelectedIndex == 0) { nouveauClientEF.activite = "Agro"; }
+                if (cbxDomaineActivite.SelectedIndex == 0) { nouveauClientEF.activite = "Agro"; }
                 else if (cbxDomaineActivite.SelectedIndex == 1) { nouveauClientEF.activite = "Commerciale"; }
-                else if (cbxDomaineActivite.SelectedIndex == 2) { nouveauClientEF.activite = "BTP"; } 
+                else if (cbxDomaineActivite.SelectedIndex == 2) { nouveauClientEF.activite = "BTP"; }
                 else { nouveauClientEF.activite = "Transport"; }
-                
+
                 nouveauClientEF.adresse = txtAdresse.Text;
                 nouveauClientEF.complementAdresse = txtComplemetAdresse.Text;
                 nouveauClientEF.villeClient = txtVille.Text;
@@ -138,7 +136,6 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         private void afficheListeClients()
         {
-
             DataTable dt = new DataTable();
 
             DataRow dr;

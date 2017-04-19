@@ -12,7 +12,7 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmDsp : Form
     {
-        
+
         frmNewClient frmClient;
 
         public frmDsp()
@@ -22,28 +22,32 @@ namespace Active_Gestion_Commerciale
         }
 
         /// <summary>
-        /// Methiode affichage de la lise de clients
+        ///Affichage de la lise de clients dans le data grid view
         /// </summary>
         private void afficheListeClients()
         {
-           int nbClients= Donnees.Db.Client.Count();
-
+            //Recupère le nombre de clients existants dans la BdD
+            int nbClients = Donnees.Db.Client.Count();
+            //Si la bdd n'est pas vide, il affiche les clients existants
             if (nbClients >= 1)
             {
                 lblAffichage.Visible = false;
                 DataTable dt = new DataTable();
-                
                 DataRow dr;
                 dt.Columns.Add(new DataColumn("ID Client", typeof(int)));
                 dt.Columns.Add(new DataColumn("Raison Sociale", typeof(System.String)));
                 dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-
+                dt.Columns.Add(new DataColumn("Type de Societe", typeof(System.String)));
+                dt.Columns.Add(new DataColumn("Chiffre d'affaires", typeof(decimal)));
+                //Affichage de chaque client existant dans la BdD
                 foreach (Client unClientEF in Donnees.Db.Client.ToList())
                 {
                     dr = dt.NewRow();
                     dr[0] = unClientEF.idClient;
                     dr[1] = unClientEF.raisonSociale;
                     dr[2] = unClientEF.telephone;
+                    dr[3] = unClientEF.typeSociete;
+                    dr[4] = unClientEF.CA;
                     dt.Rows.Add(dr);
                 }
                 this.dgvListeClients.DataSource = dt.DefaultView;
@@ -51,10 +55,55 @@ namespace Active_Gestion_Commerciale
                 dt = null;
                 dr = null;
             }
-            if (nbClients == 0 )
-            {   
+            //Si la BdD est vide affiche un lbl qui l'indique
+            if (nbClients == 0)
+            {
                 lblAffichage.Visible = true;
                 visibiliteBoutons();
+            }
+        }
+
+        /// <summary>
+        /// Boton ajouter un client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAjouterClient_Click(object sender, EventArgs e)
+        {
+            int nbClients = Donnees.Db.Client.Count();
+            //Instanciation d'une fenêtre  
+            frmClient = new frmNewClient();
+
+            if (frmClient.ShowDialog() == DialogResult.OK)
+            {
+                afficheListeClients();
+                visibiliteBoutons();
+            }
+            if (nbClients == 0)
+            {
+                lblAffichage.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Bouton modifier le client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            int nbClients = Donnees.Db.Client.Count();
+            if (nbClients >= 1)
+            {
+                //Récupere la valeur de l'IdClient selectionné 
+                int idClient = (int)this.dgvListeClients.CurrentRow.Cells[0].Value;
+
+                //instancie un form pour la modification, On passe en paramétre le idClient
+                frmUpdClient frmModif = new frmUpdClient(idClient);
+                if (frmModif.ShowDialog() == DialogResult.OK)
+                {
+                    afficheListeClients();
+                }
             }
         }
 
@@ -68,54 +117,47 @@ namespace Active_Gestion_Commerciale
             int nbClients = Donnees.Db.Client.Count();
             if (nbClients >= 1)
             {
+                //Recupère l'idClient sélectionné
                 int idClientSupp = (int)this.dgvListeClients.CurrentRow.Cells[0].Value;
+                //Recherche dans la BdD le client avec l'idClient recupèré 
                 Client leClientEF = Donnees.Db.Client.Find(idClientSupp);
-                //Confirmer la suppression
-                if (MessageBox.Show("Voulez-vous supprimer définitivement le client " + leClientEF.raisonSociale.Trim() + " ? \nTous les contacts liées à ce client seront supprimés", "confirmer") == DialogResult.OK) ;
+
+                //Affichage d'un MessageBox pour confirmar la suppression
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+                const string caption = "Suppression d'un client";
+                result = MessageBox.Show("Voulez-vous supprimer définitivement le client " + leClientEF.raisonSociale.ToString() + " ? \nTous les contacts liées à ce client seront supprimés", caption, buttons, MessageBoxIcon.Warning);
+
+                //Si la suppression est confirmée par l'utilisateur
+                if (result == DialogResult.OK)
                 {
                     if (Donnees.Db.Contact.Count() >= 1)
                     {
-                        //Suppression des contacts avant de supprimer un client
+                        //Suppression des contacts avant la suppression du client
                         foreach (Contact unContactEF in Donnees.Db.Contact.ToList())
                         {
                             if (unContactEF.idClient == idClientSupp)
                             {
+                                // Suppression des contacts de la collectionEF
                                 Donnees.Db.Contact.Remove(unContactEF);
                                 Donnees.Db.SaveChanges();
                             }
                         }
                     }
+                    // Suppression du client de la collectionEF
+                    Donnees.Db.Client.Remove(leClientEF);
+                    //impacter en BdD
+                    Donnees.Db.SaveChanges();
                 }
-            
-                
-                // supprimer de la collection EF
-                Donnees.Db.Client.Remove(leClientEF);
-                //impacter en BdD
-                Donnees.Db.SaveChanges();
+
             }
             afficheListeClients();
         }
 
-
-        
-
-
-        //TODO Gerer la recherche de clients
         /// <summary>
-        /// Recherche de clients
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnRechercher_Click(object sender, EventArgs e)
-        {
-            if (this.txtRecherche != null)
-            {
-                ((DataView)(this.dgvListeClients.DataSource)).RowFilter = "Nom Like '%" + this.txtRecherche.Text + "%'";
-            }
-        }
-
-        /// <summary>
-        /// Double click sur la liste client
+        /// Affichage d'un client et ses contacts 
+        /// avec un double click sur le client 
+        /// dans la data grid view
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -128,17 +170,14 @@ namespace Active_Gestion_Commerciale
                 lblAffichage.Text = "Vous ne pouvez pas modifier un client car la liste est vide";
                 lblAffichage.ForeColor = System.Drawing.Color.Red;
             }
-            else
-            {
-                int iClient;
-                //Index de la ligne 
-                iClient = this.dgvListeClients.CurrentRow.Index;
 
-                //instancie un objet client pointant vers le client d'origine
-                MClient leClient = Donnees.ListeClients[iClient];
+            if (nbClients >= 1)
+            {
+                //Index de la ligne 
+                int idClient = (int)this.dgvListeClients.CurrentRow.Cells[0].Value;
 
                 //instancie un form detaille pour ce client
-                frmDspClientContacts frmAfficheCltsCont = new frmDspClientContacts(leClient);
+                frmDspClientContacts frmAfficheCltsCont = new frmDspClientContacts(idClient);
 
                 frmAfficheCltsCont.ShowDialog();
                 afficheListeClients();
@@ -146,23 +185,13 @@ namespace Active_Gestion_Commerciale
         }
 
         /// <summary>
-        /// Boton ajouter un client
+        /// Quitter la fenêtre d'affichage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAjouterClient_Click(object sender, EventArgs e)
+        private void btnQuitter_Click(object sender, EventArgs e)
         {
-            int nbClients = Donnees.Db.Client.Count();
-            frmClient = new frmNewClient();
-            if (frmClient.ShowDialog() == DialogResult.OK)
-            {
-                afficheListeClients();
-                visibiliteBoutons();
-            }
-            if (nbClients == 0)
-            {
-                lblAffichage.Visible = true;
-            }
+            this.Close();
         }
 
         /// <summary>
@@ -173,32 +202,6 @@ namespace Active_Gestion_Commerciale
         private void btnTous_Click(object sender, EventArgs e)
         {
             ((DataView)(this.dgvListeClients.DataSource)).RowFilter = null;
-        }
-
-        /// <summary>
-        /// Bouton modifier le client
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnModifier_Click(object sender, EventArgs e)
-        {
-            int nbClients = Donnees.Db.Client.Count();
-            if (nbClients >= 1)
-            {
-                //Index de la ligne 
-                int idClient = (int)this.dgvListeClients.CurrentRow.Cells[0].Value;
-
-                //instancie un objet client pointant vers le client d'origine
-                Client leClient = Donnees.Db.Client.Find(idClient);
-
-                //instancie un form detaille pour ce client
-                frmUpdClient frmModif = new frmUpdClient(idClient);
-                if (frmModif.ShowDialog() == DialogResult.OK)
-                {
-                    afficheListeClients();
-                }
-            }
-           
         }
 
         /// <summary>
@@ -215,7 +218,7 @@ namespace Active_Gestion_Commerciale
                 btnModifier.Enabled = false;
                 lblAffichage.Text = "Il n'y a pas de clients";
             }
-            if(nbClients >= 1)
+            if (nbClients >= 1)
             {
                 btnRechercher.Enabled = true;
                 btnTous.Enabled = true;
@@ -225,15 +228,17 @@ namespace Active_Gestion_Commerciale
             }
         }
 
-       
         /// <summary>
-        /// Quitter la fenêtre d'affichage
+        /// Recherche de clients
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void btnRechercher_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this.txtRecherche != null)
+            {
+                ((DataView)(this.dgvListeClients.DataSource)).RowFilter = "Nom Like '%" + this.txtRecherche.Text + "%'";
+            }
         }
     }
 }

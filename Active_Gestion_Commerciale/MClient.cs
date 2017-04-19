@@ -8,7 +8,7 @@ namespace Active_Gestion_Commerciale
 {
     public class MClient
     {
-        
+
         //public static int NombreContacts = 0;
         public static int NombreClients;
         private int idClient;
@@ -43,166 +43,87 @@ namespace Active_Gestion_Commerciale
         /// <param name="effectif"></param>
         /// <param name="commentaires"></param>
         /// <param name="contact"></param>
-        
+
 
         /// <summary>
         /// Id client
         /// </summary>
         public int IdClient
         {
-            get
-            {
-                return this.idClient;
-            }
-
-            set
-            {
-                this.idClient = value;
-            }
+            get { return this.idClient; }
+            set { this.idClient = value; }
         }
-
 
         /// <summary>
         /// Raison sociale
         /// </summary>
         public string RaisonSociale
         {
-            get
-            {
-                return this.raisonSociale;
-            }
-
-            set
-            {
-                this.raisonSociale = value.Trim();
-            }
+            get { return this.raisonSociale; }
+            set { this.raisonSociale = value.Trim(); }
         }
-
 
         /// <summary>
         /// Customer Adresse
         /// </summary>
         public string Adresse
         {
-            get
-            {
-                return this.adresse;
-            }
-
-            set
-            {
-                this.adresse = value.Trim();
-            }
+            get { return this.adresse; }
+            set { this.adresse = value.Trim(); }
         }
-
 
         /// <summary>
         /// Ville properties
         /// </summary>
         public string VilleClient
         {
-            get
-            {
-                return this.villeClient;
-            }
-
-            set
-            {
-                this.villeClient = value.Trim().ToUpper();
-            }
+            get { return this.villeClient; }
+            set { this.villeClient = value.Trim().ToUpper(); }
         }
-
 
         /// <summary>
         /// PC properties
         /// </summary>
         public int CodePostale
         {
-            get
-            {
-                return this.codePostale;
-            }
-
-            set
-            {
-                this.codePostale = value;
-            }
+            get { return this.codePostale; }
+            set { this.codePostale = value; }
         }
-
 
         /// <summary>
         /// Téléphone Properties
         /// </summary>
         public string Telephone
         {
-            get
-            {
-                return this.telephone;
-            }
-
-            set
-            {
-                this.telephone = value;
-            }
+            get { return this.telephone; }
+            set { this.telephone = value; }
         }
-
 
         /// <summary>
         /// CA Propertie
         /// </summary>
         public decimal ChiffreAffaires
         {
-            get
-            {
-                return this.CA;
-            }
-
-            set
-            {
-                //if (this.CA/Effectif >= 1000000)
-                //{
-                //    System.Windows.Forms.MessageBox.Show(value.ToString() + "\n" + "n'est pas une valeur valide, le CA doit etre inferieur à 1M€ / personne", "Erreur Classe Client", System.Windows.Forms.MessageBoxButtons.OK);
-                //}
-                //else
-                //{
-                this.CA = value;
-                //}
-
-            }
+            get { return this.CA; }
+            set { this.CA = value; }
         }
-
 
         /// <summary>
         /// Effectif Properties
         /// </summary>
         public int Effectif
         {
-            get
-            {
-                return this.effectif;
-            }
-
-            set
-            {
-                this.effectif = value;
-            }
+            get { return this.effectif; }
+            set { this.effectif = value; }
         }
-
 
         /// <summary>
         /// Type societe Properties
         /// </summary>
         public string TypeSociete
         {
-            get
-            {
-                return typeSociete;
-            }
-
-            set
-            {
-                typeSociete = value;
-            }
+            get { return typeSociete; }
+            set { typeSociete = value; }
         }
 
         ///// <summary>
@@ -210,15 +131,8 @@ namespace Active_Gestion_Commerciale
         ///// </summary>
         public string Nature
         {
-            get
-            {
-                return nature;
-            }
-
-            set
-            {
-                nature = value;
-            }
+            get { return nature; }
+            set { nature = value; }
         }
 
         ///// <summary>
@@ -226,15 +140,8 @@ namespace Active_Gestion_Commerciale
         ///// </summary>
         public string Activite
         {
-            get
-            {
-                return activite;
-            }
-
-            set
-            {
-                activite = value;
-            }
+            get { return activite; }
+            set { activite = value; }
         }
 
         ///// <summary>
@@ -242,15 +149,8 @@ namespace Active_Gestion_Commerciale
         ///// </summary>
         public string Commentaires
         {
-            get
-            {
-                return commentaires;
-            }
-
-            set
-            {
-                commentaires = value;
-            }
+            get { return commentaires; }
+            set { commentaires = value; }
         }
 
         /// <summary>
@@ -258,30 +158,20 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         public List<MContact> ListeContacts
         {
-            get
-            {
-                return listeContacts;
-            }
-
-            set
-            {
-                listeContacts = value;
-            }
+            get { return listeContacts; }
+            set { listeContacts = value; }
         }
 
         public string ComplementAdresse
         {
-            get
-            {
-                return complementAdresse;
-            }
-
+            get { return complementAdresse; }
             set
             {
-                if(complementAdresse == "")
+                if (complementAdresse == "")
                 {
                     complementAdresse = "";
-                }else
+                }
+                else
                 {
                     complementAdresse = value;
                 }

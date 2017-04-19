@@ -35,14 +35,14 @@
             this.txtDomaineActivite = new System.Windows.Forms.TextBox();
             this.lblNature = new System.Windows.Forms.Label();
             this.txtCommentaires = new System.Windows.Forms.RichTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtEffectifs = new System.Windows.Forms.MaskedTextBox();
             this.lblCommentaires = new System.Windows.Forms.Label();
             this.txtVille = new System.Windows.Forms.MaskedTextBox();
             this.lblVille = new System.Windows.Forms.Label();
             this.txtRaisonSociale = new System.Windows.Forms.MaskedTextBox();
             this.txtChiffreAffaires = new System.Windows.Forms.MaskedTextBox();
             this.txtCodePostale = new System.Windows.Forms.MaskedTextBox();
-            this.txtComplemetAdresse = new System.Windows.Forms.MaskedTextBox();
+            this.txtComplementAdresse = new System.Windows.Forms.MaskedTextBox();
             this.lblCodePostale = new System.Windows.Forms.Label();
             this.txtAdresse = new System.Windows.Forms.MaskedTextBox();
             this.txtTelephone = new System.Windows.Forms.MaskedTextBox();
@@ -80,14 +80,14 @@
             this.gbxFicheClient.Controls.Add(this.txtDomaineActivite);
             this.gbxFicheClient.Controls.Add(this.lblNature);
             this.gbxFicheClient.Controls.Add(this.txtCommentaires);
-            this.gbxFicheClient.Controls.Add(this.maskedTextBox2);
+            this.gbxFicheClient.Controls.Add(this.txtEffectifs);
             this.gbxFicheClient.Controls.Add(this.lblCommentaires);
             this.gbxFicheClient.Controls.Add(this.txtVille);
             this.gbxFicheClient.Controls.Add(this.lblVille);
             this.gbxFicheClient.Controls.Add(this.txtRaisonSociale);
             this.gbxFicheClient.Controls.Add(this.txtChiffreAffaires);
             this.gbxFicheClient.Controls.Add(this.txtCodePostale);
-            this.gbxFicheClient.Controls.Add(this.txtComplemetAdresse);
+            this.gbxFicheClient.Controls.Add(this.txtComplementAdresse);
             this.gbxFicheClient.Controls.Add(this.lblCodePostale);
             this.gbxFicheClient.Controls.Add(this.txtAdresse);
             this.gbxFicheClient.Controls.Add(this.txtTelephone);
@@ -157,13 +157,13 @@
             this.txtCommentaires.TabIndex = 24;
             this.txtCommentaires.Text = "";
             // 
-            // maskedTextBox2
+            // txtEffectifs
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(145, 318);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.ReadOnly = true;
-            this.maskedTextBox2.Size = new System.Drawing.Size(178, 20);
-            this.maskedTextBox2.TabIndex = 23;
+            this.txtEffectifs.Location = new System.Drawing.Point(145, 318);
+            this.txtEffectifs.Name = "txtEffectifs";
+            this.txtEffectifs.ReadOnly = true;
+            this.txtEffectifs.Size = new System.Drawing.Size(178, 20);
+            this.txtEffectifs.TabIndex = 23;
             // 
             // lblCommentaires
             // 
@@ -216,13 +216,13 @@
             this.txtCodePostale.Size = new System.Drawing.Size(58, 20);
             this.txtCodePostale.TabIndex = 19;
             // 
-            // txtComplemetAdresse
+            // txtComplementAdresse
             // 
-            this.txtComplemetAdresse.Location = new System.Drawing.Point(145, 158);
-            this.txtComplemetAdresse.Name = "txtComplemetAdresse";
-            this.txtComplemetAdresse.ReadOnly = true;
-            this.txtComplemetAdresse.Size = new System.Drawing.Size(178, 20);
-            this.txtComplemetAdresse.TabIndex = 17;
+            this.txtComplementAdresse.Location = new System.Drawing.Point(145, 158);
+            this.txtComplementAdresse.Name = "txtComplementAdresse";
+            this.txtComplementAdresse.ReadOnly = true;
+            this.txtComplementAdresse.Size = new System.Drawing.Size(178, 20);
+            this.txtComplementAdresse.TabIndex = 17;
             // 
             // lblCodePostale
             // 
@@ -451,7 +451,7 @@
             this.lblDoubleClick.TabIndex = 9;
             this.lblDoubleClick.Text = "Double cliquer sur un contact pour l\'afficher";
             // 
-            // frmAfficheClientContacts
+            // frmDspClientContacts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -462,7 +462,7 @@
             this.Controls.Add(this.lblListeContacts);
             this.Controls.Add(this.dgvListeContacts);
             this.Controls.Add(this.gbxFicheClient);
-            this.Name = "frmAfficheClientContacts";
+            this.Name = "frmDspClientContacts";
             this.Text = "ACTIVE - Affichage de la fiche client et ses contacts";
             this.gbxFicheClient.ResumeLayout(false);
             this.gbxFicheClient.PerformLayout();
@@ -479,7 +479,7 @@
         private System.Windows.Forms.GroupBox gbxFicheClient;
         private System.Windows.Forms.TextBox txtDomaineActivite;
         private System.Windows.Forms.RichTextBox txtCommentaires;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox txtEffectifs;
         private System.Windows.Forms.Label lblCommentaires;
         private System.Windows.Forms.MaskedTextBox txtVille;
         private System.Windows.Forms.Label lblVille;
@@ -488,7 +488,7 @@
         private System.Windows.Forms.Label lblNature;
         private System.Windows.Forms.Label lblTypeClient;
         private System.Windows.Forms.MaskedTextBox txtCodePostale;
-        private System.Windows.Forms.MaskedTextBox txtComplemetAdresse;
+        private System.Windows.Forms.MaskedTextBox txtComplementAdresse;
         private System.Windows.Forms.Label lblCodePostale;
         private System.Windows.Forms.MaskedTextBox txtAdresse;
         private System.Windows.Forms.MaskedTextBox txtTelephone;

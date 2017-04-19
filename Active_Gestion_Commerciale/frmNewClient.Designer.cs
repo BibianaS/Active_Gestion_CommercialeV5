@@ -68,10 +68,10 @@
             this.dgvListeClients = new System.Windows.Forms.DataGridView();
             this.dgvContacts = new System.Windows.Forms.DataGridView();
             this.lblCreerContact = new System.Windows.Forms.Label();
-            this.btnQuitterAjoutContact = new System.Windows.Forms.Button();
             this.lblListeClients = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPasDeContacts = new System.Windows.Forms.Label();
+            this.btnQuitterAjoutContact = new System.Windows.Forms.Button();
             this.grpTypeClient.SuspendLayout();
             this.grpNature.SuspendLayout();
             this.gbxFicheClient.SuspendLayout();
@@ -454,16 +454,6 @@
             this.lblCreerContact.Text = "Créer un contact liée a ce client :";
             this.lblCreerContact.Visible = false;
             // 
-            // btnQuitterAjoutContact
-            // 
-            this.btnQuitterAjoutContact.Location = new System.Drawing.Point(340, 631);
-            this.btnQuitterAjoutContact.Name = "btnQuitterAjoutContact";
-            this.btnQuitterAjoutContact.Size = new System.Drawing.Size(107, 23);
-            this.btnQuitterAjoutContact.TabIndex = 31;
-            this.btnQuitterAjoutContact.Text = "Quitter";
-            this.btnQuitterAjoutContact.UseVisualStyleBackColor = true;
-            this.btnQuitterAjoutContact.Click += new System.EventHandler(this.btnQuitterAjoutContact_Click);
-            // 
             // lblListeClients
             // 
             this.lblListeClients.AutoSize = true;
@@ -490,9 +480,19 @@
             this.lblPasDeContacts.ForeColor = System.Drawing.Color.DodgerBlue;
             this.lblPasDeContacts.Location = new System.Drawing.Point(429, 505);
             this.lblPasDeContacts.Name = "lblPasDeContacts";
-            this.lblPasDeContacts.Size = new System.Drawing.Size(323, 20);
+            this.lblPasDeContacts.Size = new System.Drawing.Size(295, 20);
             this.lblPasDeContacts.TabIndex = 34;
-            this.lblPasDeContacts.Text = "Il n\'y a pas de contacts liées a ce client";
+            this.lblPasDeContacts.Text = "Il n\'y a pas de contact lié à ce client";
+            // 
+            // btnQuitterAjoutContact
+            // 
+            this.btnQuitterAjoutContact.Location = new System.Drawing.Point(340, 631);
+            this.btnQuitterAjoutContact.Name = "btnQuitterAjoutContact";
+            this.btnQuitterAjoutContact.Size = new System.Drawing.Size(107, 23);
+            this.btnQuitterAjoutContact.TabIndex = 31;
+            this.btnQuitterAjoutContact.Text = "Quitter";
+            this.btnQuitterAjoutContact.UseVisualStyleBackColor = true;
+            this.btnQuitterAjoutContact.Click += new System.EventHandler(this.btnQuitterAjoutContact_Click);
             // 
             // frmNewClient
             // 
@@ -566,9 +566,9 @@
         private System.Windows.Forms.DataGridView dgvContacts;
         private System.Windows.Forms.Button btnAjouterDocumments;
         private System.Windows.Forms.Label lblCreerContact;
-        private System.Windows.Forms.Button btnQuitterAjoutContact;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblListeClients;
         private System.Windows.Forms.Label lblPasDeContacts;
+        private System.Windows.Forms.Button btnQuitterAjoutContact;
     }
 }

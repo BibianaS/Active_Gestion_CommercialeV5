@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace Active_Gestion_Commerciale
 {
     public class Donnees
-    {
-        public static List<MClient> ListeClients = new List<MClient>();
-        
+    {   
         public static ABIEntities4 Db = new ABIEntities4();
     }
 }

@@ -164,9 +164,9 @@
             this.lblAffichage.ForeColor = System.Drawing.Color.DarkSeaGreen;
             this.lblAffichage.Location = new System.Drawing.Point(95, 194);
             this.lblAffichage.Name = "lblAffichage";
-            this.lblAffichage.Size = new System.Drawing.Size(182, 24);
+            this.lblAffichage.Size = new System.Drawing.Size(173, 24);
             this.lblAffichage.TabIndex = 9;
-            this.lblAffichage.Text = "Il n\'y a pas de clients";
+            this.lblAffichage.Text = "Il n\'y a pas de client";
             // 
             // lblAffichageClients
             // 

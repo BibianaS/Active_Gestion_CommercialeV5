@@ -12,8 +12,7 @@ namespace Active_Gestion_Commerciale
 {
     public partial class frmNewContact : Form
     {
-        private MClient unClient;
-        private int iContact=0;
+        private int iContact = 0;
         private int idClientExt;
         /// <summary>
         /// Constructeur par defaut, 
@@ -26,14 +25,13 @@ namespace Active_Gestion_Commerciale
             InitializeComponent();
             initListeContacts();
         }
-       
 
         /// <summary>
         /// Affiche la liste de contacts à l'ouverture de la fenêtre
         /// </summary>
         public void initListeContacts()
         {
-           afficheListContact();
+            afficheListContact();
         }
 
         /// <summary>
@@ -75,7 +73,7 @@ namespace Active_Gestion_Commerciale
                     c.Text = "";
                 }
             }
-            
+
         }
 
 
@@ -87,7 +85,7 @@ namespace Active_Gestion_Commerciale
         private void btnAccepterContact_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            
+
         }
 
 
@@ -104,8 +102,6 @@ namespace Active_Gestion_Commerciale
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Prenom", typeof(System.String)));
 
-            //Contact leContactEF = Donnees.Db.Contact.Find(idClientExt);
-
             foreach (Contact unContactEF in Donnees.Db.Contact.ToList())
             {
                 if (unContactEF.idClient == idClientExt)
@@ -119,13 +115,11 @@ namespace Active_Gestion_Commerciale
                     dt.Rows.Add(dr);
                 }
             }
-
             this.grdContacts.DataSource = dt;
             this.grdContacts.Refresh();
             dt = null;
             dr = null;
         }
-
 
         /// <summary>
         ///Contact delete
@@ -136,12 +130,20 @@ namespace Active_Gestion_Commerciale
 
             Contact leContact = Donnees.Db.Contact.Find(idContactSupp);
             //Confirmer la suppression
-            if (MessageBox.Show("Voulez-vous supprimer définitivement le contact " + leContact.nomContact.Trim() + " ?", "confirmer") == DialogResult.OK) ;
+            //Confirmer la suppression
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+            const string caption = "Suppression d'un contact";
+            result = MessageBox.Show("Voulez-vous supprimer définitivement le contact " + leContact.nomContact + " ? ", caption, buttons, MessageBoxIcon.Warning);
+
+            //Si la suppression est confirmée par l'utilisateur
+            if (result == DialogResult.OK)
             {
-               Donnees.Db.Contact.Remove(leContact);
-               Donnees.Db.SaveChanges();
+                // supprimer de la collection EF
+                Donnees.Db.Contact.Remove(leContact);
+                //impacter en BdD
+                Donnees.Db.SaveChanges();
             }
-           
             afficheListContact();
         }
 
@@ -154,5 +156,5 @@ namespace Active_Gestion_Commerciale
         {
             this.Close();
         }
-    }  
+    }
 }

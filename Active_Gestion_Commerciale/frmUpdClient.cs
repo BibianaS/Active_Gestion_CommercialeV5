@@ -145,9 +145,16 @@ namespace Active_Gestion_Commerciale
             leClient.adresse = txtAdresseModif.Text;
             leClient.complementAdresse = txtComplementAdresseModif.Text;
             leClient.villeClient = txtVilleModif.Text;
+            leClient.codePostale = int.Parse(txtCpModif.Text);
             leClient.telephone = txtTelModif.Text.ToString();
             leClient.CA = int.Parse(txtCAModif.Text);
             leClient.effectif = int.Parse(txtEffectifModif.Text);
+            leClient.commentaires = txtCommentairesModif.Text;
+
+            if (cbxDomaineActivite.SelectedIndex == 0) { leClient.activite = "Agro"; }
+            else if (cbxDomaineActivite.SelectedIndex == 1) { leClient.activite = "Commerciale"; }
+            else if (cbxDomaineActivite.SelectedIndex == 2) { leClient.activite = "BTP"; }
+            else { leClient.activite = "Transport"; }
 
             //Type de societe
             if (rbtTypeClientPrive.Checked)
@@ -167,14 +174,9 @@ namespace Active_Gestion_Commerciale
             }
             else leClient.nature = "Ancienne";
 
-            if (Donnees.Db.Contact.Count() >= 1)
-            {
+            Donnees.Db.SaveChanges();
 
-                //leClient.idContact = int.Parse(txtIdContact.Text);
-                //leClient.ListeContacts[iContact].NomContact = txtNomContact.Text;
-                //leClient.ListeContacts[iContact].PrenomContact = txtPrenomContact.Text;
-                //leClient.ListeContacts[iContact].TelContact = txtTelContact.Text;
-            }
+
             this.DialogResult = DialogResult.OK;
         }
 
@@ -368,7 +370,13 @@ namespace Active_Gestion_Commerciale
 
                 Contact leContact = Donnees.Db.Contact.Find(idContact);
                 //Confirmer la suppression
-                if (MessageBox.Show("Voulez-vous supprimer définitivement le client " + leContact.nomContact.Trim() + " ?", "confirmer") == DialogResult.OK) ;
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+                const string caption = "Suppression d'un contact";
+                result = MessageBox.Show("Voulez-vous supprimer définitivement le contact " + leContact.nomContact + " ? ", caption, buttons, MessageBoxIcon.Warning);
+
+                //Si la suppression est confirmée par l'utilisateur
+                if (result == DialogResult.OK)
                 {
                     // supprimer de la collection EF
                     Donnees.Db.Contact.Remove(leContact);
@@ -378,8 +386,8 @@ namespace Active_Gestion_Commerciale
                 afficheListContact();
             }
             boutonsContAnnulerVisible();
-            
         }
+
         /// <summary>
         /// Affichage des boutons coninuer et annuler
         /// apres selection ajout, modificatio ou suppression d'un client

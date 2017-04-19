@@ -583,7 +583,6 @@
             // txtCpModif
             // 
             this.txtCpModif.Location = new System.Drawing.Point(146, 248);
-            this.txtCpModif.Mask = "00000";
             this.txtCpModif.Name = "txtCpModif";
             this.txtCpModif.Size = new System.Drawing.Size(58, 20);
             this.txtCpModif.TabIndex = 19;
@@ -893,7 +892,7 @@
             // 
             // btnContinuer
             // 
-            this.btnContinuer.Location = new System.Drawing.Point(517, 588);
+            this.btnContinuer.Location = new System.Drawing.Point(546, 588);
             this.btnContinuer.Name = "btnContinuer";
             this.btnContinuer.Size = new System.Drawing.Size(75, 23);
             this.btnContinuer.TabIndex = 15;

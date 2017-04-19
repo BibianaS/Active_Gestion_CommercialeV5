@@ -13,38 +13,23 @@ namespace Active_Gestion_Commerciale
         private string nomContact;
         private string prenomContact;
         private string telContact;
-        
+
         /// <summary>
         /// Propriete ID contact
         /// </summary>
         public int IdContact
         {
-            get
-            {
-                return this.idContact;
-            }
-
-            set
-            {
-                this.idContact = value;
-            }
+            get { return this.idContact; }
+            set { this.idContact = value; }
         }
-
 
         /// <summary>
         /// Propriete nom Contact
         /// </summary>
         public string NomContact
         {
-            get
-            {
-                return nomContact;
-            }
-
-            set
-            {
-                nomContact = value.Trim().ToUpper();
-            }
+            get { return nomContact; }
+            set { nomContact = value.Trim().ToUpper(); }
         }
 
 
@@ -53,33 +38,17 @@ namespace Active_Gestion_Commerciale
         /// </summary>
         public string PrenomContact
         {
-            get
-            {
-                return this.prenomContact;
-            }
-
-            set
-            {
-                this.prenomContact = value.Trim().ToLower();
-            }
+            get { return this.prenomContact; }
+            set { this.prenomContact = value.Trim().ToLower(); }
         }
-
 
         /// <summary>
         /// Propriete telephone
         /// </summary>
         public string TelContact
         {
-            get
-            {
-                return telContact;
-            }
-
-            set
-            {
-                telContact = value;
-            }
+            get { return telContact; }
+            set { telContact = value; }
         }
     }
-    
 }
